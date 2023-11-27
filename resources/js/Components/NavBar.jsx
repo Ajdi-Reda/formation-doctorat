@@ -5,7 +5,7 @@ import { Link } from "@inertiajs/react";
 const NavBar = ({ logo = "Logo", navItems }) => {
     return (
         <nav className="bg-gray-50">
-            <div class="container mx-auto">
+            <div className="container mx-auto">
                 <div className="py-4 flex justify-between items-center ">
                     <div className="flex space-x-4 items-center">
                         <div className="w-20">

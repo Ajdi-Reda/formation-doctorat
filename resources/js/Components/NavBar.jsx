@@ -13,7 +13,15 @@ const NavBar = ({ logo = "Logo", navItems }) => {
                         </div>
                         <div className="flex gap-2 justify-center items-center">
                             {navItems.map((navItem, idx) => (
-                                <NavLink key={idx}>{navItem}</NavLink>
+                                <NavLink
+                                    href={navItem.link}
+                                    method={navItem.method}
+                                    as="button"
+                                    type="button"
+                                    key={idx}
+                                >
+                                    {navItem.name}
+                                </NavLink>
                             ))}
                         </div>
                     </div>

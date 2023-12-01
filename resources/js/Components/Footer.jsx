@@ -25,7 +25,7 @@ const Footer = () => {
     ];
 
     return (
-        <div className="bg-gray-50 text-sm border-b-4">
+        <div className="bg-gray-50 text-sm border-b-4 mt-24">
             <div className="container mx-auto py-6">
                 <div className="flex flex-col md:flex-row justify-center md:items-center md:justify-between my-3 md:my-6">
                     {/* left side of the footer */}

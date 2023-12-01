@@ -9,8 +9,8 @@ use Inertia\Inertia;
 class FormationController extends Controller
 {
         public function index() {
-        return Inertia::render('Formations', [
-           'formations' => Formation::all()
+        return Inertia::render('ProgramsCategories', [
+           'programs' => Formation::all()
         ]);
     }
 

@@ -7,12 +7,24 @@ const MainLayout = ({ children }) => {
         <div>
             <NavBar
                 navItems={[
-                    "Explore Programs",
-                    "Find Professors",
-                    "Research Groups",
+                    {
+                        name: "Explore Programs",
+                        link: "/programs",
+                        method: "get",
+                    },
+                    {
+                        name: "Find Professors",
+                        link: "/",
+                        method: "get",
+                    },
+                    {
+                        name: "Research Groups",
+                        link: "/",
+                        method: "get",
+                    },
                 ]}
             />
-            <main>{children}</main>
+            <main className="container mx-auto">{children}</main>
             <Footer />
         </div>
     );

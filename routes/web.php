@@ -28,7 +28,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/formations', [FormationController::class, 'index'])->name('formations');
+Route::get('/programs', [FormationController::class, 'index'])->name('programs');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

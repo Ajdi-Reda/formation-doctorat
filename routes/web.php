@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\FormationController;
+use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,7 +29,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/programs', [FormationController::class, 'index'])->name('programs');
+Route::get('/programs', [ProgramController::class, 'show'])->name('programs');
+Route::get('/programs/{program}', [FieldController::class, 'display']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

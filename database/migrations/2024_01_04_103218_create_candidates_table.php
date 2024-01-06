@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->String("firstName");
+            $table->String("lastName");
+            $table->String("email");
+            $table->String("phone_number");
+            $table->String("CNIE");
         });
     }
 

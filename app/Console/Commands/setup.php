@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class setup extends Command
 {
@@ -25,6 +26,6 @@ class setup extends Command
      */
     public function handle()
     {
-        $this->artisan->call('php artisan seed --class=MainSeeder');
+       Artisan::call('db:seed --class=MainSeeder');
     }
 }

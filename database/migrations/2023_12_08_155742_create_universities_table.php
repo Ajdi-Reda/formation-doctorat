@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('city');
-            $table->string('email');
-            $table->string('phone_number');
+            $table->string('Chancellor');
+            $table->string('ChancellorEmail');
             $table->timestamps();
         });
     }

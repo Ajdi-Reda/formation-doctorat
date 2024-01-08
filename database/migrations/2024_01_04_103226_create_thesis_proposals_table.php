@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professors', function (Blueprint $table) {
+        Schema::create('thesis_proposals', function (Blueprint $table) {
             $table->id();
-            $table->String("firstName");
-            $table->String("lastName");
-            $table->String("email");
-            $table->String("phoneNumber");
-            $table->String("researchInterest");
+            $table->foreignId("professor_id")->constrained();
+            $table->String("title");
+            $table->String("description");
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('professors');
+        Schema::dropIfExists('thesis_proposals');
     }
 };

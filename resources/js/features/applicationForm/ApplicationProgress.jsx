@@ -4,13 +4,12 @@ const ApplicationProgress = ({ currentStep, totalSteps }) => {
     const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
 
     const steps = [
-        "Courses",
         "Personal details",
         "Qualifications",
-        "Education/Employment Details",
+        "Courses",
+        "Documents",
         "Summary",
     ];
-    console.log(currentStep);
 
     return (
         <div className="mt-12">

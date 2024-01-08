@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
@@ -31,6 +32,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/programs', [ProgramController::class, 'show'])->name('programs');
 Route::get('/programs/{program}', [FieldController::class, 'display']);
+Route::post('/form1', [ApplicationController::class, 'save']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

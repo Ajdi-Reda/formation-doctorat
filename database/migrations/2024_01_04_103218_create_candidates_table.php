@@ -18,6 +18,14 @@ return new class extends Migration
             $table->String("email");
             $table->String("phone_number");
             $table->String("CNIE");
+            $table->Date("dateOfBirth");
+            $table->String("countryOfBirth");
+            $table->String("cityOfBirth");
+            $table->String("nationality");
+            $table->String("address");
+            $table->String("postalCode");
+            $table->String("country");
+            $table->String("city");
         });
     }
 

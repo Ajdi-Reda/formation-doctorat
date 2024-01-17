@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\FieldController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProgramController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Mail\MyTestEmail;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FieldController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,24 +19,18 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('LandingPage', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-    ]);
+    return Inertia::render('LandingPage');
 });
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/programs', [ProgramController::class, 'show'])->name('programs');
 Route::get('/programs/{program}', [FieldController::class, 'display']);
-Route::post('/form1', [ApplicationController::class, 'save']);
+Route::post('/form1', [ApplicationController::class, 'saveCourseForm']);
+Route::post('/form2', [ApplicationController::class, 'saveForm']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/testroute', function () {
+
+    // The email sending is done using the to method on the Mail facade
+    Mail::to('testreceiver@gmail.com')->send(new MyTestEmail());
 });
 
-require __DIR__.'/auth.php';
+

@@ -3,12 +3,13 @@ import { useForm } from "@inertiajs/react";
 
 const PersonalDataForm = ({ children, handleIncrementStep }) => {
     const { data, setData, post, errors } = useForm({
+        formName: "personal_details_form",
         firstName: "",
         lastName: "",
         email: "",
         telephoneNumber: "",
         cin: "",
-        birthDay: "",
+        dateOfBirth: "",
         countryOfBirth: "",
         cityOfBirth: "",
         nationality: "",
@@ -16,16 +17,16 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
         postalCode: "",
         country: "",
         city: "",
-        remember: true,
+        remember: false,
     });
 
     function handleSubmit(e) {
         e.preventDefault();
+        post("/form2");
         handleIncrementStep();
-        post("/form1");
     }
     return (
-        <form onSubmit={handleSubmit} id="form1">
+        <form onSubmit={handleSubmit} id="PersonalDetailsForm">
             <div className="py-6 mt-12 space-y-4">
                 <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:justify-center md:items-center md:gap-8">
                     <div className="md:w-full space-y-1 md:space-y-2">
@@ -102,7 +103,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                     id="cin"
                                     value={data.cni}
                                     onChange={(e) =>
-                                        setData("cni", e.target.value)
+                                        setData("cin", e.target.value)
                                     }
                                 />
                                 {errors.cin && (
@@ -182,7 +183,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                 <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:justify-center md:items-center md:gap-8 mt-4">
                     <div className="md:w-full space-y-1 md:space-y-2">
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="telephoneNumber">Adress</label>
+                            <label htmlFor="address">Address</label>
                             <input
                                 required
                                 type="text"
@@ -198,7 +199,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                         </div>
                         <div>
                             <div className="flex flex-col gap-2">
-                                <label htmlFor="cin">Country</label>
+                                <label htmlFor="country">Country</label>
                                 <input
                                     required
                                     type="text"

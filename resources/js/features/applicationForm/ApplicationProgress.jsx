@@ -4,9 +4,9 @@ const ApplicationProgress = ({ currentStep, totalSteps }) => {
     const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
 
     const steps = [
+        "Courses",
         "Personal details",
         "Qualifications",
-        "Courses",
         "Documents",
         "Summary",
     ];

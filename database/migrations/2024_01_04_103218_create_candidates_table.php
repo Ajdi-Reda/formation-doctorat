@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,11 +12,12 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
+            $table->String("user_id");
             $table->String("firstName");
             $table->String("lastName");
             $table->String("email");
             $table->String("phone_number");
-            $table->String("CNIE");
+            $table->String("cin");
             $table->Date("dateOfBirth");
             $table->String("countryOfBirth");
             $table->String("cityOfBirth");
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->String("postalCode");
             $table->String("country");
             $table->String("city");
+            $table->timestamps();
         });
     }
 

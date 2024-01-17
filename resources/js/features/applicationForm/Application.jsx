@@ -4,10 +4,11 @@ import FieldSelection from "./FieldSelection";
 import PersonalDataForm from "./PersonalDataForm";
 import PrevNextBtn from "./PrevNextBtn";
 import QualificationsForm from "./QualificationsForm";
+import DocumentForm from "./DocumentForm";
 
 const Application = ({ fields }) => {
     const [currStep, setCurrStep] = useState(1);
-    const stepForms = [PersonalDataForm, QualificationsForm, FieldSelection];
+    const stepForms = [FieldSelection, PersonalDataForm, QualificationsForm, DocumentForm];
 
     function handleIncrementStep() {
         setCurrStep(currStep + 1);
@@ -24,7 +25,7 @@ const Application = ({ fields }) => {
         <>
             <ApplicationProgress currentStep={currStep} totalSteps={5} />
             <CurrentForm
-                {...(currStep === 3 && { fields })}
+                {...(currStep === 1 && { fields })}
                 handleIncrementStep={handleIncrementStep}
             >
                 <PrevNextBtn handleDecrementStep={handleDecrementStep} />

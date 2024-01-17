@@ -90,5 +90,48 @@ class MainSeeder extends Seeder
                 (5, 9, NOW(), NOW()),
                 (5, 10, NOW(), NOW())
         ");
+;
+        DB::statement("INSERT INTO professors (firstName, lastName, email, phoneNumber, researchInterest, created_at, updated_at)
+VALUES
+    ('John', 'Smith', 'john.smith@email.com', '123456789', 'Software Engineering', NOW(), NOW()),
+    ('Emma', 'Johnson', 'emma.johnson@email.com', '987654321', 'Network Security', NOW(), NOW()),
+    ('Michael', 'Davis', 'michael.davis@email.com', '456789123', 'Finance', NOW(), NOW()),
+    ('Sophia', 'Williams', 'sophia.williams@email.com', '321654987', 'Marketing', NOW(), NOW()),
+    ('David', 'Jones', 'david.jones@email.com', '789123456', 'Power Systems', NOW(), NOW());
+");
+        
+        DB::statement("
+            INSERT INTO thesis_proposals (professor_id, field_id, title, description, created_at, updated_at)
+VALUES
+    (1, 1, 'Advanced Software Development Practices', 'Investigating the latest practices in software engineering for advanced development.', NOW(), NOW()),
+    (2, 1, 'Secure Coding Techniques', 'Exploring secure coding techniques and best practices in software engineering.', NOW(), NOW()),
+    (3, 1, 'Agile Software Development', 'Studying the principles and applications of agile software development methodologies.', NOW(), NOW()),
+    (4, 1, 'Machine Learning in Software Engineering', 'Investigating the applications of machine learning in software engineering processes.', NOW(), NOW()),
+    (5, 1, 'Human-Computer Interaction', 'Exploring the impact of human-computer interaction on software development.', NOW(), NOW()),
+
+    (1, 2, 'Network Security Protocols', 'Researching and evaluating network security protocols for robust cybersecurity measures.', NOW(), NOW()),
+    (2, 2, 'Intrusion Detection Systems', 'Analyzing and enhancing intrusion detection systems for network security.', NOW(), NOW()),
+    (3, 2, 'Wireless Network Security', 'Investigating security challenges and solutions in wireless network environments.', NOW(), NOW()),
+    (4, 2, 'Blockchain for Network Security', 'Exploring the integration of blockchain technology for enhancing network security.', NOW(), NOW()),
+    (5, 2, 'Cloud Security Practices', 'Studying security practices in cloud computing environments for network protection.', NOW(), NOW()),
+
+    (1, 3, 'Financial Modeling and Analysis', 'Examining advanced financial modeling techniques for strategic decision-making.', NOW(), NOW()),
+    (2, 3, 'Risk Management in Finance', 'Analyzing risk management strategies and methodologies in the field of finance.', NOW(), NOW()),
+    (3, 3, 'Financial Markets and Investments', 'Investigating trends and opportunities in financial markets and investment strategies.', NOW(), NOW()),
+    (4, 3, 'Sustainable Finance Practices', 'Exploring sustainable finance practices and their impact on business and society.', NOW(), NOW()),
+    (5, 3, 'Behavioral Finance Studies', 'Studying the psychological aspects influencing financial decision-making and market behavior.', NOW(), NOW()),
+
+    (1, 4, 'Digital Marketing Strategies', 'Analyzing and optimizing digital marketing strategies for business growth.', NOW(), NOW()),
+    (2, 4, 'Consumer Behavior in Marketing', 'Investigating the psychological factors influencing consumer behavior and decision-making.', NOW(), NOW()),
+    (3, 4, 'Brand Management Practices', 'Examining effective brand management practices for building and maintaining brand equity.', NOW(), NOW()),
+    (4, 4, 'Social Media Marketing Trends', 'Exploring emerging trends and strategies in social media marketing for effective brand communication.', NOW(), NOW()),
+    (5, 4, 'Global Marketing Strategies', 'Studying international marketing strategies for expanding businesses in the global market.', NOW(), NOW()),
+
+    (1, 5, 'Smart Grid Technologies', 'Researching and implementing smart grid technologies for efficient power distribution.', NOW(), NOW()),
+    (2, 5, 'Renewable Energy Integration', 'Analyzing and optimizing the integration of renewable energy sources into power systems.', NOW(), NOW()),
+    (3, 5, 'Power System Stability Studies', 'Investigating stability challenges and solutions in modern power systems.', NOW(), NOW()),
+    (4, 5, 'Energy Storage Solutions', 'Exploring advanced energy storage solutions for enhancing power system reliability.', NOW(), NOW()),
+    (5, 5, 'Grid Resilience in Power Systems', 'Studying strategies for enhancing grid resilience in power systems against various challenges.', NOW(), NOW());"
+);
     }
 }

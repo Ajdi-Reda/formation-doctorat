@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('thesis_proposals', function (Blueprint $table) {
             $table->id();
             $table->foreignId("professor_id")->constrained();
+            $table->foreignId("field_id")->constrained();
             $table->String("title");
             $table->String("description");
             $table->timestamps();

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->String("thesis_proposal_id")->constrained();
             $table->String("candidate_id")->constrained();
+            $table->String("bac_details_id")->constrained();
             $table->timestamps();
         });
     }

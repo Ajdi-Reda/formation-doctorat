@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'from' => ['address' => 'ajrireda@gmail.com', 'no-reply' => 'formation-doctoral'],
 
     /*
     |--------------------------------------------------------------------------

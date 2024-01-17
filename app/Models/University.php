@@ -20,6 +20,6 @@ class University extends Model
 
     public function universityProgram(): HasMany
     {
-        return $this->hasMany(ProgramUniversities::class);
+        return $this->hasMany(ProgramUniversity::class);
     }
 }

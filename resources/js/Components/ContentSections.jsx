@@ -21,10 +21,10 @@ const ContentSections = () => {
                         <li>Learn from renowned professors</li>
                     </ul>
                     <div>
-                        <button className="font-semibold text-sm border py-2 border-black px-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                        <button className="font-semibold text-sm border py-2 border-black px-4 text-gray-600 hover:text-gray-900">
                             Explore
                         </button>
-                        <button className="font-semibold text-sm px-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                        <button className="font-semibold text-sm px-4 text-gray-600 hover:text-gray-900">
                             Sign Up
                         </button>
                     </div>

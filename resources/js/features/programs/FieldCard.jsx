@@ -1,83 +1,56 @@
-import { useForm } from "@inertiajs/react";
 import React from "react";
+import ThesisRow from "./ThesisRow";
+import { formatDuration } from "@/Components/utils/HelperFunctions";
+import { Table } from 'flowbite-react';
 
-const FieldCard = ({ field, handleIncrementStep }) => {
-    const startDate = field.startDate.split("-");
-    const endDate = field.endDate.split("-");
-    const durationY = endDate[0] - startDate[0];
-    const durationMo = endDate[1] - startDate[1];
-    const { data, setData, post } = useForm({
-        field: field.id,
-        thesis: "",
-    });
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        setData("field", field.id);
-        post("/form1", data);
-        handleIncrementStep();
-    }
+const FieldCard = ({ field, setData, data }) => {
+    const duration = formatDuration(field);
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="border p-4 mx-auto">
-                <div className="flex justify-between">
-                    <div>
-                        <p className="text-xl font-semibold">
-                            {field.fieldName}
-                        </p>
-                        <p>{field.description}</p>
-                        <p className="text-lg font-semibold mt-4">
-                            {field.universityName}
-                        </p>
-                        <p className="text-sm">{field.address}</p>
+        <section className="py-1 bg-blueGray-50">
+            <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-2">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
+                    <div className="rounded-t mb-0 px-4 py-3 border-0">
+                        <div className="flex flex-wrap items-center">
+                            <div className="relative w-full text-center text-xl px-4 max-w-full flex-grow flex-1">
+                                <h3 className="font-semibold text-base text-blueGray-700">
+                                    {field.name}
+                                </h3>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <select
-                            required
-                            onChange={(e) => setData("thesis", e.target.value)}
-                        >
-                            <option value="">Select a thesis</option>
-                            {field.theses.map((thesis, idx) => {
-                                return (
-                                    <option value={thesis.title} key={idx}>
-                                        {thesis.title}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                    <div className="px-4 space-y-4">
-                        <p>
-                            {durationY !== undefined
-                                ? (durationY > 0
-                                      ? `${durationY} year${
-                                            durationY > 1 ? "s" : ""
-                                        }`
-                                      : "") +
-                                  (durationY > 0 && durationMo ? " and " : "") +
-                                  (durationMo
-                                      ? `${durationMo} month${
-                                            durationMo > 1 ? "s" : ""
-                                        }`
-                                      : "")
-                                : ""}
-                        </p>
-                        <button
-                            disabled={!data.thesis}
-                            type="submit"
-                            className={`border py-2 px-4 ${
-                                !data.thesis
-                                    ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                                    : "bg-indigo-600 text-white"
-                            }`}
-                        >
-                            Apply
-                        </button>
+
+                    <div className="block w-full overflow-x-auto">
+                        <div className="relative overflow-x-auto">
+                            <Table className="w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <Table.Head className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <Table.HeadCell scope="col" className="px-6 py-3">
+                                        Theses
+                                    </Table.HeadCell>
+                                    <Table.HeadCell scope="col" className="px-6 py-3">
+                                        Duration
+                                    </Table.HeadCell>
+                                    <Table.HeadCell scope="col" className="px-6 py-3">
+                                        Action
+                                    </Table.HeadCell>
+                                </Table.Head>
+                                <Table.Body>
+                                {field.theses.map((thesis, idx) => (
+                                    <ThesisRow
+                                        key={thesis.id}
+                                        thesis={thesis}
+                                        setData={setData}
+                                        duration={duration}
+                                        data={data}
+                                    />
+                                ))}
+                                </Table.Body>
+                            </Table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </section>
     );
 };
 

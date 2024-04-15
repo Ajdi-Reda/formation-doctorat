@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RolesEnum;
+use App\Models\Professor;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class MainSeeder extends Seeder
 {
@@ -13,6 +17,35 @@ class MainSeeder extends Seeder
      */
     public function run(): void
     {
+
+        app(Role::class)->findOrCreate(RolesEnum::CANDIDATE->value, 'web');
+        app(Role::class)->findOrCreate(RolesEnum::PROFESSOR->value, 'web');
+        app(Role::class)->findOrCreate(RolesEnum::SUPERADMIN->value, 'web');
+        for ($i = 0; $i < 5; $i++) {
+            $user = User::create([
+                'name' => "user_$i",
+                'email' => "user_$i@prof.com",
+                'password' => bcrypt("user_$i.password"),
+            ]);
+
+            $professor = new Professor([
+                'user_id' => $user->id,
+                'firstName' => "John",
+                'lastName' => "Doe_$i",
+                'phoneNumber' => "06837923",
+            ]);
+            $professor->save();
+            $user->assignRole('professor');
+
+        }
+            $user = User::create([
+                'name' => "admin",
+                'email' => "superadmin@gmail.com",
+                'password' => bcrypt("superadmin"),
+            ]);
+
+            $user->assignRole(RolesEnum::SUPERADMIN);
+
          DB::statement("
             INSERT INTO universities (name, address, Chancellor, ChancellorEmail, created_at, updated_at)
             VALUES
@@ -91,15 +124,8 @@ class MainSeeder extends Seeder
                 (5, 10, NOW(), NOW())
         ");
 ;
-        DB::statement("INSERT INTO professors (firstName, lastName, email, phoneNumber, researchInterest, created_at, updated_at)
-VALUES
-    ('John', 'Smith', 'john.smith@email.com', '123456789', 'Software Engineering', NOW(), NOW()),
-    ('Emma', 'Johnson', 'emma.johnson@email.com', '987654321', 'Network Security', NOW(), NOW()),
-    ('Michael', 'Davis', 'michael.davis@email.com', '456789123', 'Finance', NOW(), NOW()),
-    ('Sophia', 'Williams', 'sophia.williams@email.com', '321654987', 'Marketing', NOW(), NOW()),
-    ('David', 'Jones', 'david.jones@email.com', '789123456', 'Power Systems', NOW(), NOW());
-");
-        
+
+
         DB::statement("
             INSERT INTO thesis_proposals (professor_id, field_id, title, description, created_at, updated_at)
 VALUES
@@ -133,5 +159,7 @@ VALUES
     (4, 5, 'Energy Storage Solutions', 'Exploring advanced energy storage solutions for enhancing power system reliability.', NOW(), NOW()),
     (5, 5, 'Grid Resilience in Power Systems', 'Studying strategies for enhancing grid resilience in power systems against various challenges.', NOW(), NOW());"
 );
+
     }
 }
+

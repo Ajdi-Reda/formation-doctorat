@@ -14,10 +14,10 @@ const Hero = () => {
                 groups.
             </p>
             <div className="space-x-2 md:space-x-4">
-                <button className="ms-4 font-semibold text-sm bg-black border py-2 border-black px-4 text-gray-100 hover:text-gray-200 dark:text-gray-400 dark:hover:text-white">
+                <button className="ms-4 font-semibold text-sm bg-black border py-2 border-black px-4 text-gray-100 hover:text-gray-200">
                     Explore
                 </button>
-                <button className="font-semibold text-sm border py-2 border-black px-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                <button className="font-semibold text-sm border py-2 border-black px-4 text-gray-600 hover:text-gray-900">
                     Sign Up
                 </button>
             </div>

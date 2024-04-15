@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("user_id")->constrained();
             $table->String("firstName");
             $table->String("lastName");
-            $table->String("email");
             $table->String("phoneNumber");
-            $table->String("researchInterest");
             $table->timestamps();
         });
     }

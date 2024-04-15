@@ -1,13 +1,15 @@
 import React from "react";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
-const PersonalDataForm = ({ children, handleIncrementStep }) => {
-    const { data, setData, post, errors } = useForm({
+const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
+
+    const { errors } = usePage().props
+    const { data, setData, post } = useForm({
         formName: "personal_details_form",
+        user_id: "",
         firstName: "",
         lastName: "",
-        email: "",
-        telephoneNumber: "",
+        phone_number: "",
         cin: "",
         dateOfBirth: "",
         countryOfBirth: "",
@@ -18,17 +20,19 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
         country: "",
         city: "",
         remember: false,
+        ...formData.personalData,
     });
 
     function handleSubmit(e) {
         e.preventDefault();
-        post("/form2");
-        handleIncrementStep();
+        post("/form2", {
+            onSuccess: () =>  handleIncrementStep()
+        });
     }
     return (
         <form onSubmit={handleSubmit} id="PersonalDetailsForm">
             <div className="py-6 mt-12 space-y-4">
-                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:justify-center md:items-center md:gap-8">
+                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:justify-center md:gap-8">
                     <div className="md:w-full space-y-1 md:space-y-2">
                         <div className="flex flex-col gap-1 md:flex-row">
                             <div className="flex flex-col gap-2 md:w-full">
@@ -43,7 +47,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                     }
                                 />
                                 {errors.firstName && (
-                                    <p className="text-red-500 text-s"></p>
+                                    <p className="text-red-500 text-s">{errors.firstName}</p>
                                 )}
                             </div>
                             <div className="flex flex-col gap-2 md:w-full">
@@ -58,61 +62,44 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                     }
                                 />
                                 {errors.lastName && (
-                                    <p className="text-red-500 text-s"></p>
+                                    <p className="text-red-500 text-s">{errors.lastName}</p>
                                 )}
                             </div>
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="email">Email</label>
-                            <input
-                                required
-                                type="email"
-                                id="email"
-                                value={data.email}
-                                onChange={(e) =>
-                                    setData("email", e.target.value)
-                                }
-                            />
-                            {errors.email && (
-                                <p className="text-red-500 text-s"></p>
-                            )}
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="telephoneNumber">
+                            <label htmlFor="phone_number">
                                 Telephone number
                             </label>
                             <input
                                 required
                                 type="number"
-                                id="telephoneNumber"
-                                value={data.telephoneNumber}
+                                id="phone_number"
+                                value={data.phone_number}
                                 onChange={(e) =>
-                                    setData("telephoneNumber", e.target.value)
+                                    setData("phone_number", e.target.value)
                                 }
                             />
-                            {errors.telephoneNumber && (
-                                <p className="text-red-500 text-s"></p>
+                            {errors.phone_number && (
+                                <p className="text-red-500 text-s">  {errors.phone_number}</p>
                             )}
                         </div>
-                        <div>
+
                             <div className="flex flex-col gap-2">
                                 <label htmlFor="cin">CIN</label>
                                 <input
                                     required
                                     type="text"
                                     id="cin"
-                                    value={data.cni}
+                                    value={data.cin}
                                     onChange={(e) =>
                                         setData("cin", e.target.value)
                                     }
                                 />
                                 {errors.cin && (
-                                    <p className="text-red-500 text-s"></p>
+                                    <p className="text-red-500 text-s">{errors.cin}</p>
                                 )}
                             </div>
-                        </div>
-                    </div>
-                    <div className="md:w-full space-y-1 md:space-y-2">
+
                         <div className="flex flex-col gap-2">
                             <label htmlFor="dateOfBirth">Date of birth</label>
                             <input
@@ -125,9 +112,11 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                 }
                             />
                             {errors.dateOfBirth && (
-                                <p className="text-red-500 text-s"></p>
+                                <p className="text-red-500 text-s"> {errors.dateOfBirth}</p>
                             )}
                         </div>
+                    </div>
+                    <div className="md:w-full space-y-1 md:space-y-2">
                         <div className="flex flex-col gap-2">
                             <label htmlFor="countryOfBirth">
                                 Country of birth
@@ -142,7 +131,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                 }
                             />
                             {errors.countryOfBirth && (
-                                <p className="text-red-500 text-s"></p>
+                                <p className="text-red-500 text-s"> {errors.countryOfBirth}</p>
                             )}
                         </div>
                         <div className="flex flex-col gap-2">
@@ -157,7 +146,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                 }
                             />
                             {errors.cityOfBirth && (
-                                <p className="text-red-500 text-s"></p>
+                                <p className="text-red-500 text-s">{errors.cityOfBirth}</p>
                             )}
                         </div>
                         <div className="flex flex-col gap-2">
@@ -172,7 +161,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                 }
                             />
                             {errors.nationality && (
-                                <p className="text-red-500 text-s"></p>
+                                <p className="text-red-500 text-s"> {errors.nationality}</p>
                             )}
                         </div>
                     </div>
@@ -194,7 +183,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                 }
                             />
                             {errors.address && (
-                                <p className="text-red-500 text-s"></p>
+                                <p className="text-red-500 text-s">{errors.address}</p>
                             )}
                         </div>
                         <div>
@@ -210,7 +199,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                     }
                                 />
                                 {errors.country && (
-                                    <p className="text-red-500 text-s"></p>
+                                    <p className="text-red-500 text-s">{errors.country}</p>
                                 )}
                             </div>
                         </div>
@@ -228,7 +217,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                 }
                             />
                             {errors.postalCode && (
-                                <p className="text-red-500 text-s"></p>
+                                <p className="text-red-500 text-s"> {errors.postalCode}</p>
                             )}
                         </div>
 
@@ -244,7 +233,7 @@ const PersonalDataForm = ({ children, handleIncrementStep }) => {
                                 }
                             />
                             {errors.city && (
-                                <p className="text-red-500 text-s"></p>
+                                <p className="text-red-500 text-s">{errors.city}</p>
                             )}
                         </div>
                     </div>

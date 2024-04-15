@@ -12,10 +12,9 @@ return new class extends Migration {
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->String("user_id");
+            $table->foreignId("user_id")->constrained();
             $table->String("firstName");
             $table->String("lastName");
-            $table->String("email");
             $table->String("phone_number");
             $table->String("cin");
             $table->Date("dateOfBirth");

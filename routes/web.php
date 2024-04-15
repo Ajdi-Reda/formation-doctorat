@@ -1,10 +1,16 @@
 <?php
 
-use Inertia\Inertia;
-use App\Mail\MyTestEmail;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Candidate\CandidateController;
+use App\Http\Controllers\DownloadMediaController;
+use App\Http\Controllers\Professor\ProfessorController;
+use App\Http\Controllers\Professor\ThesisController;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\FieldController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicationController;
 
 /*
@@ -19,7 +25,12 @@ use App\Http\Controllers\ApplicationController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('LandingPage');
+    return Inertia::render('LandingPage', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
 Route::get('/programs', [ProgramController::class, 'show'])->name('programs');
@@ -27,10 +38,55 @@ Route::get('/programs/{program}', [FieldController::class, 'display']);
 Route::post('/form1', [ApplicationController::class, 'saveCourseForm']);
 Route::post('/form2', [ApplicationController::class, 'saveForm']);
 
-Route::get('/testroute', function () {
+// Route::get('/testroute', function () {
 
-    // The email sending is done using the to method on the Mail facade
-    Mail::to('testreceiver@gmail.com')->send(new MyTestEmail());
+//     // The email sending is done using the to method on the Mail facade
+//     // Mail::to('testreceiver@gmail.com')->send(new MyTestEmail());
+// });
+
+
+//Route::get('/dashboard', function () {
+//    return Inertia::render('Dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::prefix('candidate')->middleware(['auth', 'candidate'])->group(function () {
+    Route::get('/dashboard', [CandidateController::class, 'dashboard'])->name('candidate/dashboard');
+    Route::get('/applications', [CandidateController::class, 'applications']);
+    Route::post('/application/{application}', [ApplicationController::class, 'acceptApplication']);
+    Route::get('/form', [CandidateController::class, 'form']);
+    Route::get('/programs/{program}', [FieldController::class, 'display']);
 });
 
+Route::prefix('professor')->middleware(['auth', 'professor'])->group(function () {
+    Route::get('/dashboard', [ProfessorController::class, 'dashboard'])->name('professor/dashboard');
+    Route::get('/dashboard/candidate/{candidate}', [ProfessorController::class, 'getCandidateData']);
+    Route::post('/dashboard/candidate/{candidate}/status', [CandidateController::class, 'updateStatus']);
+    Route::get('/approved-applicants', [ProfessorController::class, 'approvedApplicants'])
+        ->name('professor/approved-applicants');
+    Route::get('/accepted-applicants', [ProfessorController::class, 'acceptedApplicants'])
+        ->name('professor/accepted-applicants');
+    Route::get('/theses', [ThesisController::class, 'index'])
+        ->name('professor/theses');
+    Route::post('/theses', [ThesisController::class, 'store']);
+    Route::post('/theses', [ThesisController::class, 'update']);
+    Route::post('/theses/destroy/{thesisProposal}', [ThesisController::class, 'destroy']);
+    Route::get('/download/{candidate}', [DownloadMediaController::class, 'download']);
+});
 
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
+    Route::get('/programs', [AdminController::class, 'programs'])->name('admin/programs');
+    Route::post('/programs', [ProgramController::class, 'store'])->name('admin/programs');
+});
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';

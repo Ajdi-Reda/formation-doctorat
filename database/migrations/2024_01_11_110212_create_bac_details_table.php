@@ -12,10 +12,9 @@ return new class extends Migration {
     {
         Schema::create('bac_details', function (Blueprint $table) {
             $table->id();
-            $table->String("year");
+            $table->String("bYear");
             $table->String("city");
-            $table->String("type");
-            $table->String("highSchool");
+            $table->String("bEstablishment");
             $table->String("massarCode");
             $table->String("option");
             $table->String("mention");

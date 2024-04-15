@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers\Form;
 
-use App\Models\User;
+
 use App\Models\Candidate;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Form\BaseForm;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 
 class PersonalDetailsForm extends BaseForm
 {
-
     protected array $validationRules = [
         'firstName' => ["required", 'max:20'],
         'lastName' => ["required", 'max:20'],
-        'email' => ["required", 'email'],
-        'telephoneNumber' => ["required", 'numeric'],
+        'phone_number' => ["required", 'numeric'],
         'cin' => ["required", 'max:10'],
         'dateOfBirth' => ["required", "date"],
         'countryOfBirth' => ["required"],
@@ -28,30 +26,30 @@ class PersonalDetailsForm extends BaseForm
         'city' => ["required", 'max:30'],
     ];
 
+    public function __construct(Request $request)
+{
+    parent::__construct($request);
+    $this->handle();
+}
+
     public function handle()
     {
-        $user = $this->getUser();
-        if ($user === null)
-            $this->store();
-        else
-            $this->update();
+        $user = Auth::user();
+        if($user->candidate) {
+            $this->update($user->candidate);
+            return;
+        }
+        $this->store();
     }
     public function store()
     {
-        //creating a user
-        $user = new User([
-            'email' => $this->request->input('email'),
-            'password' => Hash::make(Str::random(5)),
-        ]);
-        $user->save();
-        $this->request->session()->put('course.user', $this->request->getContent());
+       $user=Auth::getUser();
         //creating a candidate row associated with that user
         $candidate = new Candidate([
             'user_id' => $user->id,
             'firstName' => $this->request->input('firstName'),
             'lastName' => $this->request->input('lastName'),
-            'email' => $this->request->input('email'),
-            'phone_number' => $this->request->input('telephoneNumber'),
+            'phone_number' => $this->request->input('phone_number'),
             'cin' => $this->request->input('cin'),
             'dateOfBirth' => $this->request->input('dateOfBirth'),
             'countryOfBirth' => $this->request->input('countryOfBirth'),
@@ -65,20 +63,11 @@ class PersonalDetailsForm extends BaseForm
 
         $candidate->save();
     }
-    private function getUser()
+    public function update($candidate)
     {
-        return User::where('email', $this->request->input('email'))->first();
-    }
-    public function update()
-    {
-        $user_id = $this->getUser()->id;
-        $candidate = Candidate::where('user_id', $user_id)->first();
-
-        if ($candidate) {
             $candidate->firstName = $this->request->input('firstName');
             $candidate->lastName = $this->request->input('lastName');
-            $candidate->email = $this->request->input('email');
-            $candidate->phone_number = $this->request->input('telephoneNumber');
+            $candidate->phone_number = $this->request->input('phone_number');
             $candidate->cin = $this->request->input('cin');
             $candidate->dateOfBirth = $this->request->input('dateOfBirth');
             $candidate->countryOfBirth = $this->request->input('countryOfBirth');
@@ -90,6 +79,5 @@ class PersonalDetailsForm extends BaseForm
             $candidate->city = $this->request->input('city');
 
             $candidate->save();
-        }
     }
 }

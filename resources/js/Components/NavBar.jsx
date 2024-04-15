@@ -26,10 +26,16 @@ const NavBar = ({ logo = "Logo", navItems }) => {
                         </div>
                     </div>
                     <div>
-                        <Link className="font-semibold text-sm border py-2 border-black px-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                        <Link
+                            href={route("login")}
+                            className="font-semibold text-sm border py-2 border-black px-4 text-gray-600 hover:text-gray-900"
+                        >
                             Log in
                         </Link>
-                        <Link className="ms-4 font-semibold text-sm bg-black border py-2 border-black px-4 text-gray-100 hover:text-gray-200 dark:text-gray-400 dark:hover:text-white">
+                        <Link
+                            href={route("register")}
+                            className="ms-4 font-semibold text-sm bg-black border py-2 border-black px-4 text-gray-100 hover:text-gray-200"
+                        >
                             Register
                         </Link>
                     </div>

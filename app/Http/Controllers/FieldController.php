@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
+use App\Enums\RolesEnum;
 use App\Models\Field;
 use App\Models\ProgramUniversity;
+use App\Models\User;
+use App\Services\FormData;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 
 class FieldController extends Controller
@@ -34,8 +39,11 @@ class FieldController extends Controller
             }
         }
 
+        $formData = new FormData();
        return Inertia::render('Candidature', [
         'fields' => $fields,
+        'user' => Auth::check(),
+        'formData' => $formData->getFormData(),
        ]);
     }
 }

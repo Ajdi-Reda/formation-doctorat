@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('master_details', function (Blueprint $table) {
             $table->id();
-            $table->String("thesis_proposal_id")->constrained();
-            $table->String("candidate_id")->constrained();
-            $table->String("bac_details_id")->constrained();
+            $table->String("mBranch");
+            $table->String("mYear");
+            $table->String("mEstablishment");
+            $table->String("semester7");
+            $table->String("semester8");
+            $table->String("semester9");
+            $table->String("semester10");
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('master_details');
     }
 };

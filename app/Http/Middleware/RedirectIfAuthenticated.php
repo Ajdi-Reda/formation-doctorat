@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\RolesEnum;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -21,7 +22,15 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $role = Auth::user()->getRoleNames()->first();
+                $redirectRoute = match ($role) {
+                    RolesEnum::CANDIDATE->value => RolesEnum::CANDIDATE->dashboardRoute(),
+                    RolesEnum::PROFESSOR->value => RolesEnum::PROFESSOR->dashboardRoute(),
+                    RolesEnum::SUPERADMIN->value => RolesEnum::SUPERADMIN->dashboardRoute(),
+                    default => '/',
+                };
+
+                return redirect($redirectRoute);
             }
         }
 

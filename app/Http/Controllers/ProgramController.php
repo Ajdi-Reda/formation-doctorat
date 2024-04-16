@@ -54,7 +54,6 @@ class ProgramController extends Controller
             'endDate' => 'required|date|after_or_equal:startDate',
             'responsable' => 'required|string|max:255',
             'status' => 'required|string|in:ongoing,completed,upcoming',
-            'icon' => 'nullable|image|max:10240', // Assuming 'icon' is an image upload
         ]);
 
         $program->update([
@@ -69,6 +68,9 @@ class ProgramController extends Controller
         $existingMedia = $program->getFirstMedia();
 
         if ($existingMedia && $request->hasFile('icon')) {
+            $request->validate([
+                'icon' => 'nullable|image|max:10240', // Assuming 'icon' is an image upload
+            ]);
             $existingMedia->delete();
             $program->addMediaFromRequest('icon')
                 ->toMediaCollection();

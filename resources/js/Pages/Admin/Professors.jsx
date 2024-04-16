@@ -1,38 +1,39 @@
-import { useState } from "react";
-import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
-import ActionsDropdown from "@/Pages/Professor/ActionsDropdown.jsx";
-import Modal from "@/Components/Modal.jsx";
-import AdminDashboardLayout from "@/Pages/Admin/AdminDashboard.jsx";
-import AddProgram from "./AddProgram";
+import React, { useState } from "react";
+import AdminDashboardLayout from "./AdminDashboard";
+import { formatDateTime } from "@/Components/utils/HelperFunctions";
+import ActionsDropdown from "../Professor/ActionsDropdown";
 import { router } from "@inertiajs/react";
+import Modal from "@/Components/Modal";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
+import AddEditProfessor from "./AddEditProfessor";
 
-const AdminPrograms = ({ programs }) => {
+const Professors = ({ professors }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [program, setProgram] = useState("");
+    const [professor, setProfessor] = useState({});
+
     const onClose = () => {
         setOpen(false);
         setOpenEdit(false);
     };
 
-    const handleEditProgram = (program) => {
+    const handleEditProfessor = (professor) => {
         setOpenEdit(true);
-        setProgram(program);
-    };
-    const handleDeleteModal = (program) => {
-        setOpenDeleteModal(true);
-        setProgram(program);
+        setProfessor(professor);
     };
 
-    const handleDeleteProgram = () => {
-        const id = program.id;
-        console.log("hello");
-        router.delete(`/admin/programs/destroy/${id}`, {
+    const handleDeleteModal = (professor) => {
+        setOpenDeleteModal(true);
+        setProfessor(professor);
+    };
+
+    const handleDeleteProfessor = () => {
+        const id = professor.id;
+        router.delete(`/admin/professors/${id}`, {
             onSuccess: () => {
-                toast.success("Program Successfully Deleted");
+                toast.success("Professor Successfully Deleted");
                 setOpenDeleteModal(false);
             },
         });
@@ -41,57 +42,57 @@ const AdminPrograms = ({ programs }) => {
     return (
         <AdminDashboardLayout>
             <div className=" mt-6">
-                <h1 className="text-2xl font-bold mb-4">Programs</h1>
+                <h1 className="text-2xl font-bold mb-4">Professors</h1>
                 <div className="relative overflow-x-auto">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead className="text-xs uppercase bg-gray-50 ">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Program
+                                    First Name
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Last Name
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Phone Number
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Date of Creation
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Start date
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    End date
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Responsible
+                                    Number of theses
                                 </th>
                                 <th scope="col" className="px-6 py-3"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {programs.map((program) => (
+                            {professors.map((professor) => (
                                 <tr
-                                    key={program.id}
+                                    key={professor.id}
                                     className="bg-white border-b"
                                 >
                                     <td className="px-6 py-4 font-medium whitespace-nowrap ">
-                                        {program.title}
+                                        {professor.firstName}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {formatDateTime(program.created_at)}
+                                        {professor.lastName}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {program.startDate}
+                                        {professor.phoneNumber}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {program.endDate}
+                                        {formatDateTime(professor.created_at)}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {program.responsible}
+                                        {professor.numberTheses}
                                     </td>
                                     <td>
                                         <ActionsDropdown
                                             handleEditModal={() =>
-                                                handleEditProgram(program)
+                                                handleEditProfessor(professor)
                                             }
                                             handleDeleteModal={() =>
-                                                handleDeleteModal(program)
+                                                handleDeleteModal(professor)
                                             }
                                         />
                                     </td>
@@ -104,16 +105,19 @@ const AdminPrograms = ({ programs }) => {
                         onClick={() => setOpen(!open)}
                         className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
-                        Add new thesis
+                        Add new Professor
                     </button>
                     {open && (
                         <Modal show={open} onClose={onClose}>
-                            <AddProgram onClose={onClose} />
+                            <AddEditProfessor onClose={onClose} />
                         </Modal>
                     )}
                     {openEdit && (
                         <Modal show={openEdit} onClose={onClose}>
-                            <AddProgram onClose={onClose} program={program} />
+                            <AddEditProfessor
+                                onClose={onClose}
+                                professor={professor}
+                            />
                         </Modal>
                     )}
                     {openDeleteModal && (
@@ -122,14 +126,14 @@ const AdminPrograms = ({ programs }) => {
                             onClose={() => setOpenDeleteModal(!openDeleteModal)}
                         >
                             <ModalMessage
-                                header={"Delete Program"}
+                                header={"Delete Professor"}
                                 message={
-                                    "Are you sure you want to Delete this program?"
+                                    "Are you sure you want to Delete this Professor?"
                                 }
-                                onClose={() => {
-                                    setOpenDeleteModal(!openDeleteModal);
-                                }}
-                                onConfirm={handleDeleteProgram}
+                                onClose={() =>
+                                    setOpenDeleteModal(!openDeleteModal)
+                                }
+                                onConfirm={handleDeleteProfessor}
                             />
                         </Modal>
                     )}
@@ -139,4 +143,4 @@ const AdminPrograms = ({ programs }) => {
     );
 };
 
-export default AdminPrograms;
+export default Professors;

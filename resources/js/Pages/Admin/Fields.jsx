@@ -1,43 +1,42 @@
-import { useState } from "react";
-import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
-import ActionsDropdown from "@/Pages/Professor/ActionsDropdown.jsx";
-import Modal from "@/Components/Modal.jsx";
-import AdminDashboardLayout from "@/Pages/Admin/AdminDashboard.jsx";
-import AddProgram from "./AddProgram";
+import React, { useState } from "react";
+import AdminDashboardLayout from "./AdminDashboard";
+import { formatDateTime } from "@/Components/utils/HelperFunctions";
+import ActionsDropdown from "../Professor/ActionsDropdown";
 import { router } from "@inertiajs/react";
+import AddField from "./AddField";
+import Modal from "@/Components/Modal";
+import EditField from "./EditField";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 
-const AdminPrograms = ({ programs }) => {
+const Fields = ({ fields, programs }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [program, setProgram] = useState("");
+    const [field, setField] = useState("");
     const onClose = () => {
         setOpen(false);
         setOpenEdit(false);
     };
 
-    const handleEditProgram = (program) => {
+    const handleEditField = (field) => {
         setOpenEdit(true);
-        setProgram(program);
+        setField(field);
     };
-    const handleDeleteModal = (program) => {
+    const handleDeleteModal = (field) => {
         setOpenDeleteModal(true);
-        setProgram(program);
+        setField(field);
     };
 
-    const handleDeleteProgram = () => {
-        const id = program.id;
-        console.log("hello");
-        router.delete(`/admin/programs/destroy/${id}`, {
+    const handleDeleteField = () => {
+        const id = field.id;
+        router.delete(`/admin/fields/${id}`, {
             onSuccess: () => {
-                toast.success("Program Successfully Deleted");
+                toast.success("Field Successfully Deleted");
                 setOpenDeleteModal(false);
             },
         });
     };
-
     return (
         <AdminDashboardLayout>
             <div className=" mt-6">
@@ -47,51 +46,39 @@ const AdminPrograms = ({ programs }) => {
                         <thead className="text-xs uppercase bg-gray-50 ">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Program
+                                    Name
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Date of Creation
+                                    Date of creation
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Start date
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    End date
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Responsible
+                                    Number of theses
                                 </th>
                                 <th scope="col" className="px-6 py-3"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {programs.map((program) => (
+                            {fields.map((field) => (
                                 <tr
-                                    key={program.id}
+                                    key={field.id}
                                     className="bg-white border-b"
                                 >
                                     <td className="px-6 py-4 font-medium whitespace-nowrap ">
-                                        {program.title}
+                                        {field.name}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {formatDateTime(program.created_at)}
+                                        {formatDateTime(field.created_at)}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {program.startDate}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {program.endDate}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {program.responsible}
+                                        {field.numberTheses}
                                     </td>
                                     <td>
                                         <ActionsDropdown
                                             handleEditModal={() =>
-                                                handleEditProgram(program)
+                                                handleEditField(field)
                                             }
                                             handleDeleteModal={() =>
-                                                handleDeleteModal(program)
+                                                handleDeleteModal(field)
                                             }
                                         />
                                     </td>
@@ -104,16 +91,16 @@ const AdminPrograms = ({ programs }) => {
                         onClick={() => setOpen(!open)}
                         className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
-                        Add new thesis
+                        Add new Field
                     </button>
                     {open && (
                         <Modal show={open} onClose={onClose}>
-                            <AddProgram onClose={onClose} />
+                            <AddField onClose={onClose} programs={programs} />
                         </Modal>
                     )}
                     {openEdit && (
                         <Modal show={openEdit} onClose={onClose}>
-                            <AddProgram onClose={onClose} program={program} />
+                            <EditField onClose={onClose} field={field} />
                         </Modal>
                     )}
                     {openDeleteModal && (
@@ -122,14 +109,14 @@ const AdminPrograms = ({ programs }) => {
                             onClose={() => setOpenDeleteModal(!openDeleteModal)}
                         >
                             <ModalMessage
-                                header={"Delete Program"}
+                                header={"Delete Field"}
                                 message={
-                                    "Are you sure you want to Delete this program?"
+                                    "Are you sure you want to Delete this Field?"
                                 }
                                 onClose={() => {
                                     setOpenDeleteModal(!openDeleteModal);
                                 }}
-                                onConfirm={handleDeleteProgram}
+                                onConfirm={handleDeleteField}
                             />
                         </Modal>
                     )}
@@ -139,4 +126,4 @@ const AdminPrograms = ({ programs }) => {
     );
 };
 
-export default AdminPrograms;
+export default Fields;

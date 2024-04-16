@@ -77,6 +77,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
     Route::get('/programs', [AdminController::class, 'programs'])->name('admin/programs');
     Route::post('/programs', [ProgramController::class, 'store'])->name('admin/programs');
+    Route::post('/programs/{program}', [ProgramController::class, 'update']);
+    Route::delete('/programs/destroy/{program}', [ProgramController::class, 'destroy']);
+    Route::get('/fields', [AdminController::class, 'fields'])->name('admin/fields');
+    Route::post('/fields', [FieldController::class, 'store'])->name('admin/fields');
+    Route::patch('/fields/{field}', [FieldController::class, 'update']);
+    Route::delete('/fields/{field}', [FieldController::class, 'destroy']);
+    Route::get('/professors', [ProfessorController::class, 'professors'])->name('admin/professors');
 });
 
 Route::get('/dashboard', function () {

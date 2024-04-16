@@ -6,35 +6,36 @@ import FileInput from "@/Components/FileInput.jsx";
 
 const AddProgram = ({ onClose, program }) => {
     const { data, setData, post, errors, processing, reset } = useForm({
-        title: "",
-        description: "",
-        startDate: "",
-        endDate: "",
-        responsable: "",
-        status: "",
+        title: program.title,
+        description: program.description,
+        startDate: program.startDate,
+        endDate: program.endDate,
+        responsable: program.responsible,
+        status: program.status,
         icon: "",
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(program);
-        // if (program) {
-        //     post("/admin/programs/{id}", {
-        //         onSuccess: () => {
-        //             reset();
-        //             onClose();
-        //             toast.success("Thesis added successfully");
-        //         },
-        //     });
-        //     return;
-        // }
-        // post("/admin/programs", {
-        //     onSuccess: () => {
-        //         reset();
-        //         onClose();
-        //         toast.success("Thesis added successfully");
-        //     },
-        // });
+        if (program) {
+            const { id } = program;
+            post(`/admin/programs/${id}`, {
+                onSuccess: () => {
+                    reset();
+                    onClose();
+                    toast.success("Thesis edited successfully");
+                },
+            });
+        } else {
+            post("/admin/programs", {
+                onSuccess: () => {
+                    reset();
+                    onClose();
+                    toast.success("Thesis added successfully");
+                },
+            });
+        }
     };
 
     return (
@@ -149,7 +150,13 @@ const AddProgram = ({ onClose, program }) => {
                     type="submit"
                     className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
-                    {`${processing ? "Creating ..." : "Add Program"}`}
+                    {processing
+                        ? program
+                            ? "Editing ..."
+                            : "Creating ..."
+                        : program
+                        ? "Edit Program"
+                        : "Add Program"}
                 </button>
             </form>
         </div>

@@ -84,6 +84,9 @@ Route::prefix('admin')->group(function () {
     Route::patch('/fields/{field}', [FieldController::class, 'update']);
     Route::delete('/fields/{field}', [FieldController::class, 'destroy']);
     Route::get('/professors', [ProfessorController::class, 'professors'])->name('admin/professors');
+    Route::post('/professors', [ProfessorController::class, 'store'])->name('admin/professors');
+    Route::patch('/professors/{professor}', [ProfessorController::class, 'update']);
+    Route::delete('/professors/{professor}', [ProfessorController::class, 'destroy']);
 });
 
 Route::get('/dashboard', function () {

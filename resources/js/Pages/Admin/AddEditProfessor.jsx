@@ -5,17 +5,27 @@ import InputLabel from "@/Components/InputLabel.jsx";
 import FileInput from "@/Components/FileInput.jsx";
 
 const AddEditProfessor = ({ onClose, professor }) => {
-    const { data, setData, post, errors, processing, reset } = useForm({
-        firstName: professor.firstName || "",
-        lastName: professor.lastName || "",
-        phoneNumber: professor.phoneNumber || "",
-    });
+    // Initialize form data based on professor variable
+    const initialFormData = professor
+        ? {
+              firstName: professor.firstName,
+              lastName: professor.lastName,
+              phoneNumber: professor.phoneNumber,
+          }
+        : {
+              firstName: "",
+              lastName: "",
+              phoneNumber: "",
+          };
+
+    const { data, setData, patch, errors, processing, reset } =
+        useForm(initialFormData);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (professor) {
             const { id } = professor;
-            post(`/admin/professors/${id}`, {
+            patch(`/admin/professors/${id}`, {
                 onSuccess: () => {
                     reset();
                     onClose();

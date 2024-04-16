@@ -28,6 +28,43 @@ class ProfessorController extends Controller
             'professors' => $professors,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'phoneNumber' => 'required|string|max:255',
+        ]);
+
+        Professor::create([
+            'user_id' => Auth::user()->id,
+            'firstName' => $request->input('firstName'),
+            'lastName' => $request->input('lastName'),
+            'phoneNumber' => $request->input('phoneNumber'),
+        ]);
+    }
+
+    public function update(Request $request, Professor $professor)
+    {
+        $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'phoneNumber' => 'required|string|max:255',
+        ]);
+
+        $professor->update([
+            'user_id' => Auth::user()->id,
+            'firstName' => $request->input('firstName'),
+            'lastName' => $request->input('lastName'),
+            'phoneNumber' => $request->input('phoneNumber'),
+        ]);
+    }
+
+    public function destroy(Professor $professor)
+    {
+        $professor->delete();
+    }
     private function getCandidatesWithStatus($status)
     {
         $professor = Auth::user()->professor;

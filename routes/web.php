@@ -6,12 +6,14 @@ use App\Http\Controllers\Candidate\CandidateController;
 use App\Http\Controllers\DownloadMediaController;
 use App\Http\Controllers\Professor\ProfessorController;
 use App\Http\Controllers\Professor\ThesisController;
+use App\Http\Middleware\AdminOrProfessor;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,10 +72,10 @@ Route::prefix('professor')->middleware(['auth', 'professor'])->group(function ()
     Route::post('/theses', [ThesisController::class, 'store']);
     Route::post('/theses', [ThesisController::class, 'update']);
     Route::post('/theses/destroy/{thesisProposal}', [ThesisController::class, 'destroy']);
-    Route::get('/download/{candidate}', [DownloadMediaController::class, 'download']);
 });
+Route::get('professor/download/{candidate}', [DownloadMediaController::class, 'download'])->middleware(['auth', AdminOrProfessor::class]);
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth', Admin::class])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
     Route::get('/programs', [AdminController::class, 'programs'])->name('admin/programs');
     Route::post('/programs', [ProgramController::class, 'store'])->name('admin/programs');
@@ -84,9 +86,11 @@ Route::prefix('admin')->group(function () {
     Route::patch('/fields/{field}', [FieldController::class, 'update']);
     Route::delete('/fields/{field}', [FieldController::class, 'destroy']);
     Route::get('/professors', [ProfessorController::class, 'professors'])->name('admin/professors');
+    Route::get('/professors/{professor}', [ProfessorController::class, 'getProfessorThesesWithApplicants']);
     Route::post('/professors', [ProfessorController::class, 'store'])->name('admin/professors');
     Route::patch('/professors/{professor}', [ProfessorController::class, 'update']);
     Route::delete('/professors/{professor}', [ProfessorController::class, 'destroy']);
+    Route::get('/professor/candidate/{candidate}', [ProfessorController::class, 'getCandidateData']);
 });
 
 Route::get('/dashboard', function () {

@@ -39,6 +39,10 @@ const Professors = ({ professors }) => {
         });
     };
 
+    const handleProfessorClick = (professor) => {
+        const id = professor.id;
+        router.get(`/admin/professors/${id}`);
+    };
     return (
         <AdminDashboardLayout>
             <div className=" mt-6">
@@ -68,6 +72,9 @@ const Professors = ({ professors }) => {
                         <tbody>
                             {professors.map((professor) => (
                                 <tr
+                                    onClick={() =>
+                                        handleProfessorClick(professor)
+                                    }
                                     key={professor.id}
                                     className="bg-white border-b"
                                 >

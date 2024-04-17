@@ -4,27 +4,40 @@ import { toast } from "react-hot-toast";
 import InputLabel from "@/Components/InputLabel.jsx";
 import FileInput from "@/Components/FileInput.jsx";
 
-const AddProgram = ({ onClose, program }) => {
-    const { data, setData, post, errors, processing, reset } = useForm({
-        title: program.title,
-        description: program.description,
-        startDate: program.startDate,
-        endDate: program.endDate,
-        responsable: program.responsible,
-        status: program.status,
-        icon: "",
-    });
+const AddEditProgram = ({ onClose, program }) => {
+    // Initialize form data based on program variable
+    const initialFormData = program
+        ? {
+              title: program.title,
+              description: program.description,
+              startDate: program.startDate,
+              endDate: program.endDate,
+              responsable: program.responsable,
+              status: program.status,
+              icon: "",
+          }
+        : {
+              title: "",
+              description: "",
+              startDate: "",
+              endDate: "",
+              responsable: "",
+              status: "",
+              icon: "",
+          };
+
+    const { data, setData, post, errors, processing, reset } =
+        useForm(initialFormData);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(program);
         if (program) {
             const { id } = program;
             post(`/admin/programs/${id}`, {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("Thesis edited successfully");
+                    toast.success("Program edited successfully");
                 },
             });
         } else {
@@ -32,7 +45,7 @@ const AddProgram = ({ onClose, program }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("Thesis added successfully");
+                    toast.success("Program added successfully");
                 },
             });
         }
@@ -40,7 +53,7 @@ const AddProgram = ({ onClose, program }) => {
 
     return (
         <div>
-            <h2 className="text-lg font-bold my-4">Add Thesis</h2>
+            <h2 className="text-lg font-bold my-4">Add Program</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <InputLabel htmlFor="title">Title</InputLabel>
@@ -163,4 +176,4 @@ const AddProgram = ({ onClose, program }) => {
     );
 };
 
-export default AddProgram;
+export default AddEditProgram;

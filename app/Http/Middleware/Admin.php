@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         $userRoles = Auth::getUser()->getRoleNames();
-        if ($userRoles->contains(RolesEnum::PROFESSOR->value)) {
+        if ($userRoles->contains(RolesEnum::SUPERADMIN->value)) {
             return $next($request);
         }
         return redirect('/');

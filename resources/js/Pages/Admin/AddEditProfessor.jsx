@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
 import InputLabel from "@/Components/InputLabel.jsx";
-import FileInput from "@/Components/FileInput.jsx";
 
 const AddEditProfessor = ({ onClose, professor }) => {
     // Initialize form data based on professor variable

@@ -120,8 +120,10 @@ class ProfessorController extends Controller
                 'thesisId' => $thesisId,
             ]);
 
+            $role = Auth::user()->getRoleNames()->first();
             return Inertia::render('Professor/CandidateData', [
-                'candidateData' => $data
+                'candidateData' => $data,
+                'showActionButton' => $role === 'professor' ? true : false,
             ]);
         }
     }
@@ -137,6 +139,23 @@ class ProfessorController extends Controller
     {
         return Inertia::render('Professor/AcceptedApplicants', [
             'acceptedApplicants' => $this->getCandidatesWithStatus('accepted'),
+        ]);
+    }
+
+    public function getProfessorThesesWithApplicants(Professor $professor, Request $request)
+    {
+        $option = $request->get('option');
+        $theses = $professor->theses;
+        foreach ($theses as $thesis) {
+            $thesis->applicants = $thesis->pendingCandidates->map(function ($candidate) {
+                $candidate->email = $candidate->user->email;
+                return $candidate;
+            });
+        }
+        $professorName = $professor->firstName . ' ' . $professor->lastName;
+        return Inertia::render('Admin/ProfessorTheses', [
+            'theses' => $theses,
+            'professorName' => $professorName
         ]);
     }
 }

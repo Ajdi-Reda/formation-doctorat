@@ -18,7 +18,7 @@ class Professor
     public function handle(Request $request, Closure $next): Response
     {
         $userRoles = Auth::getUser()->getRoleNames();
-        if($userRoles->contains(RolesEnum::PROFESSOR->value)) {
+        if ($userRoles->contains(RolesEnum::PROFESSOR->value)) {
             return $next($request);
         }
         return redirect('/');

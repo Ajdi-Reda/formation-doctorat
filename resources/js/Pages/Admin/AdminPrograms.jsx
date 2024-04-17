@@ -3,7 +3,7 @@ import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
 import ActionsDropdown from "@/Pages/Professor/ActionsDropdown.jsx";
 import Modal from "@/Components/Modal.jsx";
 import AdminDashboardLayout from "@/Pages/Admin/AdminDashboard.jsx";
-import AddProgram from "./AddProgram";
+import AddEditProgram from "./AddEditProgram";
 import { router } from "@inertiajs/react";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
@@ -104,16 +104,19 @@ const AdminPrograms = ({ programs }) => {
                         onClick={() => setOpen(!open)}
                         className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
-                        Add new thesis
+                        Add new Program
                     </button>
                     {open && (
                         <Modal show={open} onClose={onClose}>
-                            <AddProgram onClose={onClose} />
+                            <AddEditProgram onClose={onClose} />
                         </Modal>
                     )}
                     {openEdit && (
                         <Modal show={openEdit} onClose={onClose}>
-                            <AddProgram onClose={onClose} program={program} />
+                            <AddEditProgram
+                                onClose={onClose}
+                                program={program}
+                            />
                         </Modal>
                     )}
                     {openDeleteModal && (

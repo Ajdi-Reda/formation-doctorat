@@ -142,12 +142,19 @@ class ProfessorController extends Controller
         ]);
     }
 
-    public function getProfessorThesesWithApplicants(Professor $professor, Request $request)
+    public function getProfessorThesesWithApplicants(Professor $professor)
     {
-        $option = $request->get('option');
         $theses = $professor->theses;
         foreach ($theses as $thesis) {
-            $thesis->applicants = $thesis->pendingCandidates->map(function ($candidate) {
+            $thesis->pendingCandidates = $thesis->pendingCandidates->map(function ($candidate) {
+                $candidate->email = $candidate->user->email;
+                return $candidate;
+            });
+            $thesis->approvedCandidates = $thesis->approvedCandidates->map(function ($candidate) {
+                $candidate->email = $candidate->user->email;
+                return $candidate;
+            });
+            $thesis->acceptedCandidates = $thesis->acceptedCandidates->map(function ($candidate) {
                 $candidate->email = $candidate->user->email;
                 return $candidate;
             });

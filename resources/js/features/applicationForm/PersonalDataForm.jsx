@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm, usePage } from "@inertiajs/react";
+import Input from "../../Components/Input";
+import InputLabel from "../../Components/InputLabel";
+import InputError from "../../Components/InputError";
 
 const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
-
-    const { errors } = usePage().props
+    const { errors } = usePage().props;
     const { data, setData, post } = useForm({
         formName: "personal_details_form",
         user_id: "",
@@ -26,215 +28,223 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
     function handleSubmit(e) {
         e.preventDefault();
         post("/form2", {
-            onSuccess: () =>  handleIncrementStep()
+            onSuccess: () => handleIncrementStep(),
         });
     }
+
     return (
         <form onSubmit={handleSubmit} id="PersonalDetailsForm">
             <div className="py-6 mt-12 space-y-4">
-                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:justify-center md:gap-8">
-                    <div className="md:w-full space-y-1 md:space-y-2">
-                        <div className="flex flex-col gap-1 md:flex-row">
+                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 mx-auto md:gap-4">
+                    <div className="w-full space-y-3">
+                        <div className="flex flex-col gap-2 md:flex-row ">
                             <div className="flex flex-col gap-2 md:w-full">
-                                <label htmlFor="firstName">First name</label>
-                                <input
-                                    required
-                                    type="text"
+                                <InputLabel htmlFor="firstName">
+                                    First name
+                                </InputLabel>
+                                <Input
                                     id="firstName"
-                                    value={data.firstName}
+                                    type="text"
+                                    placeholder="Enter your first name"
+                                    value={data["firstName"]}
                                     onChange={(e) =>
                                         setData("firstName", e.target.value)
                                     }
+                                    required
                                 />
-                                {errors.firstName && (
-                                    <p className="text-red-500 text-s">{errors.firstName}</p>
-                                )}
+                                <InputError
+                                    message={errors && errors["firstName"]}
+                                />
                             </div>
                             <div className="flex flex-col gap-2 md:w-full">
-                                <label htmlFor="lastName">Last name</label>
-                                <input
-                                    required
-                                    type="text"
+                                <InputLabel htmlFor="lastName">
+                                    Last name
+                                </InputLabel>
+                                <Input
                                     id="lastName"
-                                    value={data.lastName}
+                                    type="text"
+                                    placeholder="Enter your last name"
+                                    value={data["lastName"]}
                                     onChange={(e) =>
                                         setData("lastName", e.target.value)
                                     }
+                                    required
                                 />
-                                {errors.lastName && (
-                                    <p className="text-red-500 text-s">{errors.lastName}</p>
-                                )}
+                                <InputError
+                                    message={errors && errors["lastName"]}
+                                />
                             </div>
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="phone_number">
+                            <InputLabel htmlFor="phone_number">
                                 Telephone number
-                            </label>
-                            <input
-                                required
-                                type="number"
+                            </InputLabel>
+                            <Input
                                 id="phone_number"
-                                value={data.phone_number}
+                                type="number"
+                                placeholder="Enter your telephone number"
+                                value={data["phone_number"]}
                                 onChange={(e) =>
                                     setData("phone_number", e.target.value)
                                 }
-                            />
-                            {errors.phone_number && (
-                                <p className="text-red-500 text-s">  {errors.phone_number}</p>
-                            )}
-                        </div>
-
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="cin">CIN</label>
-                                <input
-                                    required
-                                    type="text"
-                                    id="cin"
-                                    value={data.cin}
-                                    onChange={(e) =>
-                                        setData("cin", e.target.value)
-                                    }
-                                />
-                                {errors.cin && (
-                                    <p className="text-red-500 text-s">{errors.cin}</p>
-                                )}
-                            </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="dateOfBirth">Date of birth</label>
-                            <input
                                 required
-                                type="date"
+                            />
+                            <InputError
+                                message={errors && errors["phone_number"]}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="cin">CIN</InputLabel>
+                            <Input
+                                id="cin"
+                                type="text"
+                                placeholder="Enter your CIN"
+                                value={data["cin"]}
+                                onChange={(e) => setData("cin", e.target.value)}
+                                required
+                            />
+                            <InputError message={errors && errors["cin"]} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="dateOfBirth">
+                                Date of birth
+                            </InputLabel>
+                            <Input
                                 id="dateOfBirth"
-                                value={data.dateOfBirth}
+                                type="date"
+                                placeholder="Select your date of birth"
+                                value={data["dateOfBirth"]}
                                 onChange={(e) =>
                                     setData("dateOfBirth", e.target.value)
                                 }
+                                required
                             />
-                            {errors.dateOfBirth && (
-                                <p className="text-red-500 text-s"> {errors.dateOfBirth}</p>
-                            )}
+                            <InputError
+                                message={errors && errors["dateOfBirth"]}
+                            />
                         </div>
                     </div>
-                    <div className="md:w-full space-y-1 md:space-y-2">
+                    <div className="w-full space-y-3">
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="countryOfBirth">
+                            <InputLabel htmlFor="countryOfBirth">
                                 Country of birth
-                            </label>
-                            <input
-                                required
-                                type="text"
+                            </InputLabel>
+                            <Input
                                 id="countryOfBirth"
-                                value={data.countryOfBirth}
+                                type="text"
+                                placeholder="Enter your country of birth"
+                                value={data["countryOfBirth"]}
                                 onChange={(e) =>
                                     setData("countryOfBirth", e.target.value)
                                 }
+                                required
                             />
-                            {errors.countryOfBirth && (
-                                <p className="text-red-500 text-s"> {errors.countryOfBirth}</p>
-                            )}
+                            <InputError
+                                message={errors && errors["countryOfBirth"]}
+                            />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="cityOfBirth">City of birth</label>
-                            <input
-                                required
-                                type="text"
+                            <InputLabel htmlFor="cityOfBirth">
+                                City of birth
+                            </InputLabel>
+                            <Input
                                 id="cityOfBirth"
-                                value={data.cityOfBirth}
+                                type="text"
+                                placeholder="Enter your city of birth"
+                                value={data["cityOfBirth"]}
                                 onChange={(e) =>
                                     setData("cityOfBirth", e.target.value)
                                 }
+                                required
                             />
-                            {errors.cityOfBirth && (
-                                <p className="text-red-500 text-s">{errors.cityOfBirth}</p>
-                            )}
+                            <InputError
+                                message={errors && errors["cityOfBirth"]}
+                            />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="nationality">Nationality</label>
-                            <input
-                                required
-                                type="text"
+                            <InputLabel htmlFor="nationality">
+                                Nationality
+                            </InputLabel>
+                            <Input
                                 id="nationality"
-                                value={data.nationality}
+                                type="text"
+                                placeholder="Enter your nationality"
+                                value={data["nationality"]}
                                 onChange={(e) =>
                                     setData("nationality", e.target.value)
                                 }
+                                required
                             />
-                            {errors.nationality && (
-                                <p className="text-red-500 text-s"> {errors.nationality}</p>
-                            )}
+                            <InputError
+                                message={errors && errors["nationality"]}
+                            />
                         </div>
                     </div>
                 </div>
-                <div className="pt-8">
-                    <h2 className="text-xl">Address details</h2>
-                </div>
-                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:justify-center md:items-center md:gap-8 mt-4">
-                    <div className="md:w-full space-y-1 md:space-y-2">
+                <h1 className="text-xl tracking-wide mt-4">Address Details</h1>
+                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 mx-auto md:gap-4">
+                    <div className="w-full space-y-3">
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="address">Address</label>
-                            <input
-                                required
-                                type="text"
+                            <InputLabel htmlFor="address">Address</InputLabel>
+                            <Input
                                 id="address"
-                                value={data.address}
+                                type="text"
+                                placeholder="Enter your address"
+                                value={data["address"]}
                                 onChange={(e) =>
                                     setData("address", e.target.value)
                                 }
-                            />
-                            {errors.address && (
-                                <p className="text-red-500 text-s">{errors.address}</p>
-                            )}
-                        </div>
-                        <div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="country">Country</label>
-                                <input
-                                    required
-                                    type="text"
-                                    id="country"
-                                    value={data.country}
-                                    onChange={(e) =>
-                                        setData("country", e.target.value)
-                                    }
-                                />
-                                {errors.country && (
-                                    <p className="text-red-500 text-s">{errors.country}</p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="md:w-full space-y-1 md:space-y-2">
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="postalCode">Postal Code</label>
-                            <input
                                 required
-                                type="number"
+                            />
+                            <InputError message={errors && errors["address"]} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="postalCode">
+                                Postal Code
+                            </InputLabel>
+                            <Input
                                 id="postalCode"
-                                value={data.postalCode}
+                                type="number"
+                                placeholder="Enter your postal code"
+                                value={data["postalCode"]}
                                 onChange={(e) =>
                                     setData("postalCode", e.target.value)
                                 }
-                            />
-                            {errors.postalCode && (
-                                <p className="text-red-500 text-s"> {errors.postalCode}</p>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="city">City</label>
-                            <input
                                 required
+                            />
+                            <InputError
+                                message={errors && errors["postalCode"]}
+                            />
+                        </div>
+                    </div>
+                    <div className="w-full space-y-3">
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="country">Country</InputLabel>
+                            <Input
+                                id="country"
                                 type="text"
+                                placeholder="Enter your country"
+                                value={data["country"]}
+                                onChange={(e) =>
+                                    setData("country", e.target.value)
+                                }
+                                required
+                            />
+                            <InputError message={errors && errors["country"]} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="city">City</InputLabel>
+                            <Input
                                 id="city"
-                                value={data.city}
+                                type="text"
+                                placeholder="Enter your city"
+                                value={data["city"]}
                                 onChange={(e) =>
                                     setData("city", e.target.value)
                                 }
+                                required
                             />
-                            {errors.city && (
-                                <p className="text-red-500 text-s">{errors.city}</p>
-                            )}
+                            <InputError message={errors && errors["city"]} />
                         </div>
                     </div>
                 </div>

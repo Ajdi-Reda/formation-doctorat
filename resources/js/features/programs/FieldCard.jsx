@@ -1,7 +1,6 @@
 import React from "react";
 import ThesisRow from "./ThesisRow";
 import { formatDuration } from "@/Components/utils/HelperFunctions";
-import { Table } from 'flowbite-react';
 
 const FieldCard = ({ field, setData, data }) => {
     const duration = formatDuration(field);
@@ -22,30 +21,32 @@ const FieldCard = ({ field, setData, data }) => {
 
                     <div className="block w-full overflow-x-auto">
                         <div className="relative overflow-x-auto">
-                            <Table className="w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <Table.Head className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                    <Table.HeadCell scope="col" className="px-6 py-3">
-                                        Theses
-                                    </Table.HeadCell>
-                                    <Table.HeadCell scope="col" className="px-6 py-3">
-                                        Duration
-                                    </Table.HeadCell>
-                                    <Table.HeadCell scope="col" className="px-6 py-3">
-                                        Action
-                                    </Table.HeadCell>
-                                </Table.Head>
-                                <Table.Body>
-                                {field.theses.map((thesis, idx) => (
-                                    <ThesisRow
-                                        key={thesis.id}
-                                        thesis={thesis}
-                                        setData={setData}
-                                        duration={duration}
-                                        data={data}
-                                    />
-                                ))}
-                                </Table.Body>
-                            </Table>
+                            <table className="w-full text-md text-left rtl:text-right text-gray-500 ">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-3">
+                                            Theses
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Duration
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {field.theses.map((thesis, idx) => (
+                                        <ThesisRow
+                                            key={thesis.id}
+                                            thesis={thesis}
+                                            setData={setData}
+                                            duration={duration}
+                                            data={data}
+                                        />
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

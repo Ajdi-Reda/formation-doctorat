@@ -9,7 +9,13 @@ import Summary from "@/features/applicationForm/Summary.jsx";
 
 const Application = ({ fields, user, formData }) => {
     const [currStep, setCurrStep] = useState(1);
-    const stepForms = [FieldSelection, PersonalDataForm, QualificationsForm, DocumentForm, Summary];
+    const stepForms = [
+        FieldSelection,
+        PersonalDataForm,
+        QualificationsForm,
+        DocumentForm,
+        Summary,
+    ];
     function handleIncrementStep() {
         setCurrStep((prevStep) => (prevStep < 5 ? prevStep + 1 : 5));
     }
@@ -20,18 +26,18 @@ const Application = ({ fields, user, formData }) => {
 
     const CurrentForm = stepForms[currStep - 1];
     return (
-                <>
-                    <ApplicationProgress currentStep={currStep} totalSteps={5}/>
-                    <CurrentForm
-                        {...(currStep === 1 && { fields })}
-                        handleIncrementStep={handleIncrementStep}
-                        handleDecrementStep={handleDecrementStep}
-                        user={user}
-                        formData={formData}
-                    >
-                        <PrevNextBtn handleDecrementStep={handleDecrementStep} />
-                    </CurrentForm>
-                </>
+        <>
+            <ApplicationProgress currentStep={currStep} />
+            <CurrentForm
+                {...(currStep === 1 && { fields })}
+                handleIncrementStep={handleIncrementStep}
+                handleDecrementStep={handleDecrementStep}
+                user={user}
+                formData={formData}
+            >
+                <PrevNextBtn handleDecrementStep={handleDecrementStep} />
+            </CurrentForm>
+        </>
     );
 };
 

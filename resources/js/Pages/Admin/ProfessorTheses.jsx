@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CandidatesTable from "./CandidateTable";
 import JustLayout from "@/Layouts/JustLayout";
 
@@ -8,7 +8,6 @@ const ProfessorTheses = ({ theses, professorName }) => {
     const handleTableToggle = (index) => {
         setOpenTableIndex((prevIndex) => (prevIndex === index ? null : index));
     };
-    console.log(theses);
     return (
         <>
             <JustLayout>

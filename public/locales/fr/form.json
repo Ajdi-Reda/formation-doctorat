@@ -1,0 +1,138 @@
+{
+    "personalDetails": {
+        "labels": {
+            "firstName": "Prénom",
+            "lastName": "Nom de famille",
+            "phone_number": "Numéro de téléphone",
+            "cin": "CIN",
+            "dateOfBirth": "Date de naissance",
+            "countryOfBirth": "Pays de naissance",
+            "cityOfBirth": "Ville de naissance",
+            "nationality": "Nationalité",
+            "address": "Adresse",
+            "postalCode": "Code postal",
+            "country": "Pays",
+            "city": "Ville"
+        },
+        "placeholders": {
+            "firstName": "Entrez votre prénom",
+            "lastName": "Entrez votre nom de famille",
+            "phone_number": "Entrez votre numéro de téléphone",
+            "cin": "Entrez votre CIN",
+            "dateOfBirth": "Sélectionnez votre date de naissance",
+            "countryOfBirth": "Entrez votre pays de naissance",
+            "cityOfBirth": "Entrez votre ville de naissance",
+            "nationality": "Entrez votre nationalité",
+            "address": "Entrez votre adresse",
+            "postalCode": "Entrez votre code postal",
+            "country": "Entrez votre pays",
+            "city": "Entrez votre ville"
+        }
+    },
+    "bacForm": {
+        "labels": {
+            "bYear": "Année de diplomation du Bac",
+            "bEstablishment": "Établissement",
+            "massarCode": "Code Massar",
+            "option": "Option du Bac",
+            "nationalBacAverage": "Moyenne nationale du Bac",
+            "city": "Ville de diplomation du Bac",
+            "mention": "Mention",
+            "bacAverage": "Moyenne du Bac",
+            "regionalExamAverage": "Moyenne de l'examen régional",
+            "bacDiploma": "Diplôme du Bac"
+        },
+        "placeholders": {
+            "bYear": "Entrez l'année de diplomation du Bac",
+            "bEstablishment": "Entrez l'établissement",
+            "massarCode": "Entrez le code Massar",
+            "option": "Entrez l'option du Bac",
+            "nationalBacAverage": "Entrez la moyenne nationale du Bac",
+            "city": "Entrez la ville de diplomation du Bac",
+            "mention": "Entrez la mention",
+            "bacAverage": "Entrez la moyenne du Bac",
+            "regionalExamAverage": "Entrez la moyenne de l'examen régional"
+        }
+    },
+    "licenceForm": {
+        "labels": {
+            "lType": "Type de diplôme",
+            "lBranch": "Filière/Majeure",
+            "lYear": "Année d'obtention du diplôme de licence",
+            "lEstablishment": "Établissement",
+            "semester1": "Moyenne du semestre 1",
+            "semester2": "Moyenne du semestre 2",
+            "semester3": "Moyenne du semestre 3",
+            "semester4": "Moyenne du semestre 4",
+            "semester5": "Moyenne du semestre 5",
+            "semester6": "Moyenne du semestre 6",
+            "licenceDiploma": "Télécharger le diplôme de licence"
+        },
+        "placeholders": {
+            "lType": "Sélectionnez le type de diplôme",
+            "lBranch": "Entrez la filière/majeure",
+            "lYear": "Entrez l'année d'obtention du diplôme de licence",
+            "lEstablishment": "Entrez l'établissement",
+            "semester1": "Entrez la moyenne du semestre 1",
+            "semester2": "Entrez la moyenne du semestre 2",
+            "semester3": "Entrez la moyenne du semestre 3",
+            "semester4": "Entrez la moyenne du semestre 4",
+            "semester5": "Entrez la moyenne du semestre 5",
+            "semester6": "Entrez la moyenne du semestre 6"
+        },
+        "licenceTypes": {
+            "licence": "Licence",
+            "licenceProfessionel": "Licence Professionnelle"
+        }
+    },
+    "masterForm": {
+        "labels": {
+            "branch": "Filière/Majeure",
+            "year": "Année de graduation du master",
+            "establishment": "Établissement",
+            "semester7": "Moyenne du semestre 7",
+            "semester8": "Moyenne du semestre 8",
+            "semester9": "Moyenne du semestre 9",
+            "semester10": "Moyenne du semestre 10",
+            "diploma": "Télécharger le diplôme de Master"
+        },
+        "placeholders": {
+            "branch": "Entrez votre filière/majeure",
+            "year": "Entrez l'année de graduation du master",
+            "establishment": "Entrez l'établissement",
+            "semester7": "Entrez la moyenne du semestre 7",
+            "semester8": "Entrez la moyenne du semestre 8",
+            "semester9": "Entrez la moyenne du semestre 9",
+            "semester10": "Entrez la moyenne du semestre 10"
+        }
+    },
+    "documentForm": {
+        "title": "Documents",
+        "cvLabel": "Télécharger le CV",
+        "recommendationLetter1Label": "Lettre de recommandation 1",
+        "recommendationLetter2Label": "Lettre de recommandation 2"
+    },
+    "personalInfo": {
+        "title": "Informations Personnelles",
+        "labels": {
+            "lastName": "Nom de Famille",
+            "firstName": "Prénom",
+            "dateOfBirth": "Date de Naissance",
+            "cityCountry": "Ville, Pays",
+            "cin": "N CIN",
+            "address": "Adresse Postale",
+            "phoneNumber": "Téléphone"
+        }
+    },
+    "candidateTableSummary": {
+        "thesisIdentifier": "Identifiant de thèse",
+        "thesisTitle": "Titre de thèse"
+    },
+    "steps": {
+        "01": "Sélection du cours",
+        "02": "Détails personnels",
+        "03": "Qualifications",
+        "04": "Documents",
+        "05": "Résumé"
+    }
+}

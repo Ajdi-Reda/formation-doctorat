@@ -1,0 +1,138 @@
+{
+    "personalDetails": {
+        "labels": {
+            "firstName": "First name",
+            "lastName": "Last name",
+            "phone_number": "Telephone number",
+            "cin": "CIN",
+            "dateOfBirth": "Date of birth",
+            "countryOfBirth": "Country of birth",
+            "cityOfBirth": "City of birth",
+            "nationality": "Nationality",
+            "address": "Address",
+            "postalCode": "Postal Code",
+            "country": "Country",
+            "city": "City"
+        },
+        "placeholders": {
+            "firstName": "Enter your first name",
+            "lastName": "Enter your last name",
+            "phone_number": "Enter your telephone number",
+            "cin": "Enter your CIN",
+            "dateOfBirth": "Select your date of birth",
+            "countryOfBirth": "Enter your country of birth",
+            "cityOfBirth": "Enter your city of birth",
+            "nationality": "Enter your nationality",
+            "address": "Enter your address",
+            "postalCode": "Enter your postal code",
+            "country": "Enter your country",
+            "city": "Enter your city"
+        }
+    },
+    "bacForm": {
+        "labels": {
+            "bYear": "Year of Bac Graduation",
+            "bEstablishment": "Establishment",
+            "massarCode": "Massar Code",
+            "option": "Bac Option",
+            "nationalBacAverage": "National Bac Exam Average",
+            "city": "City of Bac Graduation",
+            "mention": "Mention",
+            "bacAverage": "Bac Average",
+            "regionalExamAverage": "Regional Exam Average",
+            "bacDiploma": "Bac Diploma"
+        },
+        "placeholders": {
+            "bYear": "Enter the year of Bac graduation",
+            "bEstablishment": "Enter the establishment",
+            "massarCode": "Enter the Massar code",
+            "option": "Enter the Bac option",
+            "nationalBacAverage": "Enter the national Bac exam average",
+            "city": "Enter the city of Bac graduation",
+            "mention": "Enter the mention",
+            "bacAverage": "Enter the Bac average",
+            "regionalExamAverage": "Enter the regional exam average"
+        }
+    },
+    "licenceForm": {
+        "labels": {
+            "lType": "Type of Bachelor's Degree",
+            "lBranch": "Branch/Major",
+            "lYear": "Year of Bachelor's Degree Graduation",
+            "lEstablishment": "Establishment",
+            "semester1": "Semester 1 Average",
+            "semester2": "Semester 2 Average",
+            "semester3": "Semester 3 Average",
+            "semester4": "Semester 4 Average",
+            "semester5": "Semester 5 Average",
+            "semester6": "Semester 6 Average",
+            "licenceDiploma": "Upload Bachelor's Degree Diploma"
+        },
+        "placeholders": {
+            "lType": "Select the type of Bachelor's Degree",
+            "lBranch": "Enter the branch/major",
+            "lYear": "Enter the year of Bachelor's Degree graduation",
+            "lEstablishment": "Enter the establishment",
+            "semester1": "Enter the Semester 1 average",
+            "semester2": "Enter the Semester 2 average",
+            "semester3": "Enter the Semester 3 average",
+            "semester4": "Enter the Semester 4 average",
+            "semester5": "Enter the Semester 5 average",
+            "semester6": "Enter the Semester 6 average"
+        },
+        "licenceTypes": {
+            "licence": "Bachelor degree",
+            "licenceProfessionel": "Professional Bachelor"
+        }
+    },
+    "masterForm": {
+        "labels": {
+            "branch": "Branch/Major",
+            "year": "Year of master graduation",
+            "establishment": "Establishment",
+            "semester7": "Semester 7 average",
+            "semester8": "Semester 8 average",
+            "semester9": "Semester 9 average",
+            "semester10": "Semester 10 average",
+            "diploma": "Upload Master Diploma"
+        },
+        "placeholders": {
+            "branch": "Enter your branch/major",
+            "year": "Enter year of master graduation",
+            "establishment": "Enter establishment",
+            "semester7": "Enter semester 7 average",
+            "semester8": "Enter semester 8 average",
+            "semester9": "Enter semester 9 average",
+            "semester10": "Enter semester 10 average"
+        }
+    },
+    "documentForm": {
+        "title": "Documents",
+        "cvLabel": "Upload CV",
+        "recommendationLetter1Label": "Recommendation letter 1",
+        "recommendationLetter2Label": "Recommendation letter 2"
+    },
+    "personalInfo": {
+        "title": "Personal Information",
+        "labels": {
+            "lastName": "Last Name",
+            "firstName": "First Name",
+            "dateOfBirth": "Date of Birth",
+            "cityCountry": "City, Country",
+            "cin": "N CIN",
+            "address": "Address Postale",
+            "phoneNumber": "Telephone"
+        }
+    },
+    "candidateTableSummary": {
+        "thesisIdentifier": "Thesis Identifier",
+        "thesisTitle": "Thesis Title"
+    },
+    "steps": {
+        "01": "Course selection",
+        "02": "Personal details",
+        "03": "Qualifications",
+        "04": "Documents",
+        "05": "Summary"
+    }
+}

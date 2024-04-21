@@ -1,82 +1,164 @@
+import React, { useEffect } from "react";
+import Input from "@/Components/Input.jsx";
 import InputLabel from "@/Components/InputLabel.jsx";
+import InputError from "@/Components/InputError.jsx";
 import FileInput from "@/Components/FileInput.jsx";
-import React from "react";
+import { useTranslation } from "react-i18next";
 
-const MasterForm = ({data, errors, setData, completed}) => {
-    return <>
-        <div className="flex flex-col gap-2">
-            <h1 className="text-2xl mt-4">Master</h1>
+const MasterForm = ({ data, errors, setData, completed }) => {
+    const { t } = useTranslation("form");
 
-            <label htmlFor="mBranch">Branch/Major</label>
-            <input
-                required
-                type="text"
-                id="mBranch"
-                value={data.mBranch}
-                onChange={(e) => setData("mBranch", e.target.value)}
-            />
-            {errors.mBranch && (
-                <p className="text-red-500 text-sm">{errors.mBranch}</p>
-            )}
+    return (
+        <div>
+            <div className="py-6 mt-12 space-y-4">
+                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 mx-auto md:gap-4">
+                    <div className="w-full space-y-3">
+                        <div className="flex flex-col gap-2 md:w-full">
+                            <InputLabel htmlFor="mBranch">
+                                {t("masterForm.labels.branch")}
+                            </InputLabel>
+                            <Input
+                                id="mBranch"
+                                type="text"
+                                value={data.mBranch}
+                                onChange={(e) =>
+                                    setData("mBranch", e.target.value)
+                                }
+                                placeholder={t(
+                                    "masterForm.placeholders.branch"
+                                )}
+                                required
+                            />
+                            <InputError message={errors && errors.mBranch} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="mYear">
+                                {t("masterForm.labels.year")}
+                            </InputLabel>
+                            <Input
+                                id="mYear"
+                                type="text"
+                                value={data.mYear}
+                                onChange={(e) =>
+                                    setData("mYear", e.target.value)
+                                }
+                                placeholder={t("masterForm.placeholders.year")}
+                                required
+                            />
+                            <InputError message={errors && errors.mYear} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="mEstablishment">
+                                {t("masterForm.labels.establishment")}
+                            </InputLabel>
+                            <Input
+                                id="mEstablishment"
+                                type="text"
+                                value={data.mEstablishment}
+                                onChange={(e) =>
+                                    setData("mEstablishment", e.target.value)
+                                }
+                                placeholder={t(
+                                    "masterForm.placeholders.establishment"
+                                )}
+                                required
+                            />
+                            <InputError
+                                message={errors && errors.mEstablishment}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="semester7">
+                                {t("masterForm.labels.semester7")}
+                            </InputLabel>
+                            <Input
+                                id="semester7"
+                                type="text"
+                                value={data.semester7}
+                                onChange={(e) =>
+                                    setData("semester7", e.target.value)
+                                }
+                                placeholder={t(
+                                    "masterForm.placeholders.semester7"
+                                )}
+                                required
+                            />
+                            <InputError message={errors && errors.semester7} />
+                        </div>
+                    </div>
+                    <div className="w-full space-y-3">
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="semester8">
+                                {t("masterForm.labels.semester8")}
+                            </InputLabel>
+                            <Input
+                                id="semester8"
+                                type="text"
+                                value={data.semester8}
+                                onChange={(e) =>
+                                    setData("semester8", e.target.value)
+                                }
+                                placeholder={t(
+                                    "masterForm.placeholders.semester8"
+                                )}
+                                required
+                            />
+                            <InputError message={errors && errors.semester8} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="semester9">
+                                {t("masterForm.labels.semester9")}
+                            </InputLabel>
+                            <Input
+                                id="semester9"
+                                type="text"
+                                value={data.semester9}
+                                onChange={(e) =>
+                                    setData("semester9", e.target.value)
+                                }
+                                placeholder={t(
+                                    "masterForm.placeholders.semester9"
+                                )}
+                                required
+                            />
+                            <InputError message={errors && errors.semester9} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="semester10">
+                                {t("masterForm.labels.semester10")}
+                            </InputLabel>
+                            <Input
+                                id="semester10"
+                                type="text"
+                                value={data.semester10}
+                                onChange={(e) =>
+                                    setData("semester10", e.target.value)
+                                }
+                                placeholder={t(
+                                    "masterForm.placeholders.semester10"
+                                )}
+                                required
+                            />
+                            <InputError message={errors && errors.semester10} />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <InputLabel htmlFor="masterDiploma">
+                        {t("masterForm.labels.diploma")}
+                    </InputLabel>
+                    <FileInput
+                        required={!completed}
+                        type="file"
+                        id="masterDiploma"
+                        name="masterDiploma"
+                        setData={setData}
+                        errors={errors && errors.masterDiploma}
+                    />
+                </div>
+            </div>
         </div>
+    );
+};
 
-        {/* Additional MasterDetails's Degree fields... */}
-        <div className="mt-4 grid grid-cols-2 gap-2">
-            <label htmlFor="mYear">Year of master graduation</label>
-            <input required type="text" id="mYear" value={data.mYear}
-                   onChange={(e) => setData("mYear", e.target.value)}
-            />
-            {errors.mYear && (
-                <p className="text-red-500 text-sm">{errors.mYear}</p>
-            )}
-            <label htmlFor="mEstablishment">Establishment</label>
-            <input required type="text" id="mEstablishment" value={data.mEstablishment}
-                   onChange={(e) => setData("mEstablishment", e.target.value)}
-            />
-            {errors.mEstablishment && (
-                <p className="text-red-500 text-sm">{errors.mEstablishment}</p>
-            )}
-            <label htmlFor="semester7">Semester 7 average</label>
-            <input required type="text" id="semster7" value={data.semester7}
-                   onChange={(e) => setData("semester7", e.target.value)}
-            />
-            {errors.semester7 && (
-                <p className="text-red-500 text-sm">{errors.semester7}</p>
-            )}
-            <label htmlFor="semester8">Semester 8 average</label>
-            <input required type="text" id="semster8" value={data.semester8}
-                   onChange={(e) => setData("semester8", e.target.value)}
-            />
-            {errors.semester8 && (
-                <p className="text-red-500 text-sm">{errors.semester8}</p>
-            )}
-            <label htmlFor="semester9">Semester 9 average</label>
-            <input required type="text" id="semster9" value={data.semester9}
-                   onChange={(e) => setData("semester9", e.target.value)}
-            />
-            {errors.semester9 && (
-                <p className="text-red-500 text-sm">{errors.semester9}</p>
-            )}
-            <label htmlFor="semester10">Semester 10 average</label>
-            <input required type="text" id="semster10" value={data.semester10}
-                   onChange={(e) => setData("semester10", e.target.value)}
-            />
-            {errors.semester10 && (
-                <p className="text-red-500 text-sm">{errors.semester10}</p>
-            )}
-        </div>
-        <div className="flex flex-col gap-2">
-            <InputLabel htmlFor="masterDiploma">Upload Master Diploma</InputLabel>
-            <FileInput
-                required={!completed}
-                type="file"
-                id="masterDiploma"
-                name="masterDiploma"
-                setData={setData}
-                errors={errors.masterDiploma}
-            />
-        </div>
-    </>
-}
-
-export default MasterForm
+export default MasterForm;

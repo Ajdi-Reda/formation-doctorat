@@ -27,15 +27,15 @@ class PersonalDetailsForm extends BaseForm
     ];
 
     public function __construct(Request $request)
-{
-    parent::__construct($request);
-    $this->handle();
-}
+    {
+        parent::__construct($request);
+        $this->handle();
+    }
 
     public function handle()
     {
         $user = Auth::user();
-        if($user->candidate) {
+        if ($user->candidate) {
             $this->update($user->candidate);
             return;
         }
@@ -43,7 +43,7 @@ class PersonalDetailsForm extends BaseForm
     }
     public function store()
     {
-       $user=Auth::getUser();
+        $user = Auth::getUser();
         //creating a candidate row associated with that user
         $candidate = new Candidate([
             'user_id' => $user->id,
@@ -65,19 +65,19 @@ class PersonalDetailsForm extends BaseForm
     }
     public function update($candidate)
     {
-            $candidate->firstName = $this->request->input('firstName');
-            $candidate->lastName = $this->request->input('lastName');
-            $candidate->phone_number = $this->request->input('phone_number');
-            $candidate->cin = $this->request->input('cin');
-            $candidate->dateOfBirth = $this->request->input('dateOfBirth');
-            $candidate->countryOfBirth = $this->request->input('countryOfBirth');
-            $candidate->cityOfBirth = $this->request->input('cityOfBirth');
-            $candidate->nationality = $this->request->input('nationality');
-            $candidate->address = $this->request->input('address');
-            $candidate->postalCode = $this->request->input('postalCode');
-            $candidate->country = $this->request->input('country');
-            $candidate->city = $this->request->input('city');
+        $candidate->firstName = $this->request->input('firstName');
+        $candidate->lastName = $this->request->input('lastName');
+        $candidate->phone_number = $this->request->input('phone_number');
+        $candidate->cin = $this->request->input('cin');
+        $candidate->dateOfBirth = $this->request->input('dateOfBirth');
+        $candidate->countryOfBirth = $this->request->input('countryOfBirth');
+        $candidate->cityOfBirth = $this->request->input('cityOfBirth');
+        $candidate->nationality = $this->request->input('nationality');
+        $candidate->address = $this->request->input('address');
+        $candidate->postalCode = $this->request->input('postalCode');
+        $candidate->country = $this->request->input('country');
+        $candidate->city = $this->request->input('city');
 
-            $candidate->save();
+        $candidate->save();
     }
 }

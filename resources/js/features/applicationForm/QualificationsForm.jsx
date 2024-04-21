@@ -49,10 +49,25 @@ const QualificationsForm = ({ children, handleIncrementStep, formData }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-xl mt-6 space-y-3">
-         <BacForm data={data} errors={errors} setData={setData} completed={formCompleted}/>
-          <LicenceForm data={data} errors={errors} setData={setData} completed={formCompleted}/>
-           <MasterForm data={data} errors={errors} setData={setData} completed={formCompleted}/>
+        <form onSubmit={handleSubmit} className="mt-6 space-y-3">
+            <BacForm
+                data={data}
+                errors={errors}
+                setData={setData}
+                completed={formCompleted}
+            />
+            <LicenceForm
+                data={data}
+                errors={errors}
+                setData={setData}
+                completed={formCompleted}
+            />
+            <MasterForm
+                data={data}
+                errors={errors}
+                setData={setData}
+                completed={formCompleted}
+            />
             {children}
         </form>
     );

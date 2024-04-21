@@ -1,14 +1,18 @@
-import { CheckIcon } from "@heroicons/react/24/solid";
-
-const steps = [
-    { id: "01", name: "Course selection" },
-    { id: "02", name: "Personal details" },
-    { id: "03", name: "Qualifications" },
-    { id: "04", name: "Documents" },
-    { id: "05", name: "Summary" },
-];
+import React from "react";
+import { CheckIcon } from "@heroicons/react/20/solid";
+import { useTranslation } from "react-i18next";
 
 export default function ApplicationProgress({ currentStep }) {
+    const { t } = useTranslation("form"); // Load translations for the 'form' namespace
+
+    const steps = [
+        { id: "01", name: t("steps.01") },
+        { id: "02", name: t("steps.02") },
+        { id: "03", name: t("steps.03") },
+        { id: "04", name: t("steps.04") },
+        { id: "05", name: t("steps.05") },
+    ];
+
     return (
         <nav aria-label="Progress" className="mt-8">
             <ol
@@ -26,7 +30,7 @@ export default function ApplicationProgress({ currentStep }) {
                                             aria-hidden="true"
                                         />
                                     </span>
-                                    <span className="ml-4 text-sm font-medium text-gray-900">
+                                    <span className="mx-4 text-sm font-medium text-gray-900">
                                         {step.name}
                                     </span>
                                 </span>
@@ -39,36 +43,12 @@ export default function ApplicationProgress({ currentStep }) {
                                             {step.id}
                                         </span>
                                     </span>
-                                    <span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">
+                                    <span className="mx-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">
                                         {step.name}
                                     </span>
                                 </span>
                             </div>
                         )}
-
-                        {stepIdx !== steps.length - 1 ? (
-                            <>
-                                {/* Arrow separator for lg screens and up */}
-                                <div
-                                    className="absolute right-0 top-0 hidden h-full w-5 md:block"
-                                    aria-hidden="true"
-                                >
-                                    <svg
-                                        className="h-full w-full text-gray-300"
-                                        viewBox="0 0 22 80"
-                                        fill="none"
-                                        preserveAspectRatio="none"
-                                    >
-                                        <path
-                                            d="M0 -2L20 40L0 82"
-                                            vectorEffect="non-scaling-stroke"
-                                            stroke="currentcolor"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </div>
-                            </>
-                        ) : null}
                     </li>
                 ))}
             </ol>

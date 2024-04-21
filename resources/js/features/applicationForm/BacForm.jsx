@@ -1,160 +1,208 @@
 import React from "react";
-import FileInput from "@/Components/FileInput.jsx";
+import Input from "@/Components/Input.jsx";
 import InputLabel from "@/Components/InputLabel.jsx";
+import InputError from "@/Components/InputError.jsx";
+import FileInput from "@/Components/FileInput.jsx";
+import { useTranslation } from "react-i18next";
 
+const BacForm = ({ data, errors, setData, completed }) => {
+    const { t } = useTranslation("form");
 
-const BacForm = ({ data, errors, setData, completed}) => {
     return (
-        <>
-            <div className="py-6 mt-6 space-y-4">
-                <h1 className="text-2xl">Bac</h1>
-                <div className="flex flex-col md:flex-row md:space-x-4 max-w-lg">
-                    {/* First Column */}
-                    <div className="md:w-1/2 space-y-2">
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="bYear">Year of Bac Graduation</label>
-                            <input
-                                required
-                                type="number"
-                                id="bYear"
-                                value={data.bYear}
-                                onChange={(e) => setData("bYear", e.target.value)}
-                            />
-                            {errors.bYear && (
-                                <p className="text-red-500 text-sm">{errors.bYear}</p>
-                            )}
+        <div>
+            <div className="py-6 mt-12 space-y-4">
+                <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 mx-auto md:gap-4">
+                    <div className="w-full space-y-3">
+                        <div className="flex flex-col gap-2 md:flex-row ">
+                            <div className="flex flex-col gap-2 md:w-full">
+                                <InputLabel htmlFor="bYear">
+                                    {t("bacForm.labels.bYear")}
+                                </InputLabel>
+                                <Input
+                                    id="bYear"
+                                    type="number"
+                                    placeholder={t(
+                                        "bacForm.placeholders.bYear"
+                                    )}
+                                    value={data["bYear"]}
+                                    onChange={(e) =>
+                                        setData("bYear", e.target.value)
+                                    }
+                                    required
+                                />
+                                <InputError
+                                    message={errors && errors["bYear"]}
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2 md:w-full">
+                                <InputLabel htmlFor="bEstablishment">
+                                    {t("bacForm.labels.bEstablishment")}
+                                </InputLabel>
+                                <Input
+                                    id="bEstablishment"
+                                    type="text"
+                                    placeholder={t(
+                                        "bacForm.placeholders.bEstablishment"
+                                    )}
+                                    value={data["bEstablishment"]}
+                                    onChange={(e) =>
+                                        setData(
+                                            "bEstablishment",
+                                            e.target.value
+                                        )
+                                    }
+                                    required
+                                />
+                                <InputError
+                                    message={errors && errors["bEstablishment"]}
+                                />
+                            </div>
                         </div>
-
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="bEstablishment">Establishment</label>
-                            <input
-                                required
-                                type="text"
-                                id="bEstablishment"
-                                value={data.bEstablishment}
-                                onChange={(e) => setData("bEstablishment", e.target.value)}
-                            />
-                            {errors.bEstablishment && (
-                                <p className="text-red-500 text-sm">{errors.bEstablishment}</p>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="massarCode">Massar Code</label>
-                            <input
-                                required
-                                type="text"
+                            <InputLabel htmlFor="massarCode">
+                                {t("bacForm.labels.massarCode")}
+                            </InputLabel>
+                            <Input
                                 id="massarCode"
-                                value={data.massarCode}
-                                onChange={(e) => setData("massarCode", e.target.value)}
-                            />
-                            {errors.massarCode && (
-                                <p className="text-red-500 text-sm">{errors.massarCode}</p>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="option">Bac Option</label>
-                            <input
-                                required
                                 type="text"
-                                id="option"
-                                value={data.option}
-                                onChange={(e) => setData("option", e.target.value)}
-                            />
-                            {errors.option && (
-                                <p className="text-red-500 text-sm">{errors.option}</p>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="nationalBacAverage">
-                                National Bac Exam Average
-                            </label>
-                            <input
-                                required
-                                type="number"
-                                id="nationalBacAverage"
-                                value={data.nationalBacAverage}
+                                placeholder={t(
+                                    "bacForm.placeholders.massarCode"
+                                )}
+                                value={data["massarCode"]}
                                 onChange={(e) =>
-                                    setData("nationalBacAverage", e.target.value)
+                                    setData("massarCode", e.target.value)
                                 }
+                                required
                             />
-                            {errors.nationalBacAverage && (
-                                <p className="text-red-500 text-sm">
-                                    {errors.nationalBacAverage}
-                                </p>
-                            )}
+                            <InputError
+                                message={errors && errors["massarCode"]}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="option">
+                                {t("bacForm.labels.option")}
+                            </InputLabel>
+                            <Input
+                                id="option"
+                                type="text"
+                                placeholder={t("bacForm.placeholders.option")}
+                                value={data["option"]}
+                                onChange={(e) =>
+                                    setData("option", e.target.value)
+                                }
+                                required
+                            />
+                            <InputError message={errors && errors["option"]} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="nationalBacAverage">
+                                {t("bacForm.labels.nationalBacAverage")}
+                            </InputLabel>
+                            <Input
+                                id="nationalBacAverage"
+                                type="number"
+                                placeholder={t(
+                                    "bacForm.placeholders.nationalBacAverage"
+                                )}
+                                value={data["nationalBacAverage"]}
+                                onChange={(e) =>
+                                    setData(
+                                        "nationalBacAverage",
+                                        e.target.value
+                                    )
+                                }
+                                required
+                            />
+                            <InputError
+                                message={errors && errors["nationalBacAverage"]}
+                            />
                         </div>
                     </div>
-
-                    {/* Second Column */}
-                    <div className="md:w-1/2 space-y-2">
+                    <div className="w-full space-y-3">
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="city">City of Bac Graduation</label>
-                            <input
-                                required
-                                type="text"
+                            <InputLabel htmlFor="city">
+                                {t("bacForm.labels.city")}
+                            </InputLabel>
+                            <Input
                                 id="city"
-                                value={data.city}
-                                onChange={(e) => setData("city", e.target.value)}
-                            />
-                            {errors.city && (
-                                <p className="text-red-500 text-sm">{errors.city}</p>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="mention">Mention</label>
-                            <input
-                                required
                                 type="text"
-                                id="mention"
-                                value={data.mention}
-                                onChange={(e) => setData("mention", e.target.value)}
-                            />
-                            {errors.mention && (
-                                <p className="text-red-500 text-sm">{errors.mention}</p>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="bacAverage">Bac Average</label>
-                            <input
-                                required
-                                type="number"
-                                id="bacAverage"
-                                value={data.bacAverage}
-                                onChange={(e) => setData("bacAverage", e.target.value)}
-                            />
-                            {errors.bacAverage && (
-                                <p className="text-red-500 text-sm">{errors.bacAverage}</p>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="regionalExamAverage">Regional Exam Average</label>
-                            <input
-                                required
-                                type="number"
-                                id="regionalExamAverage"
-                                value={data.regionalExamAverage}
+                                placeholder={t("bacForm.placeholders.city")}
+                                value={data["city"]}
                                 onChange={(e) =>
-                                    setData("regionalExamAverage", e.target.value)
+                                    setData("city", e.target.value)
+                                }
+                                required
+                            />
+                            <InputError message={errors && errors["city"]} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="mention">
+                                {t("bacForm.labels.mention")}
+                            </InputLabel>
+                            <Input
+                                id="mention"
+                                type="text"
+                                placeholder={t("bacForm.placeholders.mention")}
+                                value={data["mention"]}
+                                onChange={(e) =>
+                                    setData("mention", e.target.value)
+                                }
+                                required
+                            />
+                            <InputError message={errors && errors["mention"]} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="bacAverage">
+                                {t("bacForm.labels.bacAverage")}
+                            </InputLabel>
+                            <Input
+                                id="bacAverage"
+                                type="number"
+                                placeholder={t(
+                                    "bacForm.placeholders.bacAverage"
+                                )}
+                                value={data["bacAverage"]}
+                                onChange={(e) =>
+                                    setData("bacAverage", e.target.value)
+                                }
+                                required
+                            />
+                            <InputError
+                                message={errors && errors["bacAverage"]}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <InputLabel htmlFor="regionalExamAverage">
+                                {t("bacForm.labels.regionalExamAverage")}
+                            </InputLabel>
+                            <Input
+                                id="regionalExamAverage"
+                                type="number"
+                                placeholder={t(
+                                    "bacForm.placeholders.regionalExamAverage"
+                                )}
+                                value={data["regionalExamAverage"]}
+                                onChange={(e) =>
+                                    setData(
+                                        "regionalExamAverage",
+                                        e.target.value
+                                    )
+                                }
+                                required
+                            />
+                            <InputError
+                                message={
+                                    errors && errors["regionalExamAverage"]
                                 }
                             />
-                            {errors.regionalExamAverage && (
-                                <p className="text-red-500 text-sm">
-                                    {errors.regionalExamAverage}
-                                </p>
-                            )}
                         </div>
                     </div>
                 </div>
             </div>
-
             <div className="flex flex-col gap-2">
-                <InputLabel htmlFor="bacDiploma">Upload Bac Diploma</InputLabel>
+                <InputLabel htmlFor="bacDiploma">
+                    {t("bacForm.labels.bacDiploma")}
+                </InputLabel>
                 <FileInput
                     required={!completed}
                     type="file"
@@ -165,7 +213,7 @@ const BacForm = ({ data, errors, setData, completed}) => {
                     errors={errors.bacDiploma}
                 />
             </div>
-        </>
+        </div>
     );
 };
 

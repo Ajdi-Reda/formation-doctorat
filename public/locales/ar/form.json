@@ -1,0 +1,139 @@
+{
+    "personalDetails": {
+        "labels": {
+            "firstName": "الاسم الأول",
+            "lastName": "الاسم الأخير",
+            "phone_number": "رقم الهاتف",
+            "cin": "البطاقة الوطنية",
+            "dateOfBirth": "تاريخ الميلاد",
+            "countryOfBirth": "بلد الميلاد",
+            "cityOfBirth": "مدينة الميلاد",
+            "nationality": "الجنسية",
+            "address": "العنوان",
+            "postalCode": "الرمز البريدي",
+            "country": "البلد",
+            "city": "المدينة"
+        },
+        "placeholders": {
+            "firstName": "أدخل الاسم الأول",
+            "lastName": "أدخل الاسم الأخير",
+            "phone_number": "أدخل رقم الهاتف",
+            "cin": "أدخل البطاقة الوطنية",
+            "dateOfBirth": "اختر تاريخ الميلاد",
+            "countryOfBirth": "أدخل بلد الميلاد",
+            "cityOfBirth": "أدخل مدينة الميلاد",
+            "nationality": "أدخل الجنسية",
+            "address": "أدخل العنوان",
+            "postalCode": "أدخل الرمز البريدي",
+            "country": "أدخل البلد",
+            "city": "أدخل المدينة"
+        }
+    },
+    "bacForm": {
+        "labels": {
+            "bYear": "سنة تخرج الباكالوريا",
+            "bEstablishment": "المؤسسة",
+            "massarCode": "رمز مسار",
+            "option": "خيار الباكالوريا",
+            "nationalBacAverage": "المعدل الوطني لامتحان الباكالوريا",
+            "city": "مدينة تخرج الباكالوريا",
+            "mention": "الإشادة",
+            "bacAverage": "متوسط الباكالوريا",
+            "regionalExamAverage": "متوسط امتحان الجهة",
+            "bacDiploma": "شهادة البكالوريا"
+        },
+        "placeholders": {
+            "bYear": "أدخل سنة تخرج الباكالوريا",
+            "bEstablishment": "أدخل المؤسسة",
+            "massarCode": "أدخل رمز مسار",
+            "option": "أدخل خيار الباكالوريا",
+            "nationalBacAverage": "أدخل المعدل الوطني لامتحان الباكالوريا",
+            "city": "أدخل مدينة تخرج الباكالوريا",
+            "mention": "أدخل الإشادة",
+            "bacAverage": "أدخل متوسط الباكالوريا",
+            "regionalExamAverage": "أدخل متوسط امتحان الجهة"
+        }
+    },
+    "licenceForm": {
+        "labels": {
+            "lType": "نوع البكالوريوس",
+            "lBranch": "التخصص / الفرع",
+            "lYear": "سنة تخرج البكالوريوس",
+            "lEstablishment": "المؤسسة",
+            "semester1": "متوسط الفصل الدراسي الأول",
+            "semester2": "متوسط الفصل الدراسي الثاني",
+            "semester3": "متوسط الفصل الدراسي الثالث",
+            "semester4": "متوسط الفصل الدراسي الرابع",
+            "semester5": "متوسط الفصل الدراسي الخامس",
+            "semester6": "متوسط الفصل الدراسي السادس",
+            "licenceDiploma": "تحميل شهادة البكالوريوس"
+        },
+        "placeholders": {
+            "lType": "حدد نوع البكالوريوس",
+            "lBranch": "أدخل تخصصك / فرعك",
+            "lYear": "أدخل سنة تخرج البكالوريوس",
+            "lEstablishment": "أدخل اسم المؤسسة",
+            "semester1": "أدخل متوسط الفصل الدراسي الأول",
+            "semester2": "أدخل متوسط الفصل الدراسي الثاني",
+            "semester3": "أدخل متوسط الفصل الدراسي الثالث",
+            "semester4": "أدخل متوسط الفصل الدراسي الرابع",
+            "semester5": "أدخل متوسط الفصل الدراسي الخامس",
+            "semester6": "أدخل متوسط الفصل الدراسي السادس"
+        },
+        "licenceType": {
+            "licence": "بكالوريوس",
+            "licenceProfessionel": "ليسانس"
+        },
+        "masterForm": {
+            "labels": {
+                "branch": "التخصص/الرئيسي",
+                "year": "سنة التخرج من الماجستير",
+                "establishment": "المؤسسة",
+                "semester7": "متوسط الفصل 7",
+                "semester8": "متوسط الفصل 8",
+                "semester9": "متوسط الفصل 9",
+                "semester10": "متوسط الفصل 10",
+                "diploma": "تحميل دبلوم الماجستير"
+            },
+            "placeholders": {
+                "branch": "أدخل تخصصك/الرئيسي",
+                "year": "أدخل سنة تخرج الماجستير",
+                "establishment": "أدخل المؤسسة",
+                "semester7": "أدخل متوسط الفصل 7",
+                "semester8": "أدخل متوسط الفصل 8",
+                "semester9": "أدخل متوسط الفصل 9",
+                "semester10": "أدخل متوسط الفصل 10"
+            }
+        }
+    },
+
+    "documentForm": {
+        "title": "المستندات",
+        "cvLabel": "تحميل السيرة الذاتية",
+        "recommendationLetter1Label": "رسالة توصية 1",
+        "recommendationLetter2Label": "رسالة توصية 2"
+    },
+    "personalInfo": {
+        "title": "المعلومات الشخصية",
+        "labels": {
+            "lastName": "اللقب",
+            "firstName": "الاسم الأول",
+            "dateOfBirth": "تاريخ الميلاد",
+            "cityCountry": "المدينة، البلد",
+            "cin": "رقم البطاقة الوطنية",
+            "address": "العنوان البريدي",
+            "phoneNumber": "الهاتف"
+        }
+    },
+    "candidateTableSummary": {
+        "thesisIdentifier": "معرف الأطروحة",
+        "thesisTitle": "عنوان الأطروحة"
+    },
+    "steps": {
+        "01": "اختيار الدورة",
+        "02": "التفاصيل الشخصية",
+        "03": "المؤهلات",
+        "04": "المستندات",
+        "05": "الملخص"
+    }
+}

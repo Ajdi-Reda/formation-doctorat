@@ -3,10 +3,11 @@ import { useForm, usePage } from "@inertiajs/react";
 import Input from "../../Components/Input";
 import InputLabel from "../../Components/InputLabel";
 import InputError from "../../Components/InputError";
+import { useTranslation } from "react-i18next";
 
 const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
-    const { errors } = usePage().props;
-    const { data, setData, post } = useForm({
+    const { t } = useTranslation("form");
+    const { data, setData, post, errors } = useForm({
         formName: "personal_details_form",
         user_id: "",
         firstName: "",
@@ -40,12 +41,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                         <div className="flex flex-col gap-2 md:flex-row ">
                             <div className="flex flex-col gap-2 md:w-full">
                                 <InputLabel htmlFor="firstName">
-                                    First name
+                                    {t("personalDetails.labels.firstName")}
                                 </InputLabel>
                                 <Input
                                     id="firstName"
                                     type="text"
-                                    placeholder="Enter your first name"
+                                    placeholder={t(
+                                        "personalDetails.placeholders.firstName"
+                                    )}
                                     value={data["firstName"]}
                                     onChange={(e) =>
                                         setData("firstName", e.target.value)
@@ -58,12 +61,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                             </div>
                             <div className="flex flex-col gap-2 md:w-full">
                                 <InputLabel htmlFor="lastName">
-                                    Last name
+                                    {t("personalDetails.labels.lastName")}
                                 </InputLabel>
                                 <Input
                                     id="lastName"
                                     type="text"
-                                    placeholder="Enter your last name"
+                                    placeholder={t(
+                                        "personalDetails.placeholders.lastName"
+                                    )}
                                     value={data["lastName"]}
                                     onChange={(e) =>
                                         setData("lastName", e.target.value)
@@ -77,12 +82,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                         </div>
                         <div className="flex flex-col gap-2">
                             <InputLabel htmlFor="phone_number">
-                                Telephone number
+                                {t("personalDetails.labels.phone_number")}
                             </InputLabel>
                             <Input
                                 id="phone_number"
                                 type="number"
-                                placeholder="Enter your telephone number"
+                                placeholder={t(
+                                    "personalDetails.placeholders.phone_number"
+                                )}
                                 value={data["phone_number"]}
                                 onChange={(e) =>
                                     setData("phone_number", e.target.value)
@@ -94,11 +101,15 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                             />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <InputLabel htmlFor="cin">CIN</InputLabel>
+                            <InputLabel htmlFor="cin">
+                                {t("personalDetails.labels.cin")}
+                            </InputLabel>
                             <Input
                                 id="cin"
                                 type="text"
-                                placeholder="Enter your CIN"
+                                placeholder={t(
+                                    "personalDetails.placeholders.cin"
+                                )}
                                 value={data["cin"]}
                                 onChange={(e) => setData("cin", e.target.value)}
                                 required
@@ -107,12 +118,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                         </div>
                         <div className="flex flex-col gap-2">
                             <InputLabel htmlFor="dateOfBirth">
-                                Date of birth
+                                {t("personalDetails.labels.dateOfBirth")}
                             </InputLabel>
                             <Input
                                 id="dateOfBirth"
                                 type="date"
-                                placeholder="Select your date of birth"
+                                placeholder={t(
+                                    "personalDetails.placeholders.dateOfBirth"
+                                )}
                                 value={data["dateOfBirth"]}
                                 onChange={(e) =>
                                     setData("dateOfBirth", e.target.value)
@@ -127,12 +140,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                     <div className="w-full space-y-3">
                         <div className="flex flex-col gap-2">
                             <InputLabel htmlFor="countryOfBirth">
-                                Country of birth
+                                {t("personalDetails.labels.countryOfBirth")}
                             </InputLabel>
                             <Input
                                 id="countryOfBirth"
                                 type="text"
-                                placeholder="Enter your country of birth"
+                                placeholder={t(
+                                    "personalDetails.placeholders.countryOfBirth"
+                                )}
                                 value={data["countryOfBirth"]}
                                 onChange={(e) =>
                                     setData("countryOfBirth", e.target.value)
@@ -145,12 +160,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                         </div>
                         <div className="flex flex-col gap-2">
                             <InputLabel htmlFor="cityOfBirth">
-                                City of birth
+                                {t("personalDetails.labels.cityOfBirth")}
                             </InputLabel>
                             <Input
                                 id="cityOfBirth"
                                 type="text"
-                                placeholder="Enter your city of birth"
+                                placeholder={t(
+                                    "personalDetails.placeholders.cityOfBirth"
+                                )}
                                 value={data["cityOfBirth"]}
                                 onChange={(e) =>
                                     setData("cityOfBirth", e.target.value)
@@ -163,12 +180,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                         </div>
                         <div className="flex flex-col gap-2">
                             <InputLabel htmlFor="nationality">
-                                Nationality
+                                {t("personalDetails.labels.nationality")}
                             </InputLabel>
                             <Input
                                 id="nationality"
                                 type="text"
-                                placeholder="Enter your nationality"
+                                placeholder={t(
+                                    "personalDetails.placeholders.nationality"
+                                )}
                                 value={data["nationality"]}
                                 onChange={(e) =>
                                     setData("nationality", e.target.value)
@@ -185,11 +204,15 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                 <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 mx-auto md:gap-4">
                     <div className="w-full space-y-3">
                         <div className="flex flex-col gap-2">
-                            <InputLabel htmlFor="address">Address</InputLabel>
+                            <InputLabel htmlFor="address">
+                                {t("personalDetails.labels.address")}
+                            </InputLabel>
                             <Input
                                 id="address"
                                 type="text"
-                                placeholder="Enter your address"
+                                placeholder={t(
+                                    "personalDetails.placeholders.address"
+                                )}
                                 value={data["address"]}
                                 onChange={(e) =>
                                     setData("address", e.target.value)
@@ -200,12 +223,14 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                         </div>
                         <div className="flex flex-col gap-2">
                             <InputLabel htmlFor="postalCode">
-                                Postal Code
+                                {t("personalDetails.labels.postalCode")}
                             </InputLabel>
                             <Input
                                 id="postalCode"
                                 type="number"
-                                placeholder="Enter your postal code"
+                                placeholder={t(
+                                    "personalDetails.placeholders.postalCode"
+                                )}
                                 value={data["postalCode"]}
                                 onChange={(e) =>
                                     setData("postalCode", e.target.value)
@@ -219,11 +244,15 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                     </div>
                     <div className="w-full space-y-3">
                         <div className="flex flex-col gap-2">
-                            <InputLabel htmlFor="country">Country</InputLabel>
+                            <InputLabel htmlFor="country">
+                                {t("personalDetails.labels.country")}
+                            </InputLabel>
                             <Input
                                 id="country"
                                 type="text"
-                                placeholder="Enter your country"
+                                placeholder={t(
+                                    "personalDetails.placeholders.country"
+                                )}
                                 value={data["country"]}
                                 onChange={(e) =>
                                     setData("country", e.target.value)
@@ -233,11 +262,15 @@ const PersonalDataForm = ({ children, handleIncrementStep, formData }) => {
                             <InputError message={errors && errors["country"]} />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <InputLabel htmlFor="city">City</InputLabel>
+                            <InputLabel htmlFor="city">
+                                {t("personalDetails.labels.city")}
+                            </InputLabel>
                             <Input
                                 id="city"
                                 type="text"
-                                placeholder="Enter your city"
+                                placeholder={t(
+                                    "personalDetails.placeholders.city"
+                                )}
                                 value={data["city"]}
                                 onChange={(e) =>
                                     setData("city", e.target.value)

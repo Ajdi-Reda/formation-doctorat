@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Enums;
 
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +22,16 @@ enum RolesEnum: string
 
     public function dashboardRoute(): string
     {
-    $completed = Auth::user()->candidate?->applications->first()->completed;
-    $candidateRoute = $completed? 'candidate/dashboard' : 'candidate/form';
+        $user = Auth::user();
+
+        if ($user && $user->candidate && $user->candidate->applications->isNotEmpty()) {
+            $completed = $user->candidate->applications->first()->completed;
+        } else {
+            $completed = false;
+        }
+
+        $candidateRoute = $completed ? 'candidate/dashboard' : 'candidate/form';
+
         return match ($this) {
             static::CANDIDATE => $candidateRoute,
             static::PROFESSOR => 'professor/dashboard',

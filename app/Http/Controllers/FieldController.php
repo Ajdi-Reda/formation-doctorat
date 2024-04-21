@@ -26,6 +26,11 @@ class FieldController extends Controller
             ->with(['fields', 'university', 'program'])
             ->get();
         $fields = collect();
+        $user = Auth::user();
+        $formStep = 1;
+        if ($user && $user->candidate && $user->candidate->applications->isNotEmpty()) {
+            $formStep = $user->candidate->applications->first()->formStep;
+        }
         foreach ($programUniversities as $programUniversity) {
             foreach ($programUniversity->fields as $field) {
                 //$field->setRelation('university', $programUniversity->university);
@@ -46,6 +51,7 @@ class FieldController extends Controller
             'fields' => $fields,
             'user' => Auth::check(),
             'formData' => $formData->getFormData(),
+            'formStep' => $formStep,
         ]);
     }
 

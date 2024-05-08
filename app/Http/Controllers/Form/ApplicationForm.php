@@ -7,7 +7,8 @@ use App\Models\MasterDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ApplicationForm {
+class ApplicationForm
+{
     /**
      * @throws \Exception
      */
@@ -32,7 +33,7 @@ class ApplicationForm {
 
             if ($application) {
                 $this->update();
-                return ;
+                return;
             }
         }
 
@@ -40,22 +41,23 @@ class ApplicationForm {
     }
     public function store()
     {
-        $courseDataArray = json_decode(session('course'), true);
-        $thesisValues = $courseDataArray['theses'];
+        $thesisValues =  session('course');
 
         $candidate = Auth::user()->candidate;
 
         $candidate->thesisProposals()->attach($thesisValues, [
-           'bac_detail_id' => $this->bacDetailId,
+            'bac_detail_id' => $this->bacDetailId,
             'licence_detail_id' => $this->licenceDetailId,
             'master_detail_id' => $this->masterDetailId
         ]);
     }
 
+
     public function update()
     {
-        $courseDataArray = json_decode(session('course'), true);
-        $thesisValues = $courseDataArray['theses'];
+        $thesisValues =  session('course');
+
+        $candidate = Auth::user()->candidate;
 
         Auth::user()->candidate->thesisProposals()->detach();
         Auth::user()->candidate->thesisProposals()->attach($thesisValues, [

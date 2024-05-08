@@ -9,15 +9,17 @@ const AddEditProfessor = ({ onClose, professor }) => {
         ? {
               firstName: professor.firstName,
               lastName: professor.lastName,
+              email: professor.email,
               phoneNumber: professor.phoneNumber,
           }
         : {
               firstName: "",
               lastName: "",
+              email: "",
               phoneNumber: "",
           };
 
-    const { data, setData, patch, errors, processing, reset } =
+    const { data, setData, patch, post, errors, processing, reset } =
         useForm(initialFormData);
 
     const handleSubmit = (e) => {
@@ -40,6 +42,7 @@ const AddEditProfessor = ({ onClose, professor }) => {
                 },
             });
         }
+        console.log("hello");
     };
 
     return (
@@ -76,6 +79,20 @@ const AddEditProfessor = ({ onClose, professor }) => {
                         <p className="text-red-500 text-sm">
                             {errors.lastName}
                         </p>
+                    )}
+                </div>
+                <div className="mb-4">
+                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <input
+                        type="text"
+                        id="email"
+                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                        value={data.email}
+                        onChange={(e) => setData("email", e.target.value)}
+                        required
+                    />
+                    {errors.email && (
+                        <p className="text-red-500 text-sm">{errors.email}</p>
                     )}
                 </div>
                 <div className="mb-4">

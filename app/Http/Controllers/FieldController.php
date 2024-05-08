@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\RolesEnum;
 use App\Models\Field;
 use App\Models\ProgramUniversity;
-use App\Models\User;
 use App\Services\FormData;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 use Inertia\Inertia;
-use Spatie\Permission\Models\Role;
 
 
 class FieldController extends Controller
@@ -25,16 +22,11 @@ class FieldController extends Controller
         )
             ->with(['fields', 'university', 'program'])
             ->get();
+
         $fields = collect();
-        $user = Auth::user();
-        $formStep = 1;
-        if ($user && $user->candidate && $user->candidate->applications->isNotEmpty()) {
-            $formStep = $user->candidate->applications->first()->formStep;
-        }
+
         foreach ($programUniversities as $programUniversity) {
             foreach ($programUniversity->fields as $field) {
-                //$field->setRelation('university', $programUniversity->university);
-                //
                 $thesisProposals = Field::find($field->id)->thesisProposals;
                 $field->startDate = $programUniversity->program->startDate;
                 $field->endDate = $programUniversity->program->endDate;
@@ -49,9 +41,7 @@ class FieldController extends Controller
         $formData = new FormData();
         return Inertia::render('Candidature', [
             'fields' => $fields,
-            'user' => Auth::check(),
             'formData' => $formData->getFormData(),
-            'formStep' => $formStep,
         ]);
     }
 

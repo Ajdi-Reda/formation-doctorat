@@ -1,22 +1,22 @@
-import { React, useEffect } from "react";
+import { React } from "react";
 import { Head } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
 import Application from "@/features/applicationForm/Application";
 import ProgramFieldsDisplay from "@/features/programs/ProgramFieldsDisplay.jsx";
+import SimpleLayout from "@/Layouts/SimpleLayout";
 
-const Candidature = ({ fields, user, formData, formStep }) => {
+const Candidature = ({ fields, auth, formData }) => {
     return (
         <>
-            {user ? (
+            {auth.user ? (
                 <>
-                    <div className="container mx-auto">
+                    <SimpleLayout>
                         <Application
                             fields={fields}
-                            user={user}
+                            user={auth.user}
                             formData={formData}
-                            formStep={formStep}
                         />
-                    </div>
+                    </SimpleLayout>
                 </>
             ) : (
                 <MainLayout>

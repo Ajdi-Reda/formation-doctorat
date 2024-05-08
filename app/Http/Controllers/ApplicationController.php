@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Enums\FormEnum;
 use App\Models\Application;
-use App\Models\Program;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class ApplicationController extends Controller
 {
     public function saveCourseForm(Request $request)
     {
-        session(['course'=> $request->getContent()]);
+        session(['course' => $request->input('theses')]);
     }
     public function saveForm(Request $request)
     {

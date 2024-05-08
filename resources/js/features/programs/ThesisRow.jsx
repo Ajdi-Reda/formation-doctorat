@@ -22,20 +22,19 @@ const ThesisRow = ({ thesis, duration, setData, data }) => {
     };
 
     return (
-        <tr className="bg-white border-b">
-            <td
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                scope="row"
-            >
+        <tr className="bg-white divide-y divide-gray-200">
+            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
                 {thesis.title}
             </td>
-            <td className="px-6 py-4">{duration}</td>
-            <td className="px-6 py-4">
+            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
+                {duration}
+            </td>
+            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
                 <button
-                    className="border py-1 px-2 text-md bg-indigo-600 text-white rounded-sm w-20"
+                    className="text-white bg-indigo-600 hover:bg-indigo-700 px-3 py-1 rounded-md"
                     onClick={handleButtonClick}
                 >
-                    {remove ? "Remove" : "Select"}
+                    {remove ? "selected" : "Select"}
                 </button>
             </td>
         </tr>

@@ -6,12 +6,10 @@ import QualificationsForm from "./QualificationsForm";
 import DocumentForm from "./DocumentForm";
 import FieldSelection from "./FieldSelection";
 import Summary from "@/features/applicationForm/Summary.jsx";
-import LanguageSelector from "@/Components/LanguageSelector";
 import { useTranslation } from "react-i18next";
 
-const Application = ({ fields, user, formData, formStep }) => {
-    const [currStep, setCurrStep] = useState(formStep);
-    const [font, setFont] = useState("");
+const Application = ({ fields, user, formData }) => {
+    const [currStep, setCurrStep] = useState(1);
     const stepForms = [
         FieldSelection,
         PersonalDataForm,
@@ -34,7 +32,6 @@ const Application = ({ fields, user, formData, formStep }) => {
         <>
             <div className={i18n.language === "ar" ? "arabic-font" : ""}>
                 <ApplicationProgress currentStep={currStep} />
-                <LanguageSelector />
                 <CurrentForm
                     {...(currStep === 1 && { fields })}
                     handleIncrementStep={handleIncrementStep}

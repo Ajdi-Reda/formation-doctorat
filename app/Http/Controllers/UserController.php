@@ -13,12 +13,14 @@ class UserController extends Controller
 {
     //create/register user
 
-    public function create() {
+    public function create()
+    {
         return Inertia::render('Auth/Register');
     }
 
-    public function store(Request $request) {
-       $formFields = $request->validate([
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => 'required|confirmed|min:8'
@@ -31,10 +33,11 @@ class UserController extends Controller
         $user = User::create($formFields);
         auth()->login($user);
 
-       return redirect('/')->with('message', 'user registered and logged in successfully');
+        return redirect('/')->with('message', 'user registered and logged in successfully');
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -43,20 +46,22 @@ class UserController extends Controller
     }
 
     //show login form
-    public function login() {
+    public function login()
+    {
         return view('users.login');
     }
 
     //login user
-    public function authenticate(Request $request) {
+    public function authenticate(Request $request)
+    {
         $formFields = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
 
-        if(auth()->attempt($formFields)) {
-           $request->session()->regenerate();
-           return redirect('/')->with('message','You are now logged in');
+        if (auth()->attempt($formFields)) {
+            $request->session()->regenerate();
+            return redirect('/')->with('message', 'You are now logged in');
         }
 
         return back()->withErrors(['email' => 'invalid credentials'])->onlyInput('email');

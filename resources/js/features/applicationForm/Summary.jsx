@@ -31,16 +31,10 @@ const Summary = ({ handleDecrementStep, formData }) => {
                     master={master}
                 />
                 <div className="flex gap-2 md:gap-4 mt-4">
-                    <SecondaryButton
-                        className="py-2 px-3 border bg-gray-200 rounded-sm"
-                        onClick={handleDecrementStep}
-                    >
+                    <SecondaryButton onClick={handleDecrementStep}>
                         Previous
                     </SecondaryButton>
-                    <PrimaryButton
-                        className="py-2 px-3 border bg-gray-200 rounded-sm"
-                        onClick={handleSubmitApplication}
-                    >
+                    <PrimaryButton onClick={handleSubmitApplication}>
                         Submit application
                     </PrimaryButton>
                 </div>

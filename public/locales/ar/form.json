@@ -129,6 +129,16 @@
         "thesisIdentifier": "معرف الأطروحة",
         "thesisTitle": "عنوان الأطروحة"
     },
+
+    "qualificationsTable": {
+        "obtainedDiploma": "الشهادة المحصلة",
+        "year": "السنة",
+        "specialty": "التخصص",
+        "establishment": "المؤسسة",
+        "baccalaureate": "الباكالوريا",
+        "licence": "الليسانس",
+        "master": "الماجستير"
+    },
     "steps": {
         "01": "اختيار الدورة",
         "02": "التفاصيل الشخصية",

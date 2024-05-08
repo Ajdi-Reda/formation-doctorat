@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CandidatesTable from "./CandidateTable";
-import JustLayout from "@/Layouts/JustLayout";
+import JustLayout from "@/Layouts/SimpleLayout";
 
 const ProfessorTheses = ({ theses, professorName }) => {
     const [openTableIndex, setOpenTableIndex] = useState(null);

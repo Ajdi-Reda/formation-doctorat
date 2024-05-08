@@ -1,0 +1,366 @@
+Date : 2024-05-06 12:46:58
+Directory : c:\laragon\www\formation-doctorat
+Total : 263 files,  25634 codes, 1707 comments, 1870 blanks, all 29211 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |         11 |     14,038 |          0 |         13 |     14,051 |
+| JavaScript JSX     |        104 |      7,029 |         80 |        552 |      7,661 |
+| PHP                |        136 |      4,385 |      1,599 |      1,257 |      7,241 |
+| JavaScript         |          7 |         91 |         24 |         22 |        137 |
+| Markdown           |          1 |         45 |          0 |         22 |         67 |
+| XML                |          1 |         29 |          2 |          1 |         32 |
+| JSON with Comments |          1 |         10 |          0 |          1 |         11 |
+| CSS                |          2 |          7 |          2 |          2 |         11 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                              | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                 |        263 |     25,634 |      1,707 |      1,870 |     29,211 |
+| . (Files)                                                                                                         |         11 |     13,703 |          3 |         35 |     13,741 |
+| app                                                                                                               |         75 |      2,335 |        346 |        575 |      3,256 |
+| app\Console                                                                                                       |          2 |         28 |         20 |         12 |         60 |
+| app\Console (Files)                                                                                               |          1 |         15 |          7 |          6 |         28 |
+| app\Console\Commands                                                                                              |          1 |         13 |         13 |          6 |         32 |
+| app\Enums                                                                                                         |          3 |         68 |          0 |         19 |         87 |
+| app\Exceptions                                                                                                    |          1 |         17 |          9 |          5 |         31 |
+| app\Http                                                                                                          |         49 |      1,713 |        228 |        394 |      2,335 |
+| app\Http (Files)                                                                                                  |          1 |         48 |         21 |          7 |         76 |
+| app\Http\Controllers                                                                                              |         31 |      1,375 |         85 |        300 |      1,760 |
+| app\Http\Controllers (Files)                                                                                      |          9 |        325 |         19 |         83 |        427 |
+| app\Http\Controllers\Auth                                                                                         |          9 |        276 |         60 |         67 |        403 |
+| app\Http\Controllers\Candidate                                                                                    |          1 |         64 |          0 |          9 |         73 |
+| app\Http\Controllers\Form                                                                                         |         10 |        477 |          6 |        107 |        590 |
+| app\Http\Controllers\Professor                                                                                    |          2 |        233 |          0 |         34 |        267 |
+| app\Http\Middleware                                                                                               |         15 |        224 |         96 |         69 |        389 |
+| app\Http\Requests                                                                                                 |          2 |         66 |         26 |         18 |        110 |
+| app\Http\Requests (Files)                                                                                         |          1 |         15 |          5 |          4 |         24 |
+| app\Http\Requests\Auth                                                                                            |          1 |         51 |         21 |         14 |         86 |
+| app\Mail                                                                                                          |          2 |         64 |         30 |         16 |        110 |
+| app\Models                                                                                                        |         12 |        317 |         17 |         92 |        426 |
+| app\Providers                                                                                                     |          5 |         85 |         42 |         28 |        155 |
+| app\Services                                                                                                      |          1 |         43 |          0 |          9 |         52 |
+| bootstrap                                                                                                         |          1 |         17 |         30 |          8 |         55 |
+| config                                                                                                            |         17 |        665 |        994 |        328 |      1,987 |
+| database                                                                                                          |         23 |        722 |        140 |        134 |        996 |
+| database\factories                                                                                                |          1 |         25 |         11 |          6 |         42 |
+| database\migrations                                                                                               |         20 |        549 |        114 |        102 |        765 |
+| database\seeders                                                                                                  |          2 |        148 |         15 |         26 |        189 |
+| public                                                                                                            |          7 |        473 |         30 |         21 |        524 |
+| public (Files)                                                                                                    |          1 |         14 |         30 |         12 |         56 |
+| public\locales                                                                                                    |          6 |        459 |          0 |          9 |        468 |
+| public\locales\ar                                                                                                 |          2 |        153 |          0 |          4 |        157 |
+| public\locales\en                                                                                                 |          2 |        153 |          0 |          2 |        155 |
+| public\locales\fr                                                                                                 |          2 |        153 |          0 |          3 |        156 |
+| resources                                                                                                         |        111 |      7,223 |        103 |        596 |      7,922 |
+| resources\css                                                                                                     |          1 |          6 |          0 |          2 |          8 |
+| resources\js                                                                                                      |        107 |      7,074 |        103 |        566 |      7,743 |
+| resources\js (Files)                                                                                              |          3 |         47 |         23 |         16 |         86 |
+| resources\js\Components                                                                                           |         35 |      1,105 |         18 |        111 |      1,234 |
+| resources\js\Components (Files)                                                                                   |         29 |        848 |         15 |         90 |        953 |
+| resources\js\Components\Pdf                                                                                       |          4 |        173 |          3 |         16 |        192 |
+| resources\js\Components\RoleBasedNavigation                                                                       |          1 |         58 |          0 |          2 |         60 |
+| resources\js\Components\utils                                                                                     |          1 |         26 |          0 |          3 |         29 |
+| resources\js\Layouts                                                                                              |          5 |        588 |          6 |         37 |        631 |
+| resources\js\Pages                                                                                                |         42 |      3,454 |         29 |        309 |      3,792 |
+| resources\js\Pages (Files)                                                                                        |          5 |        397 |         17 |         32 |        446 |
+| resources\js\Pages\Admin                                                                                          |         10 |      1,202 |          3 |         59 |      1,264 |
+| resources\js\Pages\Auth                                                                                           |          6 |        390 |          0 |         82 |        472 |
+| resources\js\Pages\Candidate                                                                                      |          3 |        172 |          0 |         10 |        182 |
+| resources\js\Pages\Professor                                                                                      |         14 |        997 |          9 |         67 |      1,073 |
+| resources\js\Pages\Profile                                                                                        |          4 |        296 |          0 |         59 |        355 |
+| resources\js\Pages\Profile (Files)                                                                                |          1 |         32 |          0 |          5 |         37 |
+| resources\js\Pages\Profile\Partials                                                                               |          3 |        264 |          0 |         54 |        318 |
+| resources\js\features                                                                                             |         22 |      1,880 |         27 |         93 |      2,000 |
+| resources\js\features\applicationForm                                                                             |         17 |      1,692 |         27 |         74 |      1,793 |
+| resources\js\features\programs                                                                                    |          5 |        188 |          0 |         19 |        207 |
+| resources\views                                                                                                   |          3 |        143 |          0 |         28 |        171 |
+| resources\views (Files)                                                                                           |          2 |        140 |          0 |         28 |        168 |
+| resources\views\mail                                                                                              |          1 |          3 |          0 |          0 |          3 |
+| routes                                                                                                            |          5 |        133 |         49 |         44 |        226 |
+| tests                                                                                                             |         11 |        356 |         10 |        128 |        494 |
+| tests (Files)                                                                                                     |          2 |         20 |          3 |         10 |         33 |
+| tests\Feature                                                                                                     |          8 |        326 |          4 |        114 |        444 |
+| tests\Feature (Files)                                                                                             |          2 |         87 |          4 |         29 |        120 |
+| tests\Feature\Auth                                                                                                |          6 |        239 |          0 |         85 |        324 |
+| tests\Unit                                                                                                        |          1 |         10 |          3 |          4 |         17 |
+| vendor                                                                                                            |          2 |          7 |          2 |          1 |         10 |
+| vendor\spatie                                                                                                     |          2 |          7 |          2 |          1 |         10 |
+| vendor\spatie\ignition                                                                                            |          2 |          7 |          2 |          1 |         10 |
+| vendor\spatie\ignition\resources                                                                                  |          2 |          7 |          2 |          1 |         10 |
+| vendor\spatie\ignition\resources\compiled                                                                         |          2 |          7 |          2 |          1 |         10 |
++-------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                          | language           | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\laragon\www\formation-doctorat\README.md                                                                       | Markdown           |         45 |          0 |         22 |         67 |
+| c:\laragon\www\formation-doctorat\app\Console\Commands\setup.php                                                  | PHP                |         13 |         13 |          6 |         32 |
+| c:\laragon\www\formation-doctorat\app\Console\Kernel.php                                                          | PHP                |         15 |          7 |          6 |         28 |
+| c:\laragon\www\formation-doctorat\app\Enums\CandidateStatus.php                                                   | PHP                |         16 |          0 |          4 |         20 |
+| c:\laragon\www\formation-doctorat\app\Enums\FormEnum.php                                                          | PHP                |         20 |          0 |          5 |         25 |
+| c:\laragon\www\formation-doctorat\app\Enums\RolesEnum.php                                                         | PHP                |         32 |          0 |         10 |         42 |
+| c:\laragon\www\formation-doctorat\app\Exceptions\Handler.php                                                      | PHP                |         17 |          9 |          5 |         31 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\AdminController.php                                        | PHP                |         31 |          0 |          5 |         36 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\ApplicationController.php                                  | PHP                |         22 |          0 |          5 |         27 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\AuthenticatedSessionController.php                    | PHP                |         43 |          9 |         12 |         64 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\ConfirmablePasswordController.php                     | PHP                |         30 |          6 |          7 |         43 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\EmailVerificationNotificationController.php           | PHP                |         17 |          3 |          6 |         26 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\EmailVerificationPromptController.php                 | PHP                |         17 |          3 |          4 |         24 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\NewPasswordController.php                             | PHP                |         47 |         14 |          9 |         70 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\PasswordController.php                                | PHP                |         21 |          3 |          6 |         30 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\PasswordResetLinkController.php                       | PHP                |         33 |         11 |          8 |         52 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\RegisteredUserController.php                          | PHP                |         48 |          8 |          9 |         65 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Auth\VerifyEmailController.php                             | PHP                |         20 |          3 |          6 |         29 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Candidate\CandidateController.php                          | PHP                |         64 |          0 |          9 |         73 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Controller.php                                             | PHP                |          9 |          0 |          4 |         13 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\DownloadMediaController.php                                | PHP                |         23 |          3 |          8 |         34 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\FieldController.php                                        | PHP                |         67 |          2 |         14 |         83 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\FormController.php                                         | PHP                |         10 |          0 |          4 |         14 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\AdminForm.php                                         | PHP                |         14 |          0 |          8 |         22 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\ApplicationForm.php                                   | PHP                |         55 |          3 |         12 |         70 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\BacForm.php                                           | PHP                |         78 |          1 |         16 |         95 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\BaseForm.php                                          | PHP                |         15 |          0 |          8 |         23 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\DocumentForm.php                                      | PHP                |         26 |          0 |          6 |         32 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\Form.php                                              | PHP                |         28 |          0 |          9 |         37 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\LicenceForm.php                                       | PHP                |         75 |          0 |         14 |         89 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\MasterForm.php                                        | PHP                |         67 |          1 |         16 |         84 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\PersonalDetailsForm.php                               | PHP                |         73 |          1 |         10 |         84 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Form\ProgramForm.php                                       | PHP                |         46 |          0 |          8 |         54 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Professor\ProfessorController.php                          | PHP                |        162 |          0 |         19 |        181 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\Professor\ThesisController.php                             | PHP                |         71 |          0 |         15 |         86 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\ProfileController.php                                      | PHP                |         41 |          9 |         14 |         64 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\ProgramController.php                                      | PHP                |         72 |          1 |         13 |         86 |
+| c:\laragon\www\formation-doctorat\app\Http\Controllers\UserController.php                                         | PHP                |         50 |          4 |         16 |         70 |
+| c:\laragon\www\formation-doctorat\app\Http\Kernel.php                                                             | PHP                |         48 |         21 |          7 |         76 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\Admin.php                                                   | PHP                |         18 |          5 |          4 |         27 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\AdminOrProfessor.php                                        | PHP                |         17 |          6 |          5 |         28 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\Authenticate.php                                            | PHP                |         11 |          3 |          4 |         18 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\Candidate.php                                               | PHP                |         18 |          5 |          4 |         27 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\EncryptCookies.php                                          | PHP                |          8 |          6 |          4 |         18 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\HandleInertiaRequests.php                                   | PHP                |         29 |         13 |          7 |         49 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\PreventRequestsDuringMaintenance.php                        | PHP                |          8 |          6 |          4 |         18 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\Professor.php                                               | PHP                |         18 |          5 |          4 |         27 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\RedirectIfAuthenticated.php                                 | PHP                |         28 |          5 |          7 |         40 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\TrimStrings.php                                             | PHP                |         11 |          5 |          4 |         20 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\TrustHosts.php                                              | PHP                |         12 |          5 |          4 |         21 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\TrustProxies.php                                            | PHP                |         14 |         10 |          5 |         29 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\ValidateSignature.php                                       | PHP                |          8 |         11 |          4 |         23 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\VerifyCsrfToken.php                                         | PHP                |          8 |          6 |          4 |         18 |
+| c:\laragon\www\formation-doctorat\app\Http\Middleware\form.php                                                    | PHP                |         16 |          5 |          5 |         26 |
+| c:\laragon\www\formation-doctorat\app\Http\Requests\Auth\LoginRequest.php                                         | PHP                |         51 |         21 |         14 |         86 |
+| c:\laragon\www\formation-doctorat\app\Http\Requests\ProfileUpdateRequest.php                                      | PHP                |         15 |          5 |          4 |         24 |
+| c:\laragon\www\formation-doctorat\app\Mail\MyEmail.php                                                            | PHP                |         33 |         15 |          8 |         56 |
+| c:\laragon\www\formation-doctorat\app\Mail\MyTestEmail.php                                                        | PHP                |         31 |         15 |          8 |         54 |
+| c:\laragon\www\formation-doctorat\app\Models\Application.php                                                      | PHP                |         34 |          0 |          9 |         43 |
+| c:\laragon\www\formation-doctorat\app\Models\BacDetails.php                                                       | PHP                |         19 |          0 |          7 |         26 |
+| c:\laragon\www\formation-doctorat\app\Models\Candidate.php                                                        | PHP                |         42 |          0 |          8 |         50 |
+| c:\laragon\www\formation-doctorat\app\Models\Field.php                                                            | PHP                |         22 |          1 |          7 |         30 |
+| c:\laragon\www\formation-doctorat\app\Models\LicenceDetails.php                                                   | PHP                |         17 |          0 |          6 |         23 |
+| c:\laragon\www\formation-doctorat\app\Models\MasterDetails.php                                                    | PHP                |         17 |          0 |          6 |         23 |
+| c:\laragon\www\formation-doctorat\app\Models\Professor.php                                                        | PHP                |         24 |          0 |          6 |         30 |
+| c:\laragon\www\formation-doctorat\app\Models\Program.php                                                          | PHP                |         27 |          0 |          8 |         35 |
+| c:\laragon\www\formation-doctorat\app\Models\ProgramUniversity.php                                                | PHP                |         20 |          0 |          8 |         28 |
+| c:\laragon\www\formation-doctorat\app\Models\ThesisProposal.php                                                   | PHP                |         44 |          0 |         10 |         54 |
+| c:\laragon\www\formation-doctorat\app\Models\University.php                                                       | PHP                |         19 |          0 |          7 |         26 |
+| c:\laragon\www\formation-doctorat\app\Models\User.php                                                             | PHP                |         32 |         16 |         10 |         58 |
+| c:\laragon\www\formation-doctorat\app\Providers\AppServiceProvider.php                                            | PHP                |         12 |          8 |          5 |         25 |
+| c:\laragon\www\formation-doctorat\app\Providers\AuthServiceProvider.php                                           | PHP                |         16 |          9 |          5 |         30 |
+| c:\laragon\www\formation-doctorat\app\Providers\BroadcastServiceProvider.php                                      | PHP                |         12 |          3 |          5 |         20 |
+| c:\laragon\www\formation-doctorat\app\Providers\EventServiceProvider.php                                          | PHP                |         21 |         12 |          6 |         39 |
+| c:\laragon\www\formation-doctorat\app\Providers\RouteServiceProvider.php                                          | PHP                |         24 |         10 |          7 |         41 |
+| c:\laragon\www\formation-doctorat\app\Services\FormData.php                                                       | PHP                |         43 |          0 |          9 |         52 |
+| c:\laragon\www\formation-doctorat\bootstrap\app.php                                                               | PHP                |         17 |         30 |          8 |         55 |
+| c:\laragon\www\formation-doctorat\components.json                                                                 | JSON               |         17 |          0 |          0 |         17 |
+| c:\laragon\www\formation-doctorat\composer.json                                                                   | JSON               |         77 |          0 |          1 |         78 |
+| c:\laragon\www\formation-doctorat\composer.lock                                                                   | JSON               |      9,716 |          0 |          1 |      9,717 |
+| c:\laragon\www\formation-doctorat\config\app.php                                                                  | PHP                |         29 |        131 |         31 |        191 |
+| c:\laragon\www\formation-doctorat\config\auth.php                                                                 | PHP                |         28 |         74 |         14 |        116 |
+| c:\laragon\www\formation-doctorat\config\broadcasting.php                                                         | PHP                |         36 |         23 |         13 |         72 |
+| c:\laragon\www\formation-doctorat\config\cache.php                                                                | PHP                |         59 |         34 |         19 |        112 |
+| c:\laragon\www\formation-doctorat\config\cors.php                                                                 | PHP                |         11 |         12 |         12 |         35 |
+| c:\laragon\www\formation-doctorat\config\database.php                                                             | PHP                |         83 |         47 |         22 |        152 |
+| c:\laragon\www\formation-doctorat\config\filesystems.php                                                          | PHP                |         32 |         32 |         13 |         77 |
+| c:\laragon\www\formation-doctorat\config\hashing.php                                                              | PHP                |         14 |         32 |          9 |         55 |
+| c:\laragon\www\formation-doctorat\config\logging.php                                                              | PHP                |         79 |         34 |         19 |        132 |
+| c:\laragon\www\formation-doctorat\config\mail.php                                                                 | PHP                |         55 |         54 |         19 |        128 |
+| c:\laragon\www\formation-doctorat\config\media-library.php                                                        | PHP                |         90 |        139 |         33 |        262 |
+| c:\laragon\www\formation-doctorat\config\permission.php                                                           | PHP                |         32 |        109 |         46 |        187 |
+| c:\laragon\www\formation-doctorat\config\queue.php                                                                | PHP                |         51 |         42 |         17 |        110 |
+| c:\laragon\www\formation-doctorat\config\sanctum.php                                                              | PHP                |         17 |         53 |         14 |         84 |
+| c:\laragon\www\formation-doctorat\config\services.php                                                             | PHP                |         17 |         11 |          7 |         35 |
+| c:\laragon\www\formation-doctorat\config\session.php                                                              | PHP                |         22 |        147 |         33 |        202 |
+| c:\laragon\www\formation-doctorat\config\view.php                                                                 | PHP                |         10 |         20 |          7 |         37 |
+| c:\laragon\www\formation-doctorat\database\factories\UserFactory.php                                              | PHP                |         25 |         11 |          6 |         42 |
+| c:\laragon\www\formation-doctorat\database\migrations\2014_10_12_000000_create_users_table.php                    | PHP                |         23 |          6 |          4 |         33 |
+| c:\laragon\www\formation-doctorat\database\migrations\2014_10_12_100000_create_password_reset_tokens_table.php    | PHP                |         19 |          6 |          4 |         29 |
+| c:\laragon\www\formation-doctorat\database\migrations\2019_08_19_000000_create_failed_jobs_table.php              | PHP                |         23 |          6 |          4 |         33 |
+| c:\laragon\www\formation-doctorat\database\migrations\2019_12_14_000001_create_personal_access_tokens_table.php   | PHP                |         24 |          6 |          4 |         34 |
+| c:\laragon\www\formation-doctorat\database\migrations\2023_12_02_100831_create_programs_table.php                 | PHP                |         25 |          6 |          5 |         36 |
+| c:\laragon\www\formation-doctorat\database\migrations\2023_12_08_155742_create_universities_table.php             | PHP                |         22 |          6 |          4 |         32 |
+| c:\laragon\www\formation-doctorat\database\migrations\2023_12_27_094912_create_fields_table.php                   | PHP                |         21 |          6 |          4 |         31 |
+| c:\laragon\www\formation-doctorat\database\migrations\2023_12_27_100232_create_program_universities_table.php     | PHP                |         20 |          6 |          4 |         30 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_04_103116_create_laboratories_table.php             | PHP                |         18 |          6 |          4 |         28 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_04_103146_create_research_groups_table.php          | PHP                |         18 |          6 |          4 |         28 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_04_103202_create_professors_table.php               | PHP                |         22 |          6 |          4 |         32 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_04_103218_create_candidates_table.php               | PHP                |         30 |          6 |          4 |         40 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_04_103226_create_thesis_proposals_table.php         | PHP                |         22 |          6 |          4 |         32 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_04_141253_create_field_program_university_table.php | PHP                |         20 |          6 |          4 |         30 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_11_110212_create_bac_details_table.php              | PHP                |         26 |          6 |          4 |         36 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_24_153908_create_licence_details_table.php          | PHP                |         28 |          6 |          4 |         38 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_24_153917_create_master_details_table.php           | PHP                |         25 |          6 |          4 |         35 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_26_190327_create_permission_tables.php              | PHP                |        109 |          6 |         24 |        139 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_01_26_194028_create_media_table.php                    | PHP                |         28 |          0 |          5 |         33 |
+| c:\laragon\www\formation-doctorat\database\migrations\2024_02_23_145531_create_application_table.php              | PHP                |         26 |          6 |          4 |         36 |
+| c:\laragon\www\formation-doctorat\database\seeders\DatabaseSeeder.php                                             | PHP                |         10 |          8 |          5 |         23 |
+| c:\laragon\www\formation-doctorat\database\seeders\MainSeeder.php                                                 | PHP                |        138 |          7 |         21 |        166 |
+| c:\laragon\www\formation-doctorat\jsconfig.json                                                                   | JSON with Comments |         10 |          0 |          1 |         11 |
+| c:\laragon\www\formation-doctorat\package-lock.json                                                               | JSON               |      3,731 |          0 |          1 |      3,732 |
+| c:\laragon\www\formation-doctorat\package.json                                                                    | JSON               |         38 |          0 |          1 |         39 |
+| c:\laragon\www\formation-doctorat\phpunit.xml                                                                     | XML                |         29 |          2 |          1 |         32 |
+| c:\laragon\www\formation-doctorat\postcss.config.js                                                               | JavaScript         |          6 |          0 |          1 |          7 |
+| c:\laragon\www\formation-doctorat\public\index.php                                                                | PHP                |         14 |         30 |         12 |         56 |
+| c:\laragon\www\formation-doctorat\public\locales\ar\common.json                                                   | JSON               |          6 |          0 |          1 |          7 |
+| c:\laragon\www\formation-doctorat\public\locales\ar\form.json                                                     | JSON               |        147 |          0 |          3 |        150 |
+| c:\laragon\www\formation-doctorat\public\locales\en\common.json                                                   | JSON               |          6 |          0 |          1 |          7 |
+| c:\laragon\www\formation-doctorat\public\locales\en\form.json                                                     | JSON               |        147 |          0 |          1 |        148 |
+| c:\laragon\www\formation-doctorat\public\locales\fr\common.json                                                   | JSON               |          6 |          0 |          1 |          7 |
+| c:\laragon\www\formation-doctorat\public\locales\fr\form.json                                                     | JSON               |        147 |          0 |          2 |        149 |
+| c:\laragon\www\formation-doctorat\resources\css\app.css                                                           | CSS                |          6 |          0 |          2 |          8 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\AlertMessage.jsx                                        | JavaScript JSX     |          9 |          0 |          3 |         12 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\ApplicationLogo.jsx                                     | JavaScript JSX     |          7 |          0 |          1 |          8 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Checkbox.jsx                                            | JavaScript JSX     |         12 |          0 |          1 |         13 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\ContentSections.jsx                                     | JavaScript JSX     |         81 |          2 |          4 |         87 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\DangerButton.jsx                                        | JavaScript JSX     |         15 |          0 |          1 |         16 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Dropdown.jsx                                            | JavaScript JSX     |         75 |          0 |         17 |         92 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\FileInput.jsx                                           | JavaScript JSX     |         18 |          0 |          3 |         21 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Footer.jsx                                              | JavaScript JSX     |         59 |          6 |          4 |         69 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Header.jsx                                              | JavaScript JSX     |         12 |          0 |          3 |         15 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Hero.jsx                                                | JavaScript JSX     |         33 |          1 |          3 |         37 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Input.jsx                                               | JavaScript JSX     |         25 |          0 |          3 |         28 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\InputError.jsx                                          | JavaScript JSX     |          7 |          0 |          1 |          8 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\InputLabel.jsx                                          | JavaScript JSX     |         17 |          0 |          1 |         18 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\LanguagePicker.jsx                                      | JavaScript JSX     |         68 |          1 |          7 |         76 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Loader.jsx                                              | JavaScript JSX     |         37 |          0 |          3 |         40 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Modal.jsx                                               | JavaScript JSX     |         53 |          0 |          4 |         57 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\ModalMessage.jsx                                        | JavaScript JSX     |         25 |          0 |          2 |         27 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\NavBar.jsx                                              | JavaScript JSX     |         46 |          0 |          3 |         49 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\NavItems.jsx                                            | JavaScript JSX     |         26 |          0 |          2 |         28 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\NavLink.jsx                                             | JavaScript JSX     |         24 |          0 |          2 |         26 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\PdfModal.jsx                                            | JavaScript JSX     |         19 |          2 |          2 |         23 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Pdf\CandidateTableRow.jsx                               | JavaScript JSX     |         37 |          0 |          3 |         40 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Pdf\CandidateThesisApplicationsTablePDF.jsx             | JavaScript JSX     |         45 |          1 |          5 |         51 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Pdf\PersonalInfoLayoutPDF.jsx                           | JavaScript JSX     |         62 |          0 |          4 |         66 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Pdf\SummaryPDF.jsx                                      | JavaScript JSX     |         29 |          2 |          4 |         35 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\PrimaryButton.jsx                                       | JavaScript JSX     |         20 |          0 |          1 |         21 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\ResponsiveNavLink.jsx                                   | JavaScript JSX     |         15 |          0 |          2 |         17 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\RoleBasedNavigation\RoleBasedNavigation.jsx             | JavaScript JSX     |         58 |          0 |          2 |         60 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\SearchInput.jsx                                         | JavaScript JSX     |         29 |          0 |          3 |         32 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\SecondaryButton.jsx                                     | JavaScript JSX     |         22 |          0 |          1 |         23 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\SelectMenu.jsx                                          | JavaScript JSX     |         19 |          0 |          3 |         22 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\Side.jsx                                                | JavaScript JSX     |         29 |          3 |          4 |         36 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\SideBar.jsx                                             | JavaScript JSX     |         26 |          0 |          2 |         28 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\TextInput.jsx                                           | JavaScript JSX     |         20 |          0 |          4 |         24 |
+| c:\laragon\www\formation-doctorat\resources\js\Components\utils\HelperFunctions.js                                | JavaScript         |         26 |          0 |          3 |         29 |
+| c:\laragon\www\formation-doctorat\resources\js\Layouts\AuthLayout.jsx                                             | JavaScript JSX     |        326 |          6 |         15 |        347 |
+| c:\laragon\www\formation-doctorat\resources\js\Layouts\AuthenticatedLayout.jsx                                    | JavaScript JSX     |        181 |          0 |         13 |        194 |
+| c:\laragon\www\formation-doctorat\resources\js\Layouts\GuestLayout.jsx                                            | JavaScript JSX     |         16 |          0 |          3 |         19 |
+| c:\laragon\www\formation-doctorat\resources\js\Layouts\MainLayout.jsx                                             | JavaScript JSX     |         31 |          0 |          3 |         34 |
+| c:\laragon\www\formation-doctorat\resources\js\Layouts\SimpleLayout.jsx                                           | JavaScript JSX     |         34 |          0 |          3 |         37 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\AddEditProfessor.jsx                                   | JavaScript JSX     |        125 |          1 |          6 |        132 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\AddEditProgram.jsx                                     | JavaScript JSX     |        174 |          1 |          6 |        181 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\AddField.jsx                                           | JavaScript JSX     |        102 |          0 |          7 |        109 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\AdminDashboard.jsx                                     | JavaScript JSX     |         24 |          0 |          3 |         27 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\AdminPrograms.jsx                                      | JavaScript JSX     |        183 |          0 |          7 |        190 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\CandidateTable.jsx                                     | JavaScript JSX     |        146 |          1 |          7 |        154 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\EditField.jsx                                          | JavaScript JSX     |         74 |          0 |          5 |         79 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\Fields.jsx                                             | JavaScript JSX     |        157 |          0 |          5 |        162 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\ProfessorTheses.jsx                                    | JavaScript JSX     |         26 |          0 |          4 |         30 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Admin\Professors.jsx                                         | JavaScript JSX     |        191 |          0 |          9 |        200 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Auth\ConfirmPassword.jsx                                     | JavaScript JSX     |         49 |          0 |         11 |         60 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Auth\ForgotPassword.jsx                                      | JavaScript JSX     |         41 |          0 |         10 |         51 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Auth\Login.jsx                                               | JavaScript JSX     |         82 |          0 |         16 |         98 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Auth\Register.jsx                                            | JavaScript JSX     |        106 |          0 |         20 |        126 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Auth\ResetPassword.jsx                                       | JavaScript JSX     |         75 |          0 |         16 |         91 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Auth\VerifyEmail.jsx                                         | JavaScript JSX     |         37 |          0 |          9 |         46 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Candidate\Applications.jsx                                   | JavaScript JSX     |        147 |          0 |          5 |        152 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Candidate\Dashboard.jsx                                      | JavaScript JSX     |         16 |          0 |          2 |         18 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Candidate\MultiStepForm.jsx                                  | JavaScript JSX     |          9 |          0 |          3 |         12 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Candidature.jsx                                              | JavaScript JSX     |         28 |          0 |          3 |         31 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Dashboard.jsx                                                | JavaScript JSX     |          0 |         17 |          1 |         18 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\LandingPage.jsx                                              | JavaScript JSX     |         13 |          0 |          3 |         16 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\PhdPrograms.jsx                                              | JavaScript JSX     |         40 |          0 |          3 |         43 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\AcceptedApplicants.jsx                             | JavaScript JSX     |         19 |          0 |          3 |         22 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\AcceptedApplicantsTable.jsx                        | JavaScript JSX     |         77 |          0 |          3 |         80 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\ActionsDropdown.jsx                                | JavaScript JSX     |         66 |          0 |          4 |         70 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\AddThesis.jsx                                      | JavaScript JSX     |        122 |          0 |          9 |        131 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\ApplicantsTable.jsx                                | JavaScript JSX     |        125 |          1 |          7 |        133 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\ApprovedApplicants.jsx                             | JavaScript JSX     |         28 |          0 |          4 |         32 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\ApprovedApplicantsTable.jsx                        | JavaScript JSX     |        118 |          0 |          3 |        121 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\CandidateData.jsx                                  | JavaScript JSX     |         76 |          0 |          6 |         82 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\Dashboard.jsx                                      | JavaScript JSX     |         19 |          0 |          4 |         23 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\DeleteModel.jsx                                    | JavaScript JSX     |          0 |          0 |          1 |          1 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\DocumentsLayout.jsx                                | JavaScript JSX     |         90 |          8 |          4 |        102 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\EditThesis.jsx                                     | JavaScript JSX     |         73 |          0 |          5 |         78 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\Theses.jsx                                         | JavaScript JSX     |        161 |          0 |          9 |        170 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Professor\ThesesApplicants.jsx                               | JavaScript JSX     |         23 |          0 |          5 |         28 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Profile\Edit.jsx                                             | JavaScript JSX     |         32 |          0 |          5 |         37 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Profile\Partials\DeleteUserForm.jsx                          | JavaScript JSX     |         82 |          0 |         18 |        100 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Profile\Partials\UpdatePasswordForm.jsx                      | JavaScript JSX     |         95 |          0 |         19 |        114 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Profile\Partials\UpdateProfileInformationForm.jsx            | JavaScript JSX     |         87 |          0 |         17 |        104 |
+| c:\laragon\www\formation-doctorat\resources\js\Pages\Welcome.jsx                                                  | JavaScript JSX     |        316 |          0 |         22 |        338 |
+| c:\laragon\www\formation-doctorat\resources\js\app.jsx                                                            | JavaScript JSX     |         28 |          0 |          5 |         33 |
+| c:\laragon\www\formation-doctorat\resources\js\bootstrap.js                                                       | JavaScript         |          3 |         23 |          7 |         33 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\Application.jsx                           | JavaScript JSX     |         44 |          0 |          6 |         50 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\ApplicationProgress.jsx                   | JavaScript JSX     |         54 |          0 |          4 |         58 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\BacDetailsLayout.jsx                      | JavaScript JSX     |         86 |         13 |          3 |        102 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\BacForm.jsx                               | JavaScript JSX     |        220 |          0 |          4 |        224 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\CandidateThesisApplicationsTable.jsx      | JavaScript JSX     |         34 |          2 |          4 |         40 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\DocumentForm.jsx                          | JavaScript JSX     |         73 |          0 |          8 |         81 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\FieldSelection.jsx                        | JavaScript JSX     |         66 |          0 |          4 |         70 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\LicenceDetailsLayout.jsx                  | JavaScript JSX     |         76 |          6 |          3 |         85 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\LicenceForm.jsx                           | JavaScript JSX     |        236 |          0 |          6 |        242 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\MasterDetailsLayout.jsx                   | JavaScript JSX     |         66 |          6 |          4 |         76 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\MasterForm.jsx                            | JavaScript JSX     |        163 |          0 |          4 |        167 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\PersonalDataForm.jsx                      | JavaScript JSX     |        286 |          0 |          5 |        291 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\PersonalInfoLayout.jsx                    | JavaScript JSX     |         71 |          0 |          4 |         75 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\PrevNextBtn.jsx                           | JavaScript JSX     |         16 |          0 |          4 |         20 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\QualificationsData.jsx                    | JavaScript JSX     |         69 |          0 |          4 |         73 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\QualificationsForm.jsx                    | JavaScript JSX     |         73 |          0 |          4 |         77 |
+| c:\laragon\www\formation-doctorat\resources\js\features\applicationForm\Summary.jsx                               | JavaScript JSX     |         59 |          0 |          3 |         62 |
+| c:\laragon\www\formation-doctorat\resources\js\features\programs\FieldCard.jsx                                    | JavaScript JSX     |         59 |          0 |          4 |         63 |
+| c:\laragon\www\formation-doctorat\resources\js\features\programs\ProgramCard.jsx                                  | JavaScript JSX     |         24 |          0 |          3 |         27 |
+| c:\laragon\www\formation-doctorat\resources\js\features\programs\ProgramFieldsDisplay.jsx                         | JavaScript JSX     |         46 |          0 |          3 |         49 |
+| c:\laragon\www\formation-doctorat\resources\js\features\programs\Programs.jsx                                     | JavaScript JSX     |         20 |          0 |          3 |         23 |
+| c:\laragon\www\formation-doctorat\resources\js\features\programs\ThesisRow.jsx                                    | JavaScript JSX     |         39 |          0 |          6 |         45 |
+| c:\laragon\www\formation-doctorat\resources\js\i18n.js                                                            | JavaScript         |         16 |          0 |          4 |         20 |
+| c:\laragon\www\formation-doctorat\resources\views\app.blade.php                                                   | PHP                |         22 |          0 |          5 |         27 |
+| c:\laragon\www\formation-doctorat\resources\views\mail\test-email.blade.php                                       | PHP                |          3 |          0 |          0 |          3 |
+| c:\laragon\www\formation-doctorat\resources\views\welcome.blade.php                                               | PHP                |        118 |          0 |         23 |        141 |
+| c:\laragon\www\formation-doctorat\routes\api.php                                                                  | PHP                |          6 |         10 |          4 |         20 |
+| c:\laragon\www\formation-doctorat\routes\auth.php                                                                 | PHP                |         43 |          0 |         17 |         60 |
+| c:\laragon\www\formation-doctorat\routes\channels.php                                                             | PHP                |          5 |         10 |          4 |         19 |
+| c:\laragon\www\formation-doctorat\routes\console.php                                                              | PHP                |          6 |         10 |          4 |         20 |
+| c:\laragon\www\formation-doctorat\routes\web.php                                                                  | PHP                |         73 |         19 |         15 |        107 |
+| c:\laragon\www\formation-doctorat\tailwind.config.js                                                              | JavaScript         |         19 |          1 |          4 |         24 |
+| c:\laragon\www\formation-doctorat\tests\CreatesApplication.php                                                    | PHP                |         13 |          3 |          6 |         22 |
+| c:\laragon\www\formation-doctorat\tests\Feature\Auth\AuthenticationTest.php                                       | PHP                |         41 |          0 |         15 |         56 |
+| c:\laragon\www\formation-doctorat\tests\Feature\Auth\EmailVerificationTest.php                                    | PHP                |         50 |          0 |         16 |         66 |
+| c:\laragon\www\formation-doctorat\tests\Feature\Auth\PasswordConfirmationTest.php                                 | PHP                |         32 |          0 |         13 |         45 |
+| c:\laragon\www\formation-doctorat\tests\Feature\Auth\PasswordResetTest.php                                        | PHP                |         50 |          0 |         22 |         72 |
+| c:\laragon\www\formation-doctorat\tests\Feature\Auth\PasswordUpdateTest.php                                       | PHP                |         41 |          0 |         11 |         52 |
+| c:\laragon\www\formation-doctorat\tests\Feature\Auth\RegistrationTest.php                                         | PHP                |         25 |          0 |          8 |         33 |
+| c:\laragon\www\formation-doctorat\tests\Feature\ExampleTest.php                                                   | PHP                |         11 |          4 |          5 |         20 |
+| c:\laragon\www\formation-doctorat\tests\Feature\ProfileTest.php                                                   | PHP                |         76 |          0 |         24 |        100 |
+| c:\laragon\www\formation-doctorat\tests\TestCase.php                                                              | PHP                |          7 |          0 |          4 |         11 |
+| c:\laragon\www\formation-doctorat\tests\Unit\ExampleTest.php                                                      | PHP                |         10 |          3 |          4 |         17 |
+| c:\laragon\www\formation-doctorat\vendor\spatie\ignition\resources\compiled\ignition.css                          | CSS                |          1 |          2 |          0 |          3 |
+| c:\laragon\www\formation-doctorat\vendor\spatie\ignition\resources\compiled\ignition.js                           | JavaScript         |          6 |          0 |          1 |          7 |
+| c:\laragon\www\formation-doctorat\vite.config.js                                                                  | JavaScript         |         15 |          0 |          2 |         17 |
+| Total                                                                                                             |                    |     25,634 |      1,707 |      1,870 |     29,211 |
++-------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

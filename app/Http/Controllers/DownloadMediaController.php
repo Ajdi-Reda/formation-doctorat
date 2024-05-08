@@ -29,6 +29,5 @@ class DownloadMediaController
             ->merge($bac)->merge($licence)->merge($master);
 
         return MediaStream::create('candidate_files.zip')->addMedia($downloads);
-
     }
 }

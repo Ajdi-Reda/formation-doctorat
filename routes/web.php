@@ -13,7 +13,10 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\EmailController;
 use App\Http\Middleware\Admin;
+use App\Mail\MyEmail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +43,7 @@ Route::get('/programs/{program}', [FieldController::class, 'display']);
 Route::post('/form1', [ApplicationController::class, 'saveCourseForm']);
 Route::post('/form2', [ApplicationController::class, 'saveForm']);
 
-// Route::get('/testroute', function () {
-
-//     // The email sending is done using the to method on the Mail facade
-//     // Mail::to('testreceiver@gmail.com')->send(new MyTestEmail());
-// });
+Route::get('/send-email', [EmailController::class, 'sendEmail'])->middleware(['auth', Admin::class]);
 
 
 //Route::get('/dashboard', function () {
@@ -55,8 +54,8 @@ Route::prefix('candidate')->middleware(['auth', 'candidate'])->group(function ()
     Route::get('/dashboard', [CandidateController::class, 'dashboard'])->name('candidate/dashboard');
     Route::get('/applications', [CandidateController::class, 'applications']);
     Route::post('/application/{application}', [ApplicationController::class, 'acceptApplication']);
-    Route::get('/form', [CandidateController::class, 'form']);
-    Route::get('/programs/{program}', [FieldController::class, 'display']);
+    // Route::get('/form', [CandidateController::class, 'form']);
+    // Route::get('/programs/{program}', [FieldController::class, 'display']);
 });
 
 Route::prefix('professor')->middleware(['auth', 'professor'])->group(function () {

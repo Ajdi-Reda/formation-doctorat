@@ -128,6 +128,15 @@
         "thesisIdentifier": "Thesis Identifier",
         "thesisTitle": "Thesis Title"
     },
+    "qualificationsTable": {
+        "obtainedDiploma": "Obtained Diploma",
+        "year": "Year",
+        "specialty": "Specialty",
+        "establishment": "Establishment",
+        "baccalaureate": "Baccalaureate",
+        "licence": "Licence",
+        "master": "Master"
+    },
     "steps": {
         "01": "Course selection",
         "02": "Personal details",

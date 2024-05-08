@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Professor;
 
+use App\Enums\RolesEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\EmailController;
 use App\Models\Candidate;
 use App\Models\Professor;
-use App\Models\Program;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
 
 class ProfessorController extends Controller
 {
@@ -22,6 +26,7 @@ class ProfessorController extends Controller
     {
         $professors = Professor::all();
         foreach ($professors as $professor) {
+            $professor->email = $professor->user->email;
             $professor->numberTheses = $professor->theses->count();
         }
         return Inertia::render('Admin/Professors', [
@@ -32,17 +37,31 @@ class ProfessorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstName' => 'required|string|max:255',
-            'lastName' => 'required|string|max:255',
-            'phoneNumber' => 'required|string|max:255',
+            'firstName' => 'required|string|max:30',
+            'lastName' => 'required|string|max:30',
+            'email' => 'required|string|email',
+            'phoneNumber' => 'required|string|max:30',
+        ]);
+        $password = Hash::make(Str::random(10));
+
+        $user = User::create([
+            'name' => $request->input('lastName'),
+            'email' => $request->input('email'),
+            'password' => $password,
         ]);
 
         Professor::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $user->id,
             'firstName' => $request->input('firstName'),
             'lastName' => $request->input('lastName'),
             'phoneNumber' => $request->input('phoneNumber'),
         ]);
+
+        $user->assignRole(RolesEnum::PROFESSOR);
+        $emailController = new EmailController();
+        $name = $request->input('firstName') . ' ' . $request->input('lastName');
+        $message = "Here's the credentials for your account: \n\nEmail: " . $request->input('email') . "\nPassword: " . $password;
+        $emailController->sendEmail($request->input('email'), $name, $message);
     }
 
     public function update(Request $request, Professor $professor)
@@ -50,7 +69,13 @@ class ProfessorController extends Controller
         $request->validate([
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
+            'email' => 'required|string|email',
             'phoneNumber' => 'required|string|max:255',
+        ]);
+
+        $professor->user->update([
+            'name' => $request->input('lastName'),
+            'email' => $request->input('email'),
         ]);
 
         $professor->update([
@@ -64,6 +89,7 @@ class ProfessorController extends Controller
     public function destroy(Professor $professor)
     {
         $professor->delete();
+        $professor->user->delete();
     }
     private function getCandidatesWithStatus($status)
     {

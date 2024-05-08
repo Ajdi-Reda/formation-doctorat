@@ -10,7 +10,9 @@ class AdminController extends Controller
 {
     function dashboard()
     {
-        return Inertia::render('Admin/AdminDashboard');
+        return Inertia::render('Admin/AdminPrograms', [
+            'programs' => Program::all(),
+        ]);
     }
 
     function programs()

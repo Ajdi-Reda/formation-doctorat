@@ -14,7 +14,7 @@ export default function ApplicationProgress({ currentStep }) {
     ];
 
     return (
-        <nav aria-label="Progress" className="mt-8">
+        <nav aria-label="Progress" className="mt-4">
             <ol
                 role="list"
                 className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0"

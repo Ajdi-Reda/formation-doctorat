@@ -30,7 +30,7 @@ enum RolesEnum: string
             $completed = false;
         }
 
-        $candidateRoute = $completed ? 'candidate/dashboard' : 'candidate/form';
+        $candidateRoute = $completed ? 'candidate/dashboard' : '/programs';
 
         return match ($this) {
             static::CANDIDATE => $candidateRoute,

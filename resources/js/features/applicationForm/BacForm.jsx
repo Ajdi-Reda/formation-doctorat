@@ -40,6 +40,7 @@ const BacForm = ({ data, errors, setData, completed }) => {
                                 </InputLabel>
                                 <Input
                                     id="bEstablishment"
+                                    pattern="[a-zA-Z]*"
                                     type="text"
                                     placeholder={t(
                                         "bacForm.placeholders.bEstablishment"
@@ -85,6 +86,7 @@ const BacForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="option"
                                 type="text"
+                                pattern="[a-zA-Z]*"
                                 placeholder={t("bacForm.placeholders.option")}
                                 value={data["option"]}
                                 onChange={(e) =>
@@ -125,6 +127,7 @@ const BacForm = ({ data, errors, setData, completed }) => {
                             </InputLabel>
                             <Input
                                 id="city"
+                                pattern="[a-zA-Z]*"
                                 type="text"
                                 placeholder={t("bacForm.placeholders.city")}
                                 value={data["city"]}

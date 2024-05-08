@@ -1,27 +1,29 @@
-import Authenticated from "@/Layouts/AuthenticatedLayout.jsx";
-import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
-import { useState } from "react";
+import React, { useState } from "react";
+import { router } from "@inertiajs/react";
+import { toast } from "react-hot-toast";
+import AuthLayout from "@/Layouts/AuthLayout";
 import Modal from "@/Components/Modal.jsx";
 import AddThesis from "@/Pages/Professor/AddThesis.jsx";
 import ActionsDropdown from "@/Pages/Professor/ActionsDropdown.jsx";
 import EditThesis from "@/Pages/Professor/EditThesis.jsx";
 import ModalMessage from "@/Components/ModalMessage.jsx";
-import { router } from "@inertiajs/react";
-import { toast } from "react-hot-toast";
+import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
 
 const Theses = ({ auth, theses, programFields }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [thesis, setThesis] = useState("");
-    const onClose = () => setOpen(!open);
+
+    const onClose = () => setOpen(false);
 
     const handleEditThesis = (thesis) => {
-        setOpenEdit(!openEdit);
+        setOpenEdit(true);
         setThesis(thesis);
     };
+
     const handleDeleteModal = (thesis) => {
-        setOpenDeleteModal(!openDeleteModal);
+        setOpenDeleteModal(true);
         setThesis(thesis);
     };
 
@@ -38,62 +40,92 @@ const Theses = ({ auth, theses, programFields }) => {
             }
         );
     };
+
     return (
-        <Authenticated user={auth.user} role={auth.role}>
-            <div className=" mt-12">
-                <h1 className="text-2xl font-bold mb-4">Current Theses</h1>
-                <div className="relative overflow-x-auto">
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" className="px-6 py-3">
-                                    Thesis Name
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Date of Creation
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Number of Applicants
-                                </th>
-                                <th scope="col" className="px-6 py-3"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {theses.map((thesis) => (
-                                <tr
-                                    key={thesis.id}
-                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                                >
-                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {thesis.title}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {formatDateTime(thesis.created_at)}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {thesis.numberOfCandidates}
-                                    </td>
-                                    <td>
-                                        <ActionsDropdown
-                                            handleEditModal={() =>
-                                                handleEditThesis(thesis)
-                                            }
-                                            handleDeleteModal={() =>
-                                                handleDeleteModal(thesis)
-                                            }
-                                        />
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <button
-                        type="button"
-                        onClick={() => setOpen(!open)}
-                        className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    >
-                        Add new thesis
-                    </button>
+        <AuthLayout user={auth.user} role={auth.role}>
+            <div className="">
+                <div className="sm:flex sm:items-center">
+                    <div className="sm:flex-auto">
+                        <h1 className="text-base font-semibold leading-6 text-gray-900">
+                            Theses
+                        </h1>
+                        <p className="mt-2 text-sm text-gray-700">
+                            A list of all the theses created by you.
+                        </p>
+                    </div>
+                    <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                        <button
+                            type="button"
+                            onClick={() => setOpen(true)}
+                            className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            Add new thesis
+                        </button>
+                    </div>
+                </div>
+                <div className="mt-8 flow-root">
+                    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <div className="shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                            <table className="min-w-full divide-y divide-gray-300">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                        >
+                                            Thesis Name
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                        >
+                                            Date of Creation
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                        >
+                                            Number of Applicants
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                        ></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {theses.map((thesis) => (
+                                        <tr key={thesis.id}>
+                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                {thesis.title}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {formatDateTime(
+                                                    thesis.created_at
+                                                )}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {thesis.numberOfCandidates}
+                                            </td>
+                                            <td>
+                                                <ActionsDropdown
+                                                    handleEditModal={() =>
+                                                        handleEditThesis(thesis)
+                                                    }
+                                                    handleDeleteModal={() =>
+                                                        handleDeleteModal(
+                                                            thesis
+                                                        )
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     {open && (
                         <Modal show={open} onClose={onClose}>
                             <AddThesis
@@ -103,9 +135,12 @@ const Theses = ({ auth, theses, programFields }) => {
                         </Modal>
                     )}
                     {openEdit && (
-                        <Modal show={openEdit} onClose={handleEditThesis}>
+                        <Modal
+                            show={openEdit}
+                            onClose={() => setOpenEdit(false)}
+                        >
                             <EditThesis
-                                onClose={handleEditThesis}
+                                onClose={() => setOpenEdit(false)}
                                 thesis={thesis}
                             />
                         </Modal>
@@ -113,23 +148,21 @@ const Theses = ({ auth, theses, programFields }) => {
                     {openDeleteModal && (
                         <Modal
                             show={openDeleteModal}
-                            onClose={() => setOpenDeleteModal(!openDeleteModal)}
+                            onClose={() => setOpenDeleteModal(false)}
                         >
                             <ModalMessage
                                 header={"Delete thesis"}
                                 message={
                                     "Are you sure you want to Delete this thesis?"
                                 }
-                                onClose={() =>
-                                    setOpenDeleteModal(!openDeleteModal)
-                                }
+                                onClose={() => setOpenDeleteModal(false)}
                                 onConfirm={handleDeleteThesis}
                             />
                         </Modal>
                     )}
                 </div>
             </div>
-        </Authenticated>
+        </AuthLayout>
     );
 };
 

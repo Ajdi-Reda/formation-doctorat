@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -51,8 +51,9 @@ class RegisteredUserController extends Controller
         return redirect($this->redirectTo());
     }
 
-    public function redirectTo() {
-            $role = Auth::user()->getRoleNames()->first();
+    public function redirectTo()
+    {
+        $role = Auth::user()->getRoleNames()->first();
         return match ($role) {
             RolesEnum::CANDIDATE->value => RolesEnum::CANDIDATE->dashboardRoute(),
             RolesEnum::PROFESSOR->value => RolesEnum::PROFESSOR->dashboardRoute(),

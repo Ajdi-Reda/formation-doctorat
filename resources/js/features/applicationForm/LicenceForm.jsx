@@ -65,6 +65,7 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="lEstablishment"
                                 type="text"
+                                pattern="[a-zA-Z]*"
                                 placeholder={t(
                                     "licenceForm.placeholders.lEstablishment"
                                 )}
@@ -85,6 +86,7 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="lBranch"
                                 type="text"
+                                pattern="[a-zA-Z]*"
                                 placeholder={t(
                                     "licenceForm.placeholders.lBranch"
                                 )}

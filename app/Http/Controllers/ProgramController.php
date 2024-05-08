@@ -79,6 +79,7 @@ class ProgramController extends Controller
 
     public function destroy(Program $program)
     {
+        $program->programUniversities()->delete();
         $program->delete();
     }
 }

@@ -128,6 +128,16 @@
         "thesisIdentifier": "Identifiant de thèse",
         "thesisTitle": "Titre de thèse"
     },
+
+    "qualificationsTable": {
+        "obtainedDiploma": "Diplôme Obtenu",
+        "year": "Année",
+        "specialty": "Spécialité",
+        "establishment": "Établissement",
+        "baccalaureate": "Baccalauréat",
+        "licence": "Licence",
+        "master": "Master"
+    },
     "steps": {
         "01": "Sélection du cours",
         "02": "Détails personnels",

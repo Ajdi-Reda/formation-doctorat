@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PdfModal from "@/Components/PdfModal.jsx";
+import PrimaryButton from "@/Components/PrimaryButton";
 
 const MasterDetailsLayout = ({ master }) => {
     const [openModal, setOpenModal] = useState(false);
@@ -48,12 +49,20 @@ const MasterDetailsLayout = ({ master }) => {
                     <div className="flex items-center mb-2">
                         <div className="w-1/3 font-medium">Master Diploma</div>
                         <div className="flex-grow">
-                            <button className="px-2 py-1 rounded-sm bg-indigo-600 text-white"
-                                    type="button"
-                                    onClick={() => setOpenModal(!openModal)}>Open file
-                            </button>
-                            <PdfModal shown={openModal} close={() => setOpenModal(false)}>
-                                <iframe src={master.masterDiploma} className="border-none w-full h-full"></iframe>
+                            <PrimaryButton
+                                type="button"
+                                onClick={() => setOpenModal(!openModal)}
+                            >
+                                Open file
+                            </PrimaryButton>
+                            <PdfModal
+                                shown={openModal}
+                                close={() => setOpenModal(false)}
+                            >
+                                <iframe
+                                    src={master.masterDiploma}
+                                    className="border-none w-full h-full"
+                                ></iframe>
                             </PdfModal>
                         </div>
                     </div>

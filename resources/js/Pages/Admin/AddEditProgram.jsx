@@ -12,7 +12,7 @@ const AddEditProgram = ({ onClose, program }) => {
               description: program.description,
               startDate: program.startDate,
               endDate: program.endDate,
-              responsable: program.responsable,
+              responsible: program.responsible,
               status: program.status,
               icon: "",
           }
@@ -21,7 +21,7 @@ const AddEditProgram = ({ onClose, program }) => {
               description: "",
               startDate: "",
               endDate: "",
-              responsable: "",
+              responsible: "",
               status: "",
               icon: "",
           };
@@ -49,6 +49,7 @@ const AddEditProgram = ({ onClose, program }) => {
                 },
             });
         }
+        console.log("hello");
     };
 
     return (
@@ -121,13 +122,13 @@ const AddEditProgram = ({ onClose, program }) => {
                         type="text"
                         id="responsable"
                         className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                        value={data.responsable}
+                        value={data.responsible}
                         onChange={(e) => setData("responsable", e.target.value)}
                         required
                     />
                     {errors.responsable && (
                         <p className="text-red-500 text-sm">
-                            {errors.responsable}
+                            {errors.responsible}
                         </p>
                     )}
                 </div>

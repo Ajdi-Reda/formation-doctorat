@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AdminDashboardLayout from "./AdminDashboard";
 import { formatDateTime } from "@/Components/utils/HelperFunctions";
 import ActionsDropdown from "../Professor/ActionsDropdown";
 import { router } from "@inertiajs/react";
@@ -7,8 +6,9 @@ import Modal from "@/Components/Modal";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 import AddEditProfessor from "./AddEditProfessor";
+import AuthLayout from "@/Layouts/AuthLayout";
 
-const Professors = ({ professors }) => {
+const Professors = ({ professors, auth }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -43,77 +43,133 @@ const Professors = ({ professors }) => {
         const id = professor.id;
         router.get(`/admin/professors/${id}`);
     };
+    console.log(professors);
     return (
-        <AdminDashboardLayout>
+        <AuthLayout user={auth.user} role={auth.role}>
             <div className=" mt-6">
-                <h1 className="text-2xl font-bold mb-4">Professors</h1>
-                <div className="relative overflow-x-auto">
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500">
-                        <thead className="text-xs uppercase bg-gray-50 ">
-                            <tr>
-                                <th scope="col" className="px-6 py-3">
-                                    First Name
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Last Name
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Phone Number
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Date of Creation
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Number of theses
-                                </th>
-                                <th scope="col" className="px-6 py-3"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {professors.map((professor) => (
-                                <tr
-                                    onClick={() =>
-                                        handleProfessorClick(professor)
-                                    }
-                                    key={professor.id}
-                                    className="bg-white border-b"
-                                >
-                                    <td className="px-6 py-4 font-medium whitespace-nowrap ">
-                                        {professor.firstName}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {professor.lastName}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {professor.phoneNumber}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {formatDateTime(professor.created_at)}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {professor.numberTheses}
-                                    </td>
-                                    <td>
-                                        <ActionsDropdown
-                                            handleEditModal={() =>
-                                                handleEditProfessor(professor)
-                                            }
-                                            handleDeleteModal={() =>
-                                                handleDeleteModal(professor)
-                                            }
-                                        />
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <button
-                        type="button"
-                        onClick={() => setOpen(!open)}
-                        className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    >
-                        Add new Professor
-                    </button>
+                <div className="sm:flex sm:items-center">
+                    <div className="sm:flex-auto">
+                        <h1 className="text-base font-semibold leading-6 text-gray-900">
+                            Professors
+                        </h1>
+                        <p className="mt-2 text-sm text-gray-700">
+                            A list of all the Professors
+                        </p>
+                    </div>
+                    <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                        <button
+                            type="button"
+                            onClick={() => setOpen(!open)}
+                            className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            Add new Professor
+                        </button>
+                    </div>
+                </div>
+                <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                            <div className="shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                                <table className="min-w-full divide-y divide-gray-300">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            >
+                                                First Name
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            >
+                                                Last Name
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            >
+                                                Email
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            >
+                                                Phone Number
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            >
+                                                Date of Creation
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            >
+                                                Number of theses
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                            ></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                        {professors.map((professor) => (
+                                            <tr
+                                                key={professor.id}
+                                                className="bg-white border-b cursor-pointer"
+                                            >
+                                                <td
+                                                    className="px-6 py-4 font-medium whitespace-nowrap "
+                                                    onClick={() =>
+                                                        handleProfessorClick(
+                                                            professor
+                                                        )
+                                                    }
+                                                >
+                                                    {professor.firstName}
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {professor.lastName}
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {professor.email}
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {professor.phoneNumber}
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {formatDateTime(
+                                                        professor.created_at
+                                                    )}
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {professor.numberTheses}
+                                                </td>
+                                                <td>
+                                                    <ActionsDropdown
+                                                        handleEditModal={() =>
+                                                            handleEditProfessor(
+                                                                professor
+                                                            )
+                                                        }
+                                                        handleDeleteModal={() =>
+                                                            handleDeleteModal(
+                                                                professor
+                                                            )
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     {open && (
                         <Modal show={open} onClose={onClose}>
                             <AddEditProfessor onClose={onClose} />
@@ -146,7 +202,7 @@ const Professors = ({ professors }) => {
                     )}
                 </div>
             </div>
-        </AdminDashboardLayout>
+        </AuthLayout>
     );
 };
 

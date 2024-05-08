@@ -1,3 +1,10 @@
-Hey, 
-Can your Laravel app send emails yet? 😉 
-Funny Coder
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Hello {{$name}}</h1>
+    <p>{{$wmessage}}</p>
+</body>
+</html>

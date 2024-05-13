@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('invitations', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('email')->unique();
+            $table->string('invitation_token', 32)->unique()->nullable();
+            $table->timestamp('registered_at')->nullable();
             $table->timestamps();
         });
     }

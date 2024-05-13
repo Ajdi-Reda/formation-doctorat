@@ -10,7 +10,11 @@ const ThesesApplicants = ({ applicants }) => {
 
     return (
         <>
-            <h1 className="text-xl my-6">Thesis applicants</h1>
+            <h1 className="text-xl my-6">
+                {applicants.length
+                    ? "Thesis applicants"
+                    : "You must create a thesis to see the applicants"}
+            </h1>
             {applicants.map((thesis, idx) => (
                 <div key={idx}>
                     <ApplicantsTable

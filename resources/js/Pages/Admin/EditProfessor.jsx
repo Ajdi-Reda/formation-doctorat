@@ -3,7 +3,7 @@ import { useForm } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
 import InputLabel from "@/Components/InputLabel.jsx";
 
-const AddEditProfessor = ({ onClose, professor }) => {
+const EditProfessor = ({ onClose, professor }) => {
     // Initialize form data based on professor variable
     const initialFormData = professor
         ? {
@@ -128,4 +128,4 @@ const AddEditProfessor = ({ onClose, professor }) => {
     );
 };
 
-export default AddEditProfessor;
+export default EditProfessor;

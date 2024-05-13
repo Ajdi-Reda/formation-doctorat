@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    public function sendEmail($recipient, $name, $message)
+    public function sendEmail($recipient, $message)
     {
-        Mail::to($recipient)->send(new MyEmail($name, $message));
+        Mail::to($recipient)->send(new MyEmail($message));
     }
 }

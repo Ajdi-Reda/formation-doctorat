@@ -20,7 +20,7 @@ export default function Modal({
             <Dialog
                 as="div"
                 id="modal"
-                className="fixed inset-0 flex items-center justify-center z-50 overflow-y-auto px-4 py-6 sm:px-0"
+                className="fixed inset-0 overflow-y-auto z-50 flex items-center justify-center"
                 onClose={onClose}
             >
                 <Transition.Child
@@ -45,9 +45,10 @@ export default function Modal({
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                     <div
-                        className={`bg-white rounded-lg overflow-hidden shadow-xl mx-auto w-full sm:max-w-${maxWidth} pt-6`}
+                        className={`bg-white rounded-lg overflow-y-auto shadow-xl mx-auto w-full sm:max-w-${maxWidth} pt-4 pb-6`}
+                        style={{ maxHeight: "80vh" }} // Limit max height
                     >
-                        <div className="px-6 py-4">{children}</div>
+                        <div className="px-6">{children}</div>
                     </div>
                 </Transition.Child>
             </Dialog>

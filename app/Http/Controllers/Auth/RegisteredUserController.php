@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\RolesEnum;
 use App\Http\Controllers\Controller;
+use App\Models\Invitation;
+use App\Models\Professor;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+
 
 class RegisteredUserController extends Controller
 {
@@ -60,5 +62,43 @@ class RegisteredUserController extends Controller
             RolesEnum::SUPERADMIN->value => RolesEnum::SUPERADMIN->dashboardRoute(),
             default => '/',
         };
+    }
+
+    public function showRegistrationForm(Request $request)
+    {
+        $invitation_token = $request->get('invitation_token');
+        $invitation = Invitation::where('invitation_token', $invitation_token)->firstOrFail();
+        $email = $invitation->email;
+
+        return Inertia::render('Professor/RegisterForm', [
+            'email' => $email,
+        ]);
+    }
+
+    public function storeProfessor(Request $request)
+    {
+        $request->validate([
+            'firstName' => 'required|string|max:30',
+            'lastName' => 'required|string|max:30',
+            'email' => 'required|string|email',
+            'phoneNumber' => 'required|string|max:30',
+        ]);
+
+        $user = User::create([
+            'name' => $request->input('lastName'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ]);
+
+        $user->assignRole(RolesEnum::PROFESSOR);
+        Professor::create([
+            'user_id' => $user->id,
+            'firstName' => $request->input('firstName'),
+            'lastName' => $request->input('lastName'),
+            'phoneNumber' => $request->input('phoneNumber'),
+        ]);
+
+        event(new Registered($user));
+        return redirect("/login");
     }
 }

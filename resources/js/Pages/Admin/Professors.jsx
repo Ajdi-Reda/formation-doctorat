@@ -5,8 +5,10 @@ import { router } from "@inertiajs/react";
 import Modal from "@/Components/Modal";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
-import AddEditProfessor from "./AddEditProfessor";
+import AddEditProfessor from "./EditProfessor";
 import AuthLayout from "@/Layouts/AuthLayout";
+import EditProfessor from "./EditProfessor";
+import AddProfessor from "./AddProfessor";
 
 const Professors = ({ professors, auth }) => {
     const [open, setOpen] = useState(false);
@@ -172,12 +174,12 @@ const Professors = ({ professors, auth }) => {
 
                     {open && (
                         <Modal show={open} onClose={onClose}>
-                            <AddEditProfessor onClose={onClose} />
+                            <AddProfessor onClose={onClose} />
                         </Modal>
                     )}
                     {openEdit && (
                         <Modal show={openEdit} onClose={onClose}>
-                            <AddEditProfessor
+                            <EditProfessor
                                 onClose={onClose}
                                 professor={professor}
                             />

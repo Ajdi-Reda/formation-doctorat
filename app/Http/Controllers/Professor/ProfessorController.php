@@ -6,6 +6,7 @@ use App\Enums\RolesEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmailController;
 use App\Models\Candidate;
+use App\Models\Invitation;
 use App\Models\Professor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,36 +33,6 @@ class ProfessorController extends Controller
         return Inertia::render('Admin/Professors', [
             'professors' => $professors,
         ]);
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'firstName' => 'required|string|max:30',
-            'lastName' => 'required|string|max:30',
-            'email' => 'required|string|email',
-            'phoneNumber' => 'required|string|max:30',
-        ]);
-        $password = Hash::make(Str::random(10));
-
-        $user = User::create([
-            'name' => $request->input('lastName'),
-            'email' => $request->input('email'),
-            'password' => $password,
-        ]);
-
-        Professor::create([
-            'user_id' => $user->id,
-            'firstName' => $request->input('firstName'),
-            'lastName' => $request->input('lastName'),
-            'phoneNumber' => $request->input('phoneNumber'),
-        ]);
-
-        $user->assignRole(RolesEnum::PROFESSOR);
-        $emailController = new EmailController();
-        $name = $request->input('firstName') . ' ' . $request->input('lastName');
-        $message = "Here's the credentials for your account: \n\nEmail: " . $request->input('email') . "\nPassword: " . $password;
-        $emailController->sendEmail($request->input('email'), $name, $message);
     }
 
     public function update(Request $request, Professor $professor)

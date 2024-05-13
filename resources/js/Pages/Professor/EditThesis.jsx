@@ -3,10 +3,10 @@ import { useForm } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
 import InputLabel from "@/Components/InputLabel.jsx";
 import FileInput from "@/Components/FileInput.jsx";
+import PrimaryButton from "@/Components/PrimaryButton";
 
 const EditThesis = ({ onClose, thesis }) => {
     const { data, setData, post, errors, processing, reset } = useForm({
-        id: thesis.id,
         title: thesis.title,
         description: thesis.description,
         thesisOutline: "",
@@ -14,7 +14,7 @@ const EditThesis = ({ onClose, thesis }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/professor/theses", {
+        post(`/professor/theses/${thesis.id}`, {
             onSuccess: () => {
                 reset();
                 onClose();
@@ -26,7 +26,12 @@ const EditThesis = ({ onClose, thesis }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="mb-4">
-                <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                <label
+                    htmlFor="title"
+                    className="block text-sm font-medium text-gray-700"
+                >
+                    Title
+                </label>
                 <input
                     type="text"
                     id="title"
@@ -40,7 +45,12 @@ const EditThesis = ({ onClose, thesis }) => {
                 )}
             </div>
             <div className="mb-4">
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                <label
+                    htmlFor="description"
+                    className="block text-sm font-medium text-gray-700"
+                >
+                    Description
+                </label>
                 <textarea
                     id="description"
                     className="mt-1 p-2 border border-gray-300 rounded-md w-full"
@@ -53,12 +63,6 @@ const EditThesis = ({ onClose, thesis }) => {
                     <p className="text-red-500 text-sm">{errors.description}</p>
                 )}
             </div>
-            <button
-                type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
-            >
-                {`${processing ? "Editing ..." : "Edit thesis"}`}
-            </button>
             <div className="flex flex-col mt-2">
                 <InputLabel htmlFor="thesisOutline">Attach file</InputLabel>
                 <FileInput
@@ -70,6 +74,12 @@ const EditThesis = ({ onClose, thesis }) => {
                     errors={errors.thesisOutline}
                 />
             </div>
+            <PrimaryButton
+                type="submit"
+                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
+            >
+                {`${processing ? "Editing ..." : "Edit thesis"}`}
+            </PrimaryButton>
         </form>
     );
 };

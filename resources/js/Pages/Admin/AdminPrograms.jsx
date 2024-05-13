@@ -25,6 +25,7 @@ const AdminPrograms = ({ programs, auth }) => {
     const handleDeleteModal = (program) => {
         setOpenDeleteModal(true);
         setProgram(program);
+        console.log(openDeleteModal);
     };
 
     const handleDeleteProgram = () => {
@@ -158,25 +159,17 @@ const AdminPrograms = ({ programs, auth }) => {
                                 </Modal>
                             )}
                             {openDeleteModal && (
-                                <Modal
-                                    show={openDeleteModal}
-                                    onClose={() =>
-                                        setOpenDeleteModal(!openDeleteModal)
+                                <ModalMessage
+                                    header={"Delete Program"}
+                                    open={openDeleteModal}
+                                    message={
+                                        "Are you sure you want to Delete this program?"
                                     }
-                                >
-                                    <ModalMessage
-                                        header={"Delete Program"}
-                                        message={
-                                            "Are you sure you want to Delete this program?"
-                                        }
-                                        onClose={() => {
-                                            setOpenDeleteModal(
-                                                !openDeleteModal
-                                            );
-                                        }}
-                                        onConfirm={handleDeleteProgram}
-                                    />
-                                </Modal>
+                                    onClose={() => {
+                                        setOpenDeleteModal(false);
+                                    }}
+                                    onConfirm={handleDeleteProgram}
+                                />
                             )}
                         </div>
                     </div>

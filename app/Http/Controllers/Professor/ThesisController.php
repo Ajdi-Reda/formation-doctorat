@@ -43,7 +43,6 @@ class ThesisController extends Controller
             'title' => ['required', 'max:255'],
             'description' => ['required'],
         ]);
-
         $thesis = ThesisProposal::create([
             'professor_id' => Auth::user()->professor->id,
             'field_id' => $request->fieldId,
@@ -51,29 +50,27 @@ class ThesisController extends Controller
             'description' => $request->description,
         ]);
 
-        $thesis->addMediaFromRequest('thesisOutline')
-            ->toMediaCollection();
+        if ($request->hasFile('thesisProposalOutline'))
+            $thesis->addMediaFromRequest('thesisOutline')
+                ->toMediaCollection();
     }
 
-    public function update(Request $request)
+    public function update(Request $request, ThesisProposal $thesisProposal)
     {
         $request->validate([
-            'id' => 'required',
             'title' => ['required', 'max:255'],
             'description' => ['required'],
         ]);
 
-        $thesis = ThesisProposal::all()->find($request->id);
+        $thesisProposal->title = $request->title;
+        $thesisProposal->description = $request->description;
+        $thesisProposal->save();
 
-        $thesis->title = $request->title;
-        $thesis->description = $request->description;
-        $thesis->save();
+        $existingMedia = $thesisProposal->getFirstMedia();
 
-        $existingMedia = $thesis->getFirstMedia();
-
-        if ($existingMedia && $request->hasFile('thesisOutline')) {
+        if ($existingMedia && $request->hasFile('thesisProposalOutline')) {
             $existingMedia->delete();
-            $thesis->addMediaFromRequest('thesisOutline')
+            $thesisProposal->addMediaFromRequest('thesisOutline')
                 ->toMediaCollection();
         }
     }

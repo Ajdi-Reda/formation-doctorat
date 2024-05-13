@@ -15,7 +15,6 @@ const Input = ({
             id={id}
             type={type}
             placeholder={placeholder}
-            te
             value={value}
             onChange={onChange}
             required={required}

@@ -14,14 +14,12 @@ class MyEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private string $name;
     private string $wmessage;
     /**
      * Create a new message instance.
      */
-    public function __construct($name, $message)
+    public function __construct($message)
     {
-        $this->name = $name;
         $this->wmessage = $message;
     }
 
@@ -44,7 +42,6 @@ class MyEmail extends Mailable
         return new Content(
             view: 'mail.test-email',
             with: [
-                'name' => $this->name,
                 'wmessage' => $this->wmessage,
             ]
         );

@@ -13,6 +13,11 @@ const ApprovedApplicants = ({ auth, approvedApplicants }) => {
 
     return (
         <AuthLayout user={auth.user} role={auth.role}>
+            <h1 className="text-xl my-6">
+                {approvedApplicants.length
+                    ? "Approved applicants"
+                    : "You must create a thesis to see the approved applicants"}
+            </h1>
             <div className="mt-12 space-y-8">
                 {approvedApplicants.map((thesis, idx) => (
                     <ApprovedApplicantsTable

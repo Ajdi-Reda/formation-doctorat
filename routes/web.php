@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Candidate\CandidateController;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EmailController;
 use App\Http\Middleware\Admin;
 use App\Mail\MyEmail;
@@ -69,7 +71,7 @@ Route::prefix('professor')->middleware(['auth', 'professor'])->group(function ()
     Route::get('/theses', [ThesisController::class, 'index'])
         ->name('professor/theses');
     Route::post('/theses', [ThesisController::class, 'store']);
-    Route::post('/theses', [ThesisController::class, 'update']);
+    Route::post('/theses/{thesisProposal}', [ThesisController::class, 'update']);
     Route::post('/theses/destroy/{thesisProposal}', [ThesisController::class, 'destroy']);
 });
 Route::get('professor/download/{candidate}', [DownloadMediaController::class, 'download'])->middleware(['auth', AdminOrProfessor::class]);
@@ -90,6 +92,7 @@ Route::prefix('admin')->middleware(['auth', Admin::class])->group(function () {
     Route::patch('/professors/{professor}', [ProfessorController::class, 'update']);
     Route::delete('/professors/{professor}', [ProfessorController::class, 'destroy']);
     Route::get('/professor/candidate/{candidate}', [ProfessorController::class, 'getCandidateData']);
+    Route::post('/professors/invitations', [InvitationController::class, 'store']);
 });
 
 Route::get('/dashboard', function () {
@@ -102,4 +105,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('register-professor', [RegisteredUserController::class, 'showRegistrationForm'])
+    ->name('registerProfessor');
+
+Route::post('register-professor', [RegisteredUserController::class, 'storeProfessor'])
+    ->name('registerProfessor');
 require __DIR__ . '/auth.php';

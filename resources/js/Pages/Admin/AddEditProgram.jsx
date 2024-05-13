@@ -3,6 +3,7 @@ import { useForm } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
 import InputLabel from "@/Components/InputLabel.jsx";
 import FileInput from "@/Components/FileInput.jsx";
+import PrimaryButton from "@/Components/PrimaryButton";
 
 const AddEditProgram = ({ onClose, program }) => {
     // Initialize form data based on program variable
@@ -160,7 +161,7 @@ const AddEditProgram = ({ onClose, program }) => {
                         errors={errors.icon}
                     />
                 </div>
-                <button
+                <PrimaryButton
                     type="submit"
                     className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
@@ -171,7 +172,7 @@ const AddEditProgram = ({ onClose, program }) => {
                         : program
                         ? "Edit Program"
                         : "Add Program"}
-                </button>
+                </PrimaryButton>
             </form>
         </div>
     );

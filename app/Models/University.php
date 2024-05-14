@@ -10,7 +10,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class University extends Model
 {
     use HasFactory;
-    protected $fillable = ["name", "address", "city", "email", "phone_number"];
+    protected $fillable = [
+        "name",
+        "address",
+        "chancellor",
+        "chancellorEmail",
+        "chancellorPhoneNumber"
+    ];
 
 
     public function program(): BelongsToMany

@@ -1,37 +1,38 @@
 import React, { useState } from "react";
-import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
 import ActionsDropdown from "@/Pages/Professor/ActionsDropdown.jsx";
 import Modal from "@/Components/Modal.jsx";
-import AddEditProgram from "./AddEditProgram";
-import { router } from "@inertiajs/react";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
+import AddEditUniversity from "./AddEditUniversity";
+import { router } from "@inertiajs/react";
 
-const AdminPrograms = ({ programs, auth }) => {
+const Universities = ({ universities, auth }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [program, setProgram] = useState("");
+    const [university, setUniversity] = useState("");
     const onClose = () => {
         setOpen(false);
         setOpenEdit(false);
     };
 
-    const handleEditProgram = (program) => {
+    const handleEditUniversity = (university) => {
         setOpenEdit(true);
-        setProgram(program);
-    };
-    const handleDeleteModal = (program) => {
-        setOpenDeleteModal(true);
-        setProgram(program);
+        setUniversity(university);
     };
 
-    const handleDeleteProgram = () => {
-        const id = program.id;
-        router.delete(`/admin/programs/destroy/${id}`, {
+    const handleDeleteModal = (university) => {
+        setOpenDeleteModal(true);
+        setUniversity(university);
+    };
+
+    const handleDeleteUniversity = () => {
+        console.log("h");
+        const id = university.id;
+        router.delete(`/admin/universities/${id}`, {
             onSuccess: () => {
-                toast.success("Program Successfully Deleted");
+                toast.success("University Successfully Deleted");
                 setOpenDeleteModal(false);
             },
         });
@@ -43,10 +44,10 @@ const AdminPrograms = ({ programs, auth }) => {
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">
-                            Programs
+                            Universities
                         </h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            A list of all the programs available.
+                            A list of all the universities available.
                         </p>
                     </div>
                     <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -55,17 +56,18 @@ const AdminPrograms = ({ programs, auth }) => {
                             onClick={() => setOpen(true)}
                             className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
-                            Add new program
+                            Add new university
                         </button>
                     </div>
                 </div>
                 <div className="mt-8 flow-root">
-                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="-mx-4 -my-2  sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <div className=" shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                                {programs.length === 0 ? (
+                                {universities.length === 0 ? (
                                     <p className="p-4 text-sm text-gray-700">
-                                        No programs have been added yet.
+                                        No universities have been added to the
+                                        database.
                                     </p>
                                 ) : (
                                     <table className="min-w-full divide-y divide-gray-300">
@@ -75,31 +77,31 @@ const AdminPrograms = ({ programs, auth }) => {
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Program
+                                                    Name
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Date of Creation
+                                                    Address
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Start date
+                                                    Chancellor
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    End date
+                                                    Chancellor Email
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Responsible
+                                                    Chancellor Phone Number
                                                 </th>
                                                 <th
                                                     scope="col"
@@ -108,35 +110,37 @@ const AdminPrograms = ({ programs, auth }) => {
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white divide-y divide-gray-200">
-                                            {programs.map((program) => (
-                                                <tr key={program.id}>
+                                            {universities.map((university) => (
+                                                <tr key={university.id}>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                        {program.title}
+                                                        {university.name}
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {formatDateTime(
-                                                            program.created_at
-                                                        )}
+                                                        {university.address}
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {program.startDate}
+                                                        {university.Chancellor}
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {program.endDate}
+                                                        {
+                                                            university.ChancellorEmail
+                                                        }
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {program.responsible}
+                                                        {
+                                                            university.ChancellorPhoneNumber
+                                                        }
                                                     </td>
                                                     <td>
                                                         <ActionsDropdown
                                                             handleEditModal={() =>
-                                                                handleEditProgram(
-                                                                    program
+                                                                handleEditUniversity(
+                                                                    university
                                                                 )
                                                             }
                                                             handleDeleteModal={() =>
                                                                 handleDeleteModal(
-                                                                    program
+                                                                    university
                                                                 )
                                                             }
                                                         />
@@ -148,30 +152,34 @@ const AdminPrograms = ({ programs, auth }) => {
                                 )}
                             </div>
 
+                            {/* Modals */}
+                            {/* Add/Edit University Modal */}
                             {open && (
                                 <Modal show={open} onClose={onClose}>
-                                    <AddEditProgram onClose={onClose} />
+                                    <AddEditUniversity onClose={onClose} />
                                 </Modal>
                             )}
+                            {/* Edit University Modal */}
                             {openEdit && (
                                 <Modal show={openEdit} onClose={onClose}>
-                                    <AddEditProgram
+                                    <AddEditUniversity
                                         onClose={onClose}
-                                        program={program}
+                                        university={university}
                                     />
                                 </Modal>
                             )}
+                            {/* Delete Confirmation Modal */}
                             {openDeleteModal && (
                                 <ModalMessage
-                                    header={"Delete Program"}
+                                    header={"Delete University"}
                                     open={openDeleteModal}
                                     message={
-                                        "Are you sure you want to Delete this program?"
+                                        "Are you sure you want to Delete this university?"
                                     }
                                     onClose={() => {
                                         setOpenDeleteModal(false);
                                     }}
-                                    onConfirm={handleDeleteProgram}
+                                    onConfirm={handleDeleteUniversity}
                                 />
                             )}
                         </div>
@@ -182,4 +190,4 @@ const AdminPrograms = ({ programs, auth }) => {
     );
 };
 
-export default AdminPrograms;
+export default Universities;

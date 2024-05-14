@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\UniversityController;
 use App\Http\Middleware\Admin;
 use App\Mail\MyEmail;
 use Illuminate\Support\Facades\Mail;
@@ -93,6 +94,10 @@ Route::prefix('admin')->middleware(['auth', Admin::class])->group(function () {
     Route::delete('/professors/{professor}', [ProfessorController::class, 'destroy']);
     Route::get('/professor/candidate/{candidate}', [ProfessorController::class, 'getCandidateData']);
     Route::post('/professors/invitations', [InvitationController::class, 'store']);
+    Route::get('/universities', [UniversityController::class, 'index'])->name('admin/universities');
+    Route::post('/universities', [UniversityController::class, 'store'])->name('admin/universities');
+    Route::patch('/universities/{university}', [UniversityController::class, 'update']);
+    Route::delete('/universities/{university}', [UniversityController::class, 'destroy']);
 });
 
 Route::get('/dashboard', function () {

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { formatDateTime } from "@/Components/utils/HelperFunctions";
+import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
 import ActionsDropdown from "../Professor/ActionsDropdown";
-import { router } from "@inertiajs/react";
+import Modal from "@/Components/Modal.jsx";
 import AddField from "./AddField";
-import Modal from "@/Components/Modal";
-import EditField from "./EditField";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
+import EditField from "./EditField";
 
 const Fields = ({ fields, programs, auth }) => {
     const [open, setOpen] = useState(false);
@@ -37,6 +36,7 @@ const Fields = ({ fields, programs, auth }) => {
             },
         });
     };
+
     return (
         <AuthLayout user={auth.user} role={auth.role}>
             <div>
@@ -63,67 +63,73 @@ const Fields = ({ fields, programs, auth }) => {
                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <div className=" shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                                <table className="min-w-full divide-y divide-gray-300">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Name
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Date of Creation
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Number of Theses
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Actions
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {fields.map((field) => (
-                                            <tr key={field.id}>
-                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                    {field.name}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {formatDateTime(
-                                                        field.created_at
-                                                    )}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {field.numberTheses}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    <ActionsDropdown
-                                                        handleEditModal={() =>
-                                                            handleEditField(
-                                                                field
-                                                            )
-                                                        }
-                                                        handleDeleteModal={() =>
-                                                            handleDeleteModal(
-                                                                field
-                                                            )
-                                                        }
-                                                    />
-                                                </td>
+                                {fields.length === 0 ? (
+                                    <p className="p-4 text-sm text-gray-700">
+                                        No fields have been added yet.
+                                    </p>
+                                ) : (
+                                    <table className="min-w-full divide-y divide-gray-300">
+                                        <thead className="bg-gray-50">
+                                            <tr>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Name
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Date of Creation
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Number of Theses
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Actions
+                                                </th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody className="bg-white divide-y divide-gray-200">
+                                            {fields.map((field) => (
+                                                <tr key={field.id}>
+                                                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                        {field.name}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {formatDateTime(
+                                                            field.created_at
+                                                        )}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {field.numberTheses}
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        <ActionsDropdown
+                                                            handleEditModal={() =>
+                                                                handleEditField(
+                                                                    field
+                                                                )
+                                                            }
+                                                            handleDeleteModal={() =>
+                                                                handleDeleteModal(
+                                                                    field
+                                                                )
+                                                            }
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -139,19 +145,12 @@ const Fields = ({ fields, programs, auth }) => {
                     </Modal>
                 )}
                 {openDeleteModal && (
-                    <Modal
-                        show={openDeleteModal}
+                    <ModalMessage
+                        header={"Delete Field"}
+                        message={"Are you sure you want to delete this field?"}
                         onClose={() => setOpenDeleteModal(!openDeleteModal)}
-                    >
-                        <ModalMessage
-                            header={"Delete Field"}
-                            message={
-                                "Are you sure you want to delete this field?"
-                            }
-                            onClose={() => setOpenDeleteModal(!openDeleteModal)}
-                            onConfirm={handleDeleteField}
-                        />
-                    </Modal>
+                        onConfirm={handleDeleteField}
+                    />
                 )}
             </div>
         </AuthLayout>

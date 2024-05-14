@@ -36,30 +36,30 @@ class MainSeeder extends Seeder
             ]);
             $professor->save();
             $user->assignRole('professor');
-
         }
-            $user = User::create([
-                'name' => "admin",
-                'email' => "superadmin@gmail.com",
-                'password' => bcrypt("superadmin"),
-            ]);
+        $user = User::create([
+            'name' => "admin",
+            'email' => "superadmin@gmail.com",
+            'password' => bcrypt("superadmin"),
+        ]);
 
-            $user->assignRole(RolesEnum::SUPERADMIN);
+        $user->assignRole(RolesEnum::SUPERADMIN);
 
-         DB::statement("
-            INSERT INTO universities (name, address, Chancellor, ChancellorEmail, created_at, updated_at)
+        DB::statement("
+            INSERT INTO universities (name, address, chancellor, chancellorEmail, chancellorPhoneNumber, created_at, updated_at)
             VALUES
-                ('Harvard University', 'Cambridge, MA', 'John Harvard', 'john.harvard@example.com', NOW(), NOW()),
-                ('Stanford University', 'Stanford, CA', 'Jane Stanford', 'jane.stanford@example.com', NOW(), NOW()),
-                ('MIT', 'Cambridge, MA', 'L. Rafael Reif', 'rafael.reif@mit.edu', NOW(), NOW()),
-                ('Oxford University', 'Oxford, UK', 'Louise Richardson', 'louise.richardson@ox.ac.uk', NOW(), NOW()),
-                ('ETH Zurich', 'Zurich, Switzerland', 'Joel Mesot', 'joel.mesot@ethz.ch', NOW(), NOW()),
-                ('University of Tokyo', 'Tokyo, Japan', 'Makoto Gonokami', 'makoto.gonokami@u-tokyo.ac.jp', NOW(), NOW()),
-                ('National University of Singapore', 'Singapore', 'Tan Eng Chye', 'engchye.tan@nus.edu.sg', NOW(), NOW()),
-                ('University of Toronto', 'Toronto, Canada', 'Meric Gertler', 'meric.gertler@utoronto.ca', NOW(), NOW()),
-                ('Peking University', 'Beijing, China', 'Qiu Yong', 'qiuyong@pku.edu.cn', NOW(), NOW()),
-                ('University of Melbourne', 'Melbourne, Australia', 'Duncan Maskell', 'duncan.maskell@unimelb.edu.au', NOW(), NOW())
+                ('Harvard University', 'Cambridge, MA', 'John Harvard', 'john.harvard@example.com', '123-456-7890', NOW(), NOW()),
+                ('Stanford University', 'Stanford, CA', 'Jane Stanford', 'jane.stanford@example.com', '123-456-7890', NOW(), NOW()),
+                ('MIT', 'Cambridge, MA', 'L. Rafael Reif', 'rafael.reif@mit.edu', '123-456-7890', NOW(), NOW()),
+                ('Oxford University', 'Oxford, UK', 'Louise Richardson', 'louise.richardson@ox.ac.uk', '123-456-7890', NOW(), NOW()),
+                ('ETH Zurich', 'Zurich, Switzerland', 'Joel Mesot', 'joel.mesot@ethz.ch', '123-456-7890', NOW(), NOW()),
+                ('University of Tokyo', 'Tokyo, Japan', 'Makoto Gonokami', 'makoto.gonokami@u-tokyo.ac.jp', '123-456-7890', NOW(), NOW()),
+                ('National University of Singapore', 'Singapore', 'Tan Eng Chye', 'engchye.tan@nus.edu.sg', '123-456-7890', NOW(), NOW()),
+                ('University of Toronto', 'Toronto, Canada', 'Meric Gertler', 'meric.gertler@utoronto.ca', '123-456-7890', NOW(), NOW()),
+                ('Peking University', 'Beijing, China', 'Qiu Yong', 'qiuyong@pku.edu.cn', '123-456-7890', NOW(), NOW()),
+                ('University of Melbourne', 'Melbourne, Australia', 'Duncan Maskell', 'duncan.maskell@unimelb.edu.au', '123-456-7890', NOW(), NOW())
         ");
+
 
         // Program Seeder
         DB::statement("
@@ -122,11 +122,11 @@ class MainSeeder extends Seeder
                 (4, 8, NOW(), NOW()),
                 (5, 9, NOW(), NOW()),
                 (5, 10, NOW(), NOW())
-        ");
-;
+        ");;
 
 
-        DB::statement("
+        DB::statement(
+            "
             INSERT INTO thesis_proposals (professor_id, field_id, title, description, created_at, updated_at)
 VALUES
     (1, 1, 'Advanced Software Development Practices', 'Investigating the latest practices in software engineering for advanced development.', NOW(), NOW()),
@@ -158,8 +158,6 @@ VALUES
     (3, 5, 'Power System Stability Studies', 'Investigating stability challenges and solutions in modern power systems.', NOW(), NOW()),
     (4, 5, 'Energy Storage Solutions', 'Exploring advanced energy storage solutions for enhancing power system reliability.', NOW(), NOW()),
     (5, 5, 'Grid Resilience in Power Systems', 'Studying strategies for enhancing grid resilience in power systems against various challenges.', NOW(), NOW());"
-);
-
+        );
     }
 }
-

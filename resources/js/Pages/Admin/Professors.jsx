@@ -45,7 +45,7 @@ const Professors = ({ professors, auth }) => {
         const id = professor.id;
         router.get(`/admin/professors/${id}`);
     };
-    console.log(professors);
+
     return (
         <AuthLayout user={auth.user} role={auth.role}>
             <div className=" mt-6">
@@ -72,102 +72,108 @@ const Professors = ({ professors, auth }) => {
                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <div className="shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                                <table className="min-w-full divide-y divide-gray-300">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                First Name
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Last Name
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Email
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Phone Number
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Date of Creation
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            >
-                                                Number of theses
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                                            ></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-200 bg-white">
-                                        {professors.map((professor) => (
-                                            <tr
-                                                key={professor.id}
-                                                className="bg-white border-b cursor-pointer"
-                                            >
-                                                <td
-                                                    className="px-6 py-4 font-medium whitespace-nowrap "
-                                                    onClick={() =>
-                                                        handleProfessorClick(
-                                                            professor
-                                                        )
-                                                    }
+                                {professors.length === 0 ? (
+                                    <p className="p-4 text-sm text-gray-700">
+                                        No fields have been added yet.
+                                    </p>
+                                ) : (
+                                    <table className="min-w-full divide-y divide-gray-300">
+                                        <thead className="bg-gray-50">
+                                            <tr>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    {professor.firstName}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {professor.lastName}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {professor.email}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {professor.phoneNumber}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {formatDateTime(
-                                                        professor.created_at
-                                                    )}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {professor.numberTheses}
-                                                </td>
-                                                <td>
-                                                    <ActionsDropdown
-                                                        handleEditModal={() =>
-                                                            handleEditProfessor(
-                                                                professor
-                                                            )
-                                                        }
-                                                        handleDeleteModal={() =>
-                                                            handleDeleteModal(
-                                                                professor
-                                                            )
-                                                        }
-                                                    />
-                                                </td>
+                                                    First Name
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Last Name
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Email
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Phone Number
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Date of Creation
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
+                                                    Number of theses
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                ></th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody className="divide-y divide-gray-200 bg-white">
+                                            {professors.map((professor) => (
+                                                <tr
+                                                    key={professor.id}
+                                                    className="bg-white border-b cursor-pointer"
+                                                >
+                                                    <td
+                                                        className="px-6 py-4 font-medium whitespace-nowrap "
+                                                        onClick={() =>
+                                                            handleProfessorClick(
+                                                                professor
+                                                            )
+                                                        }
+                                                    >
+                                                        {professor.firstName}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {professor.lastName}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {professor.email}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {professor.phoneNumber}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {formatDateTime(
+                                                            professor.created_at
+                                                        )}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {professor.numberTheses}
+                                                    </td>
+                                                    <td>
+                                                        <ActionsDropdown
+                                                            handleEditModal={() =>
+                                                                handleEditProfessor(
+                                                                    professor
+                                                                )
+                                                            }
+                                                            handleDeleteModal={() =>
+                                                                handleDeleteModal(
+                                                                    professor
+                                                                )
+                                                            }
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -186,21 +192,14 @@ const Professors = ({ professors, auth }) => {
                         </Modal>
                     )}
                     {openDeleteModal && (
-                        <Modal
-                            show={openDeleteModal}
+                        <ModalMessage
+                            header={"Delete Professor"}
+                            message={
+                                "Are you sure you want to Delete this Professor?"
+                            }
                             onClose={() => setOpenDeleteModal(!openDeleteModal)}
-                        >
-                            <ModalMessage
-                                header={"Delete Professor"}
-                                message={
-                                    "Are you sure you want to Delete this Professor?"
-                                }
-                                onClose={() =>
-                                    setOpenDeleteModal(!openDeleteModal)
-                                }
-                                onConfirm={handleDeleteProfessor}
-                            />
-                        </Modal>
+                            onConfirm={handleDeleteProfessor}
+                        />
                     )}
                 </div>
             </div>

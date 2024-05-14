@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('Chancellor');
-            $table->string('ChancellorEmail');
-            $table->string('ChancellorPhoneNumber');
+            $table->string('chancellor');
+            $table->string('chancellorEmail');
+            $table->string('chancellorPhoneNumber');
             $table->timestamps();
         });
     }

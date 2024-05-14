@@ -5,6 +5,7 @@ import { MdDashboard } from "react-icons/md";
 import { FaBookOpen } from "react-icons/fa";
 import { FaBookReader } from "react-icons/fa";
 import { PiChalkboardTeacherFill } from "react-icons/pi";
+import { LiaUniversitySolid } from "react-icons/lia";
 
 export const professorNavLinks = [
     {
@@ -48,6 +49,11 @@ export const adminNavLinks = [
         name: "Professors",
         icon: PiChalkboardTeacherFill,
         route: "admin/professors",
+    },
+    {
+        name: "Universities",
+        icon: LiaUniversitySolid,
+        route: "admin/universities",
     },
 ];
 export const candidateNavLinks = [

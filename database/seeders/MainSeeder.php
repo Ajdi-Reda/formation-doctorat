@@ -94,7 +94,7 @@ class MainSeeder extends Seeder
 
         // ProgramUniversity Seeder
         DB::statement("
-            INSERT INTO program_universities (program_id, university_id, created_at, updated_at)
+            INSERT INTO program_university (program_id, university_id, created_at, updated_at)
             VALUES
                 (1, 1, NOW(), NOW()),
                 (2, 2, NOW(), NOW()),

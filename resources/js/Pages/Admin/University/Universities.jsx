@@ -7,11 +7,11 @@ import AuthLayout from "@/Layouts/AuthLayout";
 import AddEditUniversity from "./AddEditUniversity";
 import { router } from "@inertiajs/react";
 
-const Universities = ({ universities, auth }) => {
+const Universities = ({ universities, auth, programs }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [university, setUniversity] = useState("");
+    const [university, setUniversity] = useState(null);
     const onClose = () => {
         setOpen(false);
         setOpenEdit(false);
@@ -28,7 +28,6 @@ const Universities = ({ universities, auth }) => {
     };
 
     const handleDeleteUniversity = () => {
-        console.log("h");
         const id = university.id;
         router.delete(`/admin/universities/${id}`, {
             onSuccess: () => {
@@ -37,6 +36,7 @@ const Universities = ({ universities, auth }) => {
             },
         });
     };
+    console.log(universities);
 
     return (
         <AuthLayout user={auth.user} role={auth.role}>
@@ -119,16 +119,16 @@ const Universities = ({ universities, auth }) => {
                                                         {university.address}
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {university.Chancellor}
+                                                        {university.chancellor}
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                         {
-                                                            university.ChancellorEmail
+                                                            university.chancellorEmail
                                                         }
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                         {
-                                                            university.ChancellorPhoneNumber
+                                                            university.chancellorPhoneNumber
                                                         }
                                                     </td>
                                                     <td>
@@ -156,7 +156,10 @@ const Universities = ({ universities, auth }) => {
                             {/* Add/Edit University Modal */}
                             {open && (
                                 <Modal show={open} onClose={onClose}>
-                                    <AddEditUniversity onClose={onClose} />
+                                    <AddEditUniversity
+                                        onClose={onClose}
+                                        programs={programs}
+                                    />
                                 </Modal>
                             )}
                             {/* Edit University Modal */}
@@ -165,6 +168,7 @@ const Universities = ({ universities, auth }) => {
                                     <AddEditUniversity
                                         onClose={onClose}
                                         university={university}
+                                        programs={programs}
                                     />
                                 </Modal>
                             )}

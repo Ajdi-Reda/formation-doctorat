@@ -24,11 +24,25 @@ class Program extends Model implements HasMedia
 
     public function universities(): BelongsToMany
     {
-        return $this->BelongsToMany(University::class);
+        return $this->belongsToMany(University::class);
     }
 
     public function programUniversities()
     {
         return $this->hasMany(ProgramUniversity::class);
+    }
+
+
+    public function attachUniversities($universities)
+    {
+        $this->universities()->attach($universities);
+    }
+    public function updateAttachedUniversities($universities)
+    {
+        $this->universities()->sync($universities);
+    }
+    public function deleteAttachedUniversities()
+    {
+        $this->universities()->detach();
     }
 }

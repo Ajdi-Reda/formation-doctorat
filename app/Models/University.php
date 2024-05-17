@@ -19,13 +19,26 @@ class University extends Model
     ];
 
 
-    public function program(): BelongsToMany
+    public function programs(): BelongsToMany
     {
-        return $this->BelongsToMany(Program::class);
+        return $this->belongsToMany(Program::class);
     }
 
     public function universityProgram(): HasMany
     {
         return $this->hasMany(ProgramUniversity::class);
+    }
+
+    public function attachPrograms($programs)
+    {
+        $this->programs()->attach($programs);
+    }
+    public function updateAttachedPrograms($programs)
+    {
+        $this->programs()->sync($programs);
+    }
+    public function deleteAttachedPrograms()
+    {
+        $this->programs()->detach();
     }
 }

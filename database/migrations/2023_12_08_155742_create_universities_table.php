@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('chancellor');
-            $table->string('chancellorEmail');
+            $table->string('chancellorEmail')->unique();
             $table->string('chancellorPhoneNumber');
             $table->timestamps();
         });

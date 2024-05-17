@@ -7,6 +7,7 @@ import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
 import EditField from "./EditField";
+import { router } from "@inertiajs/react";
 
 const Fields = ({ fields, programs, auth }) => {
     const [open, setOpen] = useState(false);

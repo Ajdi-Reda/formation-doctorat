@@ -8,7 +8,8 @@ import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
 
-const AdminPrograms = ({ programs, auth }) => {
+const AdminPrograms = ({ programs, universities, auth }) => {
+    console.log(programs);
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -150,7 +151,10 @@ const AdminPrograms = ({ programs, auth }) => {
 
                             {open && (
                                 <Modal show={open} onClose={onClose}>
-                                    <AddEditProgram onClose={onClose} />
+                                    <AddEditProgram
+                                        onClose={onClose}
+                                        universities={universities}
+                                    />
                                 </Modal>
                             )}
                             {openEdit && (
@@ -158,6 +162,7 @@ const AdminPrograms = ({ programs, auth }) => {
                                     <AddEditProgram
                                         onClose={onClose}
                                         program={program}
+                                        universities={universities}
                                     />
                                 </Modal>
                             )}

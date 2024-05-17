@@ -19,6 +19,7 @@ import {
 import { Link } from "@inertiajs/react";
 
 import NavLink from "@/Components/NavLink";
+import { Toaster } from "react-hot-toast";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -38,6 +39,7 @@ const AuthLayout = ({ user, role, children }) => {
     console.log(role);
     return (
         <div>
+            <Toaster />
             <Transition.Root show={sidebarOpen} as={Fragment}>
                 <Dialog
                     as="div"

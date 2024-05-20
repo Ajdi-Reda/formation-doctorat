@@ -14,7 +14,7 @@ class AdminController extends Controller
         $programs = Program::with('universities')->get();
 
         foreach ($programs as $program) {
-            $program->universities = $program->universities()->pluck('id', 'name');
+            $program->universities = $program->universities()->pluck('universities.id', 'universities.name');
         }
         return Inertia::render('Admin/AdminPrograms', [
             'programs' => $programs,
@@ -24,25 +24,32 @@ class AdminController extends Controller
 
     function programs()
     {
-        $programs = Program::with('universities')->get();
 
-        foreach ($programs as $program) {
-            $program->universities = $program->universities->pluck('id', 'name');
-        }
         return Inertia::render('Admin/AdminPrograms', [
-            'programs' => $programs,
+            'programs' => $this->getProgramsWithUniversitites(),
             'universities' => University::select('id', 'name')->get(),
         ]);
     }
     function fields()
     {
-        $fields = Field::all();
-        foreach ($fields as $field) {
+        $fields = Field::all()->each(function ($field) {
             $field->numberTheses = $field->thesisProposals()->count();
-        }
+            dd($field->programUniversities);
+            $field->program = $field->programUniversities->first()->program;
+        });
         return Inertia::render('Admin/Fields', [
-            'programs' => Program::all(),
+            'programs' => $this->getProgramsWithUniversitites(),
             'fields' => $fields
         ]);
+    }
+
+    private function getProgramsWithUniversitites()
+    {
+        $programs = Program::with('universities')->get();
+
+        $programs->each(function ($program) {
+            $program->universities = $program->universities->pluck('id', 'name');
+        });
+        return $programs;
     }
 }

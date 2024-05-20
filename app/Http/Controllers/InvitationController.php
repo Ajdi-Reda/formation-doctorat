@@ -9,7 +9,6 @@ class InvitationController extends Controller
 {
     public function store(StoreInvitationRequest $request)
     {
-        dd($request);
         $invitation = new Invitation($request->all());
         $invitation->save();
         $emailController = new EmailController();

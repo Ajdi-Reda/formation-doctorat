@@ -5,8 +5,9 @@ import InputError from "@/Components/InputError";
 import { useForm } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-const RegisterForm = ({ email }) => {
+const RegisterForm = ({ email, universityId }) => {
     const { data, setData, post, errors } = useForm({
+        university_id: universityId,
         email: email,
         firstName: "",
         lastName: "",

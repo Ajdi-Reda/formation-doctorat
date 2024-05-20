@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->increments('id');
+            $table->foreignId('university_id')->constrained()->onDelete('cascade');
             $table->string('email')->unique();
             $table->string('invitation_token', 32)->unique()->nullable();
             $table->timestamp('registered_at')->nullable();

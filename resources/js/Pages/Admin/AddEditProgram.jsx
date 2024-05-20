@@ -176,9 +176,8 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                         required
                     >
                         <option value="">Select Status</option>
-                        <option value="ongoing">Ongoing</option>
-                        <option value="completed">Completed</option>
-                        <option value="upcoming">Upcoming</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
                     </select>
                     {errors.status && (
                         <p className="text-red-500 text-sm">{errors.status}</p>

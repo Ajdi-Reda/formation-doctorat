@@ -3,20 +3,23 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { useForm } from "@inertiajs/react";
-import React, { useState } from "react";
+import React from "react";
 import MD5 from "crypto-js/md5";
+import toast from "react-hot-toast";
 
-const AddProfessor = ({ onClose }) => {
+const AddProfessor = ({ onClose, universities }) => {
     const { data, setData, post, errors, processing, reset } = useForm({
+        university_id: "",
         email: "",
         invitation_token: "",
     });
 
-    const [invitationToken, setInvitationToken] = useState("");
-
+    const handleUniversityChange = (e) => {
+        setData("university_id", e.target.value);
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(data);
         post("/admin/professors/invitations", {
             onSuccess: () => {
                 reset();
@@ -34,13 +37,37 @@ const AddProfessor = ({ onClose }) => {
         const timestamp = Date.now();
         const hashInput = randomDigit.toString() + email + timestamp.toString();
         const hash = MD5(hashInput).toString().substring(0, 32);
-        setInvitationToken(hash);
+        setData("invitation_token", hash);
     };
 
     return (
         <div>
-            <h2 className="text-lg font-bold ">Add Professor</h2>
+            <h2 className="text-lg font-bold mb-3">Add Professor</h2>
             <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                    <InputLabel
+                        htmlFor="universities"
+                        className="block text-sm font-medium text-gray-700"
+                    >
+                        Universities
+                    </InputLabel>
+                    <select
+                        id="universities"
+                        className="block w-full rounded-md border-0 mt-1 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        value={data.selectedUniversity}
+                        onChange={handleUniversityChange}
+                        required
+                    >
+                        <option value="" disabled={true}>
+                            Select universities
+                        </option>
+                        {universities.map((uni) => (
+                            <option key={uni.id} value={uni.id}>
+                                {uni.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 <div className="mb-4">
                     <InputLabel htmlFor="email">Email</InputLabel>
                     <Input
@@ -62,7 +89,7 @@ const AddProfessor = ({ onClose }) => {
                             type="text"
                             id="invitation_token"
                             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                            value={invitationToken}
+                            value={data.invitation_token}
                             onChange={(e) => console.log(e.target.value)}
                             readOnly
                         />

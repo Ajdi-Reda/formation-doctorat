@@ -10,7 +10,7 @@ import AuthLayout from "@/Layouts/AuthLayout";
 import EditProfessor from "./EditProfessor";
 import AddProfessor from "./AddProfessor";
 
-const Professors = ({ professors, auth }) => {
+const Professors = ({ professors, auth, universities }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -108,6 +108,12 @@ const Professors = ({ professors, auth }) => {
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
+                                                    University
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                >
                                                     Date of Creation
                                                 </th>
                                                 <th
@@ -148,6 +154,12 @@ const Professors = ({ professors, auth }) => {
                                                         {professor.phoneNumber}
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {
+                                                            professor.university
+                                                                .name
+                                                        }
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                         {formatDateTime(
                                                             professor.created_at
                                                         )}
@@ -180,7 +192,10 @@ const Professors = ({ professors, auth }) => {
 
                     {open && (
                         <Modal show={open} onClose={onClose}>
-                            <AddProfessor onClose={onClose} />
+                            <AddProfessor
+                                onClose={onClose}
+                                universities={universities}
+                            />
                         </Modal>
                     )}
                     {openEdit && (

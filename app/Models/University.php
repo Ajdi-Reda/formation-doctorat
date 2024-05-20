@@ -41,4 +41,9 @@ class University extends Model
     {
         $this->programs()->detach();
     }
+
+    public function professors(): HasMany
+    {
+        return $this->hasMany(Professor::class);
+    }
 }

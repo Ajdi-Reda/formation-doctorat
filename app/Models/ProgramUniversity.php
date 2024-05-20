@@ -24,6 +24,6 @@ class ProgramUniversity extends Pivot
     }
     public function fields(): BelongsToMany
     {
-        return $this->belongsToMany(Field::class);
+        return $this->belongsToMany(Field::class, 'field_program_university', 'program_university_id', 'field_id');
     }
 }

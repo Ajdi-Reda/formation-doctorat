@@ -13,6 +13,7 @@ class Professor extends Model
 
     protected $fillable = [
         'user_id',
+        'university_id',
         'firstName',
         'lastName',
         'phoneNumber',
@@ -25,5 +26,10 @@ class Professor extends Model
     public function theses(): HasMany
     {
         return $this->hasMany(ThesisProposal::class);
+    }
+
+    public function university(): BelongsTo
+    {
+        return $this->belongsTo(University::class);
     }
 }

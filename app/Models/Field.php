@@ -11,19 +11,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Field extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ["program_id", "name", "icon", "description"];
-    //define the relationship with the Program table
-     public function program(): BelongsTo
+
+    protected $fillable = ["name", "icon", "description"];
+
+    public function programUniversities(): BelongsToMany
     {
-        return $this->belongsTo(Program::class);
+        return $this->belongsToMany(ProgramUniversity::class, 'field_program_university', 'program_university_id', 'field_id');
     }
 
-    public function programUniversities() : BelongsToMany {
-        return $this->belongsToMany(ProgramUniversity::class);
-    }
-
-    public function thesisProposals() : HasMany {
+    public function thesisProposals(): HasMany
+    {
         return $this->hasMany(ThesisProposal::class);
     }
 }

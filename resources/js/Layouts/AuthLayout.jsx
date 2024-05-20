@@ -36,7 +36,6 @@ const AuthLayout = ({ user, role, children }) => {
     } else if (role === "super-admin") {
         navLinks = adminNavLinks;
     }
-    console.log(role);
     return (
         <div>
             <Toaster />

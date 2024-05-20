@@ -72,12 +72,14 @@ class RegisteredUserController extends Controller
 
         return Inertia::render('Professor/RegisterForm', [
             'email' => $email,
+            'universityId' => $invitation->university_id,
         ]);
     }
 
     public function storeProfessor(Request $request)
     {
         $request->validate([
+            'university_id' => 'required|integer|exists:universities,id',
             'firstName' => 'required|string|max:30',
             'lastName' => 'required|string|max:30',
             'email' => 'required|string|email',
@@ -92,6 +94,7 @@ class RegisteredUserController extends Controller
 
         $user->assignRole(RolesEnum::PROFESSOR);
         Professor::create([
+            'university_id' => $request->input('university_id'),
             'user_id' => $user->id,
             'firstName' => $request->input('firstName'),
             'lastName' => $request->input('lastName'),

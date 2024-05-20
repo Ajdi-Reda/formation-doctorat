@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\RolesEnum;
 use App\Models\Professor;
+use App\Models\University;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,24 @@ class MainSeeder extends Seeder
         app(Role::class)->findOrCreate(RolesEnum::CANDIDATE->value, 'web');
         app(Role::class)->findOrCreate(RolesEnum::PROFESSOR->value, 'web');
         app(Role::class)->findOrCreate(RolesEnum::SUPERADMIN->value, 'web');
+        DB::statement("
+        INSERT INTO universities (name, address, chancellor, chancellorEmail, chancellorPhoneNumber, created_at, updated_at)
+        VALUES
+            ('Harvard University', 'Cambridge, MA', 'John Harvard', 'john.harvard@example.com', '123-456-7890', NOW(), NOW()),
+            ('Stanford University', 'Stanford, CA', 'Jane Stanford', 'jane.stanford@example.com', '123-456-7890', NOW(), NOW()),
+            ('MIT', 'Cambridge, MA', 'L. Rafael Reif', 'rafael.reif@mit.edu', '123-456-7890', NOW(), NOW()),
+            ('Oxford University', 'Oxford, UK', 'Louise Richardson', 'louise.richardson@ox.ac.uk', '123-456-7890', NOW(), NOW()),
+            ('ETH Zurich', 'Zurich, Switzerland', 'Joel Mesot', 'joel.mesot@ethz.ch', '123-456-7890', NOW(), NOW()),
+            ('University of Tokyo', 'Tokyo, Japan', 'Makoto Gonokami', 'makoto.gonokami@u-tokyo.ac.jp', '123-456-7890', NOW(), NOW()),
+            ('National University of Singapore', 'Singapore', 'Tan Eng Chye', 'engchye.tan@nus.edu.sg', '123-456-7890', NOW(), NOW()),
+            ('University of Toronto', 'Toronto, Canada', 'Meric Gertler', 'meric.gertler@utoronto.ca', '123-456-7890', NOW(), NOW()),
+            ('Peking University', 'Beijing, China', 'Qiu Yong', 'qiuyong@pku.edu.cn', '123-456-7890', NOW(), NOW()),
+            ('University of Melbourne', 'Melbourne, Australia', 'Duncan Maskell', 'duncan.maskell@unimelb.edu.au', '123-456-7890', NOW(), NOW())
+    ");
+
+        // Get all university IDs
+        $universityIds = University::pluck('id')->toArray();
+
         for ($i = 0; $i < 5; $i++) {
             $user = User::create([
                 'name' => "user_$i",
@@ -30,6 +49,7 @@ class MainSeeder extends Seeder
 
             $professor = new Professor([
                 'user_id' => $user->id,
+                'university_id' => $universityIds[array_rand($universityIds)], // Assign a random university
                 'firstName' => "John",
                 'lastName' => "Doe_$i",
                 'phoneNumber' => "06837923",
@@ -44,21 +64,6 @@ class MainSeeder extends Seeder
         ]);
 
         $user->assignRole(RolesEnum::SUPERADMIN);
-
-        DB::statement("
-            INSERT INTO universities (name, address, chancellor, chancellorEmail, chancellorPhoneNumber, created_at, updated_at)
-            VALUES
-                ('Harvard University', 'Cambridge, MA', 'John Harvard', 'john.harvard@example.com', '123-456-7890', NOW(), NOW()),
-                ('Stanford University', 'Stanford, CA', 'Jane Stanford', 'jane.stanford@example.com', '123-456-7890', NOW(), NOW()),
-                ('MIT', 'Cambridge, MA', 'L. Rafael Reif', 'rafael.reif@mit.edu', '123-456-7890', NOW(), NOW()),
-                ('Oxford University', 'Oxford, UK', 'Louise Richardson', 'louise.richardson@ox.ac.uk', '123-456-7890', NOW(), NOW()),
-                ('ETH Zurich', 'Zurich, Switzerland', 'Joel Mesot', 'joel.mesot@ethz.ch', '123-456-7890', NOW(), NOW()),
-                ('University of Tokyo', 'Tokyo, Japan', 'Makoto Gonokami', 'makoto.gonokami@u-tokyo.ac.jp', '123-456-7890', NOW(), NOW()),
-                ('National University of Singapore', 'Singapore', 'Tan Eng Chye', 'engchye.tan@nus.edu.sg', '123-456-7890', NOW(), NOW()),
-                ('University of Toronto', 'Toronto, Canada', 'Meric Gertler', 'meric.gertler@utoronto.ca', '123-456-7890', NOW(), NOW()),
-                ('Peking University', 'Beijing, China', 'Qiu Yong', 'qiuyong@pku.edu.cn', '123-456-7890', NOW(), NOW()),
-                ('University of Melbourne', 'Melbourne, Australia', 'Duncan Maskell', 'duncan.maskell@unimelb.edu.au', '123-456-7890', NOW(), NOW())
-        ");
 
 
         // Program Seeder
@@ -78,51 +83,52 @@ class MainSeeder extends Seeder
 
         // Field Seeder
         DB::statement("
-            INSERT INTO fields (program_id, name, description, created_at, updated_at)
-            VALUES
-                (1, 'Software Engineering', 'Advanced software development', NOW(), NOW()),
-                (1, 'Network Security', 'Securing computer networks', NOW(), NOW()),
-                (2, 'Finance', 'Financial studies within business administration', NOW(), NOW()),
-                (2, 'Marketing', 'Strategic marketing and advertising', NOW(), NOW()),
-                (3, 'Power Systems', 'Study of electrical power systems', NOW(), NOW()),
-                (3, 'Telecommunications', 'Communication systems engineering', NOW(), NOW()),
-                (4, 'Quantum Physics', 'Study of quantum phenomena', NOW(), NOW()),
-                (4, 'Astrophysics', 'Study of celestial bodies and the universe', NOW(), NOW()),
-                (5, 'Organic Chemistry', 'Study of organic compounds', NOW(), NOW()),
-                (5, 'Inorganic Chemistry', 'Study of inorganic compounds', NOW(), NOW())
-        ");
+        INSERT INTO fields (name, description, created_at, updated_at)
+        VALUES
+            ('Software Engineering', 'Advanced software development', NOW(), NOW()),
+            ('Network Security', 'Securing computer networks', NOW(), NOW()),
+            ('Finance', 'Financial studies within business administration', NOW(), NOW()),
+            ('Marketing', 'Strategic marketing and advertising', NOW(), NOW()),
+            ('Power Systems', 'Study of electrical power systems', NOW(), NOW()),
+            ('Telecommunications', 'Communication systems engineering', NOW(), NOW()),
+            ('Quantum Physics', 'Study of quantum phenomena', NOW(), NOW()),
+            ('Astrophysics', 'Study of celestial bodies and the universe', NOW(), NOW()),
+            ('Organic Chemistry', 'Study of organic compounds', NOW(), NOW()),
+            ('Inorganic Chemistry', 'Study of inorganic compounds', NOW(), NOW())
+    ");
+
 
         // ProgramUniversity Seeder
         DB::statement("
-            INSERT INTO program_university (program_id, university_id, created_at, updated_at)
-            VALUES
-                (1, 1, NOW(), NOW()),
-                (2, 2, NOW(), NOW()),
-                (3, 3, NOW(), NOW()),
-                (4, 4, NOW(), NOW()),
-                (5, 5, NOW(), NOW()),
-                (6, 6, NOW(), NOW()),
-                (7, 7, NOW(), NOW()),
-                (8, 8, NOW(), NOW()),
-                (9, 9, NOW(), NOW()),
-                (10, 10, NOW(), NOW())
-        ");
+        INSERT INTO program_university (program_id, university_id, created_at, updated_at)
+        VALUES
+            (1, 1, NOW(), NOW()),
+            (2, 2, NOW(), NOW()),
+            (3, 3, NOW(), NOW()),
+            (4, 4, NOW(), NOW()),
+            (5, 5, NOW(), NOW()),
+            (6, 6, NOW(), NOW()),
+            (7, 7, NOW(), NOW()),
+            (8, 8, NOW(), NOW()),
+            (9, 9, NOW(), NOW()),
+            (10, 10, NOW(), NOW())
+    ");
 
-        // FieldProgramUniversity Seeder
+
         DB::statement("
-            INSERT INTO field_program_university (program_university_id, field_id, created_at, updated_at)
-            VALUES
-                (1, 1, NOW(), NOW()),
-                (1, 2, NOW(), NOW()),
-                (2, 3, NOW(), NOW()),
-                (2, 4, NOW(), NOW()),
-                (3, 5, NOW(), NOW()),
-                (3, 6, NOW(), NOW()),
-                (4, 7, NOW(), NOW()),
-                (4, 8, NOW(), NOW()),
-                (5, 9, NOW(), NOW()),
-                (5, 10, NOW(), NOW())
-        ");;
+    INSERT INTO field_program_university (program_university_id, field_id, created_at, updated_at)
+    VALUES
+        (1, 1, NOW(), NOW()),
+        (1, 2, NOW(), NOW()),
+        (2, 3, NOW(), NOW()),
+        (2, 4, NOW(), NOW()),
+        (3, 5, NOW(), NOW()),
+        (3, 6, NOW(), NOW()),
+        (4, 7, NOW(), NOW()),
+        (4, 8, NOW(), NOW()),
+        (5, 9, NOW(), NOW()),
+        (5, 10, NOW(), NOW())
+");
 
 
         DB::statement(

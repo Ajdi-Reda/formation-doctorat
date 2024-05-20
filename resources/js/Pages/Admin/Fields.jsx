@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
 import ActionsDropdown from "../Professor/ActionsDropdown";
 import Modal from "@/Components/Modal.jsx";
-import AddField from "./AddField";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
-import EditField from "./EditField";
 import { router } from "@inertiajs/react";
+import AddEditField from "./AddEditField";
 
 const Fields = ({ fields, programs, auth }) => {
     const [open, setOpen] = useState(false);
@@ -137,12 +136,16 @@ const Fields = ({ fields, programs, auth }) => {
                 </div>
                 {open && (
                     <Modal show={open} onClose={onClose}>
-                        <AddField onClose={onClose} programs={programs} />
+                        <AddEditField onClose={onClose} programs={programs} />
                     </Modal>
                 )}
                 {openEdit && (
                     <Modal show={openEdit} onClose={onClose}>
-                        <EditField onClose={onClose} field={field} />
+                        <AddEditField
+                            onClose={onClose}
+                            programs={programs}
+                            field={field}
+                        />
                     </Modal>
                 )}
                 {openDeleteModal && (

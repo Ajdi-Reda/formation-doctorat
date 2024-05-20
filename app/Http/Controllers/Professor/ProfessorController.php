@@ -8,6 +8,7 @@ use App\Http\Controllers\EmailController;
 use App\Models\Candidate;
 use App\Models\Invitation;
 use App\Models\Professor;
+use App\Models\University;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,13 +26,14 @@ class ProfessorController extends Controller
 
     public function professors()
     {
-        $professors = Professor::all();
+        $professors = Professor::with('university')->get();
         foreach ($professors as $professor) {
             $professor->email = $professor->user->email;
             $professor->numberTheses = $professor->theses->count();
         }
         return Inertia::render('Admin/Professors', [
             'professors' => $professors,
+            'universities' => University::all()
         ]);
     }
 

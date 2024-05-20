@@ -26,7 +26,7 @@ class ProgramController extends Controller
             'startDate' => 'required|date',
             'endDate' => 'required|date|after_or_equal:startDate',
             'responsible' => 'required|string|max:255',
-            'status' => 'required|string|in:ongoing,completed,upcoming',
+            'status' => 'required|string|in:active,inactive',
             'icon' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'selectedUniversities' => 'required|array|min:1',
         ]);
@@ -61,7 +61,7 @@ class ProgramController extends Controller
             'startDate' => 'required|date',
             'endDate' => 'required|date|after_or_equal:startDate',
             'responsible' => 'required|string|max:255',
-            'status' => 'required|string|in:ongoing,completed,upcoming',
+            'status' => 'required|string|in:active,inactive',
             'selectedUniversities' => 'required|array|min:1',
         ]);
 

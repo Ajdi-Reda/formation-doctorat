@@ -68,35 +68,35 @@ class MainSeeder extends Seeder
 
         // Program Seeder
         DB::statement("
-            INSERT INTO programs (title, description, startDate, endDate, responsible, status, icon, created_at, updated_at)
-            VALUES
-   ('Computer Science', 'Cutting-edge CS program', '2024-01-15', '2024-06-15', 'Dr. Smith', 'Active', NULL, NOW(), NOW()),
-    ('Business Administration', 'Top-rated MBA program', '2024-02-01', '2024-07-01', 'Prof. Johnson', 'Active', NULL, NOW(), NOW()),
-    ('Electrical Engineering', 'Innovative EE program', '2024-03-01', '2024-08-01', 'Dr. Rodriguez', 'Active', NULL, NOW(), NOW()),
-    ('Physics', 'Advanced physics research program', '2024-04-01', '2024-09-01', 'Prof. Williams', 'Inactive', NULL, NOW(), NOW()),
-    ('Chemistry', 'Chemical sciences program', '2024-05-01', '2024-10-01', 'Dr. Brown', 'Active', NULL, NOW(), NOW()),
-    ('Medicine', 'Medical studies program', '2024-06-01', '2024-11-01', 'Dr. Johnson', 'Active', NULL, NOW(), NOW()),
-    ('Environmental Science', 'Sustainability program', '2024-07-01', '2024-12-01', 'Prof. Davis', 'Active', NULL, NOW(), NOW()),
-    ('Economics', 'Economic studies program', '2024-08-01', '2025-01-01', 'Dr. Wilson', 'Inactive', NULL, NOW(), NOW()),
-    ('Mathematics', 'Mathematical sciences program', '2024-09-01', '2025-02-01', 'Prof. Garcia', 'Active', NULL, NOW(), NOW()),
-    ('History', 'Historical studies program', '2024-10-01', '2025-03-01', 'Dr. Taylor', 'Active', NULL, NOW(), NOW());");
+    INSERT INTO programs (title, description, startDate, endDate, responsible, status, icon, created_at, updated_at)
+    VALUES
+        ('Computer Science', 'Cutting-edge CS program', '2024-01-15', '2024-06-15', 'Dr. Smith', 'Active', NULL, NOW(), NOW()),
+        ('Business Administration', 'Top-rated MBA program', '2024-02-01', '2024-07-01', 'Prof. Johnson', 'Active', NULL, NOW(), NOW()),
+        ('Electrical Engineering', 'Innovative EE program', '2024-03-01', '2024-08-01', 'Dr. Rodriguez', 'Active', NULL, NOW(), NOW()),
+        ('Physics', 'Advanced physics research program', '2024-04-01', '2024-09-01', 'Prof. Williams', 'Inactive', NULL, NOW(), NOW()),
+        ('Chemistry', 'Chemical sciences program', '2024-05-01', '2024-10-01', 'Dr. Brown', 'Active', NULL, NOW(), NOW()),
+        ('Medicine', 'Medical studies program', '2024-06-01', '2024-11-01', 'Dr. Johnson', 'Active', NULL, NOW(), NOW()),
+        ('Environmental Science', 'Sustainability program', '2024-07-01', '2024-12-01', 'Prof. Davis', 'Active', NULL, NOW(), NOW()),
+        ('Economics', 'Economic studies program', '2024-08-01', '2025-01-01', 'Dr. Wilson', 'Inactive', NULL, NOW(), NOW()),
+        ('Mathematics', 'Mathematical sciences program', '2024-09-01', '2025-02-01', 'Prof. Garcia', 'Active', NULL, NOW(), NOW()),
+        ('History', 'Historical studies program', '2024-10-01', '2025-03-01', 'Dr. Taylor', 'Active', NULL, NOW(), NOW())
+");
 
-        // Field Seeder
+        // Field Seeder with Program IDs
         DB::statement("
-        INSERT INTO fields (name, description, created_at, updated_at)
-        VALUES
-            ('Software Engineering', 'Advanced software development', NOW(), NOW()),
-            ('Network Security', 'Securing computer networks', NOW(), NOW()),
-            ('Finance', 'Financial studies within business administration', NOW(), NOW()),
-            ('Marketing', 'Strategic marketing and advertising', NOW(), NOW()),
-            ('Power Systems', 'Study of electrical power systems', NOW(), NOW()),
-            ('Telecommunications', 'Communication systems engineering', NOW(), NOW()),
-            ('Quantum Physics', 'Study of quantum phenomena', NOW(), NOW()),
-            ('Astrophysics', 'Study of celestial bodies and the universe', NOW(), NOW()),
-            ('Organic Chemistry', 'Study of organic compounds', NOW(), NOW()),
-            ('Inorganic Chemistry', 'Study of inorganic compounds', NOW(), NOW())
-    ");
-
+    INSERT INTO fields (program_id, name, description, created_at, updated_at)
+    VALUES
+        (1, 'Software Engineering', 'Advanced software development', NOW(), NOW()),
+        (1, 'Network Security', 'Securing computer networks', NOW(), NOW()),
+        (2, 'Finance', 'Financial studies within business administration', NOW(), NOW()),
+        (2, 'Marketing', 'Strategic marketing and advertising', NOW(), NOW()),
+        (3, 'Power Systems', 'Study of electrical power systems', NOW(), NOW()),
+        (3, 'Telecommunications', 'Communication systems engineering', NOW(), NOW()),
+        (4, 'Quantum Physics', 'Study of quantum phenomena', NOW(), NOW()),
+        (4, 'Astrophysics', 'Study of celestial bodies and the universe', NOW(), NOW()),
+        (5, 'Organic Chemistry', 'Study of organic compounds', NOW(), NOW()),
+        (5, 'Inorganic Chemistry', 'Study of inorganic compounds', NOW(), NOW())
+");
 
         // ProgramUniversity Seeder
         DB::statement("

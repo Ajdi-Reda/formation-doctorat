@@ -15,12 +15,20 @@ class ThesisController extends Controller
     {
         $theses = collect();
         $programFields = collect();
-        foreach (Auth::user()->professor->theses as $thesis) {
+        $professor = Auth::user()->professor;
+
+        foreach ($professor->theses()->with('field.program', 'candidates')->get() as $thesis) {
             $thesis->numberOfCandidates = $thesis->candidates->count();
             $theses->add($thesis);
         }
 
-        foreach (Program::all() as $program) {
+        $university = $professor->university;
+
+        // Retrieve programs associated with the university
+        $programs = $university->programs;
+
+        // Collect program fields
+        foreach ($programs as $program) {
             $programData = [
                 'id' => $program->id,
                 'title' => $program->title,
@@ -33,7 +41,7 @@ class ThesisController extends Controller
 
         return Inertia::render('Professor/Theses', [
             'theses' => $theses,
-            'programFields' => $programFields
+            'programFields' => $programFields,
         ]);
     }
 

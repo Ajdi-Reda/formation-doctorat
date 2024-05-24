@@ -12,7 +12,7 @@ class Field extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["name", "icon", "description"];
+    protected $fillable = ["program_id", "name", "icon", "description"];
 
     public function programUniversities(): BelongsToMany
     {
@@ -22,5 +22,10 @@ class Field extends Model
     public function thesisProposals(): HasMany
     {
         return $this->hasMany(ThesisProposal::class);
+    }
+
+    public function program(): BelongsTo
+    {
+        return $this->belongsTo(Program::class);
     }
 }

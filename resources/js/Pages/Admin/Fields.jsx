@@ -8,7 +8,7 @@ import AuthLayout from "@/Layouts/AuthLayout";
 import { router } from "@inertiajs/react";
 import AddEditField from "./AddEditField";
 
-const Fields = ({ fields, programs, auth }) => {
+const Fields = ({ fields, universities, auth }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -24,6 +24,7 @@ const Fields = ({ fields, programs, auth }) => {
     };
     const handleDeleteModal = (field) => {
         setOpenDeleteModal(true);
+        console.log("hel");
         setField(field);
     };
 
@@ -136,20 +137,24 @@ const Fields = ({ fields, programs, auth }) => {
                 </div>
                 {open && (
                     <Modal show={open} onClose={onClose}>
-                        <AddEditField onClose={onClose} programs={programs} />
+                        <AddEditField
+                            onClose={onClose}
+                            universities={universities}
+                        />
                     </Modal>
                 )}
                 {openEdit && (
                     <Modal show={openEdit} onClose={onClose}>
                         <AddEditField
                             onClose={onClose}
-                            programs={programs}
+                            universities={universities}
                             field={field}
                         />
                     </Modal>
                 )}
                 {openDeleteModal && (
                     <ModalMessage
+                        open={openDeleteModal}
                         header={"Delete Field"}
                         message={"Are you sure you want to delete this field?"}
                         onClose={() => setOpenDeleteModal(!openDeleteModal)}

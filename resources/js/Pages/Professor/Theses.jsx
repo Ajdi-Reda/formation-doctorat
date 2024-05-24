@@ -3,11 +3,10 @@ import { router } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
 import Modal from "@/Components/Modal.jsx";
-import AddThesis from "@/Pages/Professor/AddThesis.jsx";
 import ActionsDropdown from "@/Pages/Professor/ActionsDropdown.jsx";
-import EditThesis from "@/Pages/Professor/EditThesis.jsx";
 import ModalMessage from "@/Components/ModalMessage.jsx";
 import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
+import AddEditThesis from "./AddEditThesis";
 
 const Theses = ({ auth, theses, programFields }) => {
     const [open, setOpen] = useState(false);
@@ -128,7 +127,7 @@ const Theses = ({ auth, theses, programFields }) => {
 
                     {open && (
                         <Modal show={open} onClose={onClose}>
-                            <AddThesis
+                            <AddEditThesis
                                 onClose={onClose}
                                 programFields={programFields}
                             />
@@ -139,26 +138,23 @@ const Theses = ({ auth, theses, programFields }) => {
                             show={openEdit}
                             onClose={() => setOpenEdit(false)}
                         >
-                            <EditThesis
+                            <AddEditThesis
                                 onClose={() => setOpenEdit(false)}
+                                programFields={programFields}
                                 thesis={thesis}
                             />
                         </Modal>
                     )}
                     {openDeleteModal && (
-                        <Modal
-                            show={openDeleteModal}
+                        <ModalMessage
+                            open={openDeleteModal}
+                            header={"Delete thesis"}
+                            message={
+                                "Are you sure you want to Delete this thesis?"
+                            }
                             onClose={() => setOpenDeleteModal(false)}
-                        >
-                            <ModalMessage
-                                header={"Delete thesis"}
-                                message={
-                                    "Are you sure you want to Delete this thesis?"
-                                }
-                                onClose={() => setOpenDeleteModal(false)}
-                                onConfirm={handleDeleteThesis}
-                            />
-                        </Modal>
+                            onConfirm={handleDeleteThesis}
+                        />
                     )}
                 </div>
             </div>

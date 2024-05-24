@@ -26,14 +26,32 @@ class ProfessorController extends Controller
 
     public function professors()
     {
-        $professors = Professor::with('university')->get();
-        foreach ($professors as $professor) {
-            $professor->email = $professor->user->email;
-            $professor->numberTheses = $professor->theses->count();
-        }
+        // Fetch professors with their associated universities and users
+        $professors = Professor::with('university', 'user')
+            ->withCount('theses')
+            ->get();
+
+        // Transform the data for better readability
+        $professors = $professors->map(function ($professor) {
+            return [
+                'id' => $professor->id,
+                'firstName' => $professor->firstName,
+                'lastName' => $professor->lastName,
+                'email' => $professor->user->email,
+                'phoneNumber' => $professor->phoneNumber,
+                'numberTheses' => $professor->theses_count,
+                'university' => [
+                    'id' => $professor->university->id,
+                    'name' => $professor->university->name,
+                ],
+                'created_at' => $professor->created_at,
+                'updated_at' => $professor->updated_at,
+            ];
+        });
+
         return Inertia::render('Admin/Professors', [
             'professors' => $professors,
-            'universities' => University::all()
+            'universities' => University::all(),
         ]);
     }
 

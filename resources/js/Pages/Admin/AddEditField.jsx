@@ -1,67 +1,123 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-const AddEditField = ({ onClose, programs = [], field = null }) => {
-    const [selectedProgram, setSelectedProgram] = useState("");
-    const [universities, setUniversities] = useState([]);
-    const [selectedUniversities, setSelectedUniversities] = useState([]);
+const AddEditField = ({ onClose, universities = [], field = null }) => {
+    const findProgramAndUniversity = () => {
+        if (!field) return { selectedUniversity: null, selectedProgram: null };
+
+        for (const university of universities) {
+            for (const program of university.programs) {
+                if (program.fields.some((f) => f.id === field.id)) {
+                    return {
+                        selectedUniversity: university.id,
+                        selectedProgram: program.id,
+                    };
+                }
+            }
+        }
+        return { selectedUniversity: null, selectedProgram: null };
+    };
+
+    const {
+        selectedUniversity: initialUniversity,
+        selectedProgram: initialProgram,
+    } = findProgramAndUniversity();
+
+    const [selectedUniversity, setSelectedUniversity] =
+        useState(initialUniversity);
+    const [selectedProgram, setSelectedProgram] = useState(initialProgram);
+    const [filteredPrograms, setFilteredPrograms] = useState([]);
 
     const { data, setData, post, patch, errors, processing, reset } = useForm({
-        programId: field ? field.programId : "",
+        programId: initialProgram || "",
         name: field ? field.name : "",
         description: field ? field.description : "",
-        universityIds: field ? field.universities.map((u) => u.id) : [],
+        universityId: initialUniversity || "",
     });
 
     useEffect(() => {
-        if (isEditMode) {
-            setSelectedProgram(field.programId);
-        }
-    }, [field]);
-
-    useEffect(() => {
-        if (selectedProgram) {
-            const program = programs.find((p) => p.id == selectedProgram);
-            if (program) {
-                setUniversities(program.universities);
-                setData("programId", selectedProgram);
+        if (field) {
+            setSelectedProgram(initialProgram);
+            setSelectedUniversity(initialUniversity);
+            if (initialUniversity) {
+                const university = universities.find(
+                    (uni) => uni.id === initialUniversity
+                );
+                if (university) {
+                    setFilteredPrograms(university.programs);
+                }
             }
         }
-    }, [selectedProgram, programs, setData]);
+    }, [field, initialUniversity, initialProgram, universities]);
 
-    const handleProgramChange = (e) => {
-        const selectedProgramId = e.target.value;
-        setSelectedProgram(selectedProgramId);
+    const handleUniversityChange = (e) => {
+        const selectedUniversityId = parseInt(e.target.value, 10);
+        console.log("Selected University:", selectedUniversityId);
+        setSelectedUniversity(selectedUniversityId);
+        setData("universityId", selectedUniversityId);
+
+        const university = universities.find(
+            (uni) => uni.id === selectedUniversityId
+        );
+        if (university) {
+            setFilteredPrograms(university.programs);
+        } else {
+            setFilteredPrograms([]);
+        }
+        setSelectedProgram("");
+        setData("programId", "");
+        console.log(data, selectedUniversity, initialUniversity);
     };
 
-    const handleUniChange = (e) => {
-        const selectedUniversityIds = Array.from(
-            e.target.selectedOptions,
-            (option) => option.value
-        );
-        setSelectedUniversities(selectedUniversityIds);
-        setData("universityIds", selectedUniversityIds);
-        console.log(selectedUniversityIds);
+    const handleProgramChange = (e) => {
+        const selectedProgramId = parseInt(e.target.value, 10);
+        setSelectedProgram(selectedProgramId);
+        setData("programId", selectedProgramId);
+        console.log(data, selectedUniversity);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const url = isEditMode ? `/admin/fields/${field.id}` : "/admin/fields";
-        const method = isEditMode ? patch : post;
+        console.log("Form Data:", data);
 
-        method(url, {
-            onSuccess: () => {
-                reset();
-                onClose();
-                toast.success(
-                    isEditMode
-                        ? "Field edited successfully"
-                        : "Field added successfully"
-                );
-            },
-        });
+        const url = field ? `admin/fields/${field.id}` : "/admin/fields";
+        field
+            ? router.patch(url, {
+                  data: {
+                      ...data,
+                      universityId: field
+                          ? data.universityId
+                          : selectedUniversity,
+                  },
+                  onSuccess: () => {
+                      reset();
+                      onClose();
+                      toast.success(
+                          field
+                              ? "Field edited successfully"
+                              : "Field added successfully"
+                      );
+                  },
+              })
+            : router.post(url, {
+                  data: {
+                      ...data,
+                      universityId: field
+                          ? data.universityId
+                          : selectedUniversity,
+                  },
+                  onSuccess: () => {
+                      reset();
+                      onClose();
+                      toast.success(
+                          field
+                              ? "Field edited successfully"
+                              : "Field added successfully"
+                      );
+                  },
+              });
     };
 
     return (
@@ -69,48 +125,45 @@ const AddEditField = ({ onClose, programs = [], field = null }) => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label
-                        htmlFor="program"
+                        htmlFor="university"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Program
+                        University
                     </label>
                     <select
-                        id="program"
+                        id="university"
                         className="block w-full mt-1 rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        value={selectedProgram}
-                        onChange={handleProgramChange}
+                        value={selectedUniversity || ""}
+                        onChange={handleUniversityChange}
                         required
                     >
-                        <option value="">Select Program</option>
-                        {programs.map((program) => (
-                            <option key={program.id} value={program.id}>
-                                {program.title}
+                        <option value="">Select University</option>
+                        {universities.map((university) => (
+                            <option key={university.id} value={university.id}>
+                                {university.name}
                             </option>
                         ))}
                     </select>
                 </div>
-                {selectedProgram && (
+                {selectedUniversity && (
                     <div className="mb-4">
                         <label
-                            htmlFor="university"
+                            htmlFor="program"
                             className="block text-sm font-medium text-gray-700"
                         >
-                            University
+                            Program
                         </label>
                         <select
-                            id="university"
-                            className="block w-full rounded-md border-0 mt-1 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            multiple
-                            value={selectedUniversities}
-                            onChange={handleUniChange}
+                            id="program"
+                            className="block w-full mt-1 rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            value={selectedProgram || ""}
+                            onChange={handleProgramChange}
                             required
                         >
-                            {universities.map((university) => (
-                                <option
-                                    key={university.id}
-                                    value={university.id}
-                                >
-                                    {university.name}
+                            <option value="">Select Program</option>
+                            {filteredPrograms.map((program) => (
+                                <option key={program.id} value={program.id}>
+                                    {program.title}
                                 </option>
                             ))}
                         </select>
@@ -160,13 +213,11 @@ const AddEditField = ({ onClose, programs = [], field = null }) => {
                     type="submit"
                     className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
-                    {`${
-                        processing
-                            ? "Processing ..."
-                            : field
-                            ? "Edit Field"
-                            : "Add Field"
-                    }`}
+                    {processing
+                        ? "Processing ..."
+                        : field
+                        ? "Edit Field"
+                        : "Add Field"}
                 </PrimaryButton>
             </form>
         </div>

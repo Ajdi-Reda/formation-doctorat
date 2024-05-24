@@ -5,50 +5,84 @@ import InputLabel from "@/Components/InputLabel.jsx";
 import FileInput from "@/Components/FileInput.jsx";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-const AddThesis = ({ onClose, programFields }) => {
-    const [selectedProgram, setSelectedProgram] = useState("");
-    const [selectedField, setSelectedField] = useState("");
-    const [fields, setFields] = useState("");
+const AddEditThesis = ({ onClose, programFields, thesis }) => {
+    console.log(thesis);
+    const [selectedProgram, setSelectedProgram] = useState(
+        thesis ? thesis.program.title : ""
+    );
+    const [selectedField, setSelectedField] = useState(
+        thesis ? thesis.field.name : ""
+    );
+    const [fields, setFields] = useState([]);
 
-    const { data, setData, post, errors, processing, reset } = useForm({
-        fieldId: "",
-        title: "",
-        description: "",
-        thesisOutline: "",
-    });
+    const initialFormData = thesis
+        ? {
+              fieldId: thesis.field.id,
+              title: thesis.title,
+              description: thesis.description,
+              thesisOutline: "",
+          }
+        : {
+              fieldId: "",
+              title: "",
+              description: "",
+              thesisOutline: "",
+          };
+
+    const { data, setData, post, put, errors, processing, reset } =
+        useForm(initialFormData);
+
+    useEffect(() => {
+        if (selectedProgram) {
+            const selectedProgramFields = programFields.find(
+                (program) => program.title === selectedProgram
+            );
+            setFields(
+                selectedProgramFields ? selectedProgramFields.fields : []
+            );
+        }
+    }, [selectedProgram, programFields]);
 
     const handleProgramChange = (e) => {
         const selectedProgramValue = e.target.value;
         setSelectedProgram(selectedProgramValue);
-        const selectedProgramFields = programFields.find(
-            (program) => program.title === selectedProgramValue
-        );
-        setFields(selectedProgramFields ? selectedProgramFields.fields : "");
     };
+
     const handleFieldChange = (e) => {
         const selectedFieldValue = e.target.value;
         setSelectedField(selectedFieldValue);
-        const selectedFieldId = fields.find(
+        const selectedField = fields.find(
             (field) => field.name === selectedFieldValue
         );
-        setData("fieldId", selectedFieldId.id);
+        setData("fieldId", selectedField ? selectedField.id : "");
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/professor/theses", {
-            onSuccess: () => {
-                reset();
-                onClose();
-                toast.success("Thesis added successfully");
-            },
-        });
-        console.log(processing);
+        if (thesis) {
+            put(`/professor/theses/${thesis.id}`, {
+                onSuccess: () => {
+                    reset();
+                    onClose();
+                    toast.success("Thesis updated successfully");
+                },
+            });
+        } else {
+            post("/professor/theses", {
+                onSuccess: () => {
+                    reset();
+                    onClose();
+                    toast.success("Thesis added successfully");
+                },
+            });
+        }
     };
 
     return (
         <div>
-            <h2 className="text-lg font-bold mb-4">Add Thesis</h2>
+            <h2 className="text-lg font-bold mb-4">
+                {thesis ? "Edit Thesis" : "Add Thesis"}
+            </h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label
@@ -74,29 +108,24 @@ const AddThesis = ({ onClose, programFields }) => {
                 </div>
                 <div className="mb-4">
                     <label
-                        htmlFor="program"
+                        htmlFor="field"
                         className="block text-sm font-medium text-gray-700"
                     >
                         Field
                     </label>
                     <select
-                        id="program"
+                        id="field"
                         className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                         value={selectedField}
                         onChange={handleFieldChange}
                         required
                     >
-                        <option value="">Select field</option>
-                        {fields &&
-                            fields.map((field, index) => (
-                                <option
-                                    onChange={() => console.log(index)}
-                                    key={index}
-                                    value={field.name}
-                                >
-                                    {field.name}
-                                </option>
-                            ))}
+                        <option value="">Select Field</option>
+                        {fields.map((field, index) => (
+                            <option key={index} value={field.name}>
+                                {field.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="mb-4">
@@ -154,11 +183,17 @@ const AddThesis = ({ onClose, programFields }) => {
                     type="submit"
                     className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
-                    {`${processing ? "Creating ..." : "Add thesis"}`}
+                    {processing
+                        ? thesis
+                            ? "Editing ..."
+                            : "Creating ..."
+                        : thesis
+                        ? "Edit Thesis"
+                        : "Add Thesis"}
                 </PrimaryButton>
             </form>
         </div>
     );
 };
 
-export default AddThesis;
+export default AddEditThesis;

@@ -30,18 +30,28 @@ class AdminController extends Controller
             'universities' => University::select('id', 'name')->get(),
         ]);
     }
-    function fields()
+    public function fields()
     {
-        $fields = Field::all()->each(function ($field) {
-            $field->numberTheses = $field->thesisProposals()->count();
-            dd($field->programUniversities);
-            $field->program = $field->programUniversities->first()->program;
+        $universities = University::with(['programs.fields'])->get();
+        $universities = $universities->map(function ($university) {
+            $university->programs = $university->programs->map(function ($program) {
+                return [
+                    'id' => $program->id,
+                    'title' => $program->title,
+                    'fields' => $program->fields->pluck('id', 'name')
+                ];
+            });
+
+            return $university;
         });
+
+        $fields = Field::withCount('thesisProposals')->get();
         return Inertia::render('Admin/Fields', [
-            'programs' => $this->getProgramsWithUniversitites(),
+            'universities' => $universities,
             'fields' => $fields
         ]);
     }
+
 
     private function getProgramsWithUniversitites()
     {

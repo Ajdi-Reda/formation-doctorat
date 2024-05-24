@@ -44,55 +44,58 @@ class FieldController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the incoming request
-        try {
-            // Validate the incoming request
-            $validated = $request->validate([
-                'universityIds' => 'required|array',
-                'universityIds.*' => 'required|exists:universities,id', // Each item in the array should exist in the universities table
-                'programId' => 'required|exists:programs,id',
-                'name' => 'required|string',
-                'description' => 'required|string',
-            ]);
-        } catch (ValidationException $e) {
-            // Dump and die the validation errors
-            dd($e->errors());
-        }
-
-        $field = Field::create([
-            'name' => $validated['name'],
-            'description' => $validated['description'],
+        $validated = $request->validate([
+            'data.programId' => 'required|exists:programs,id',
+            'data.universityId' => 'required|exists:universities,id',
+            'data.name' => 'required|string',
+            'data.description' => 'required|string',
         ]);
 
-        foreach ($validated['universityIds'] as $universityId) {
-            $programUniversity = ProgramUniversity::where([
-                'university_id' => $universityId,
-                'program_id' => $validated['programId'],
-            ])->firstOrFail();
 
-            $programUniversity->fields()->attach($field);
-        }
+        $field = Field::create([
+            'program_id' => $validated['data']['programId'],
+            'name' => $validated['data']['name'],
+            'description' => $validated['data']['description'],
+        ]);
+
+        $programUniversity = ProgramUniversity::where([
+            'university_id' => $validated['data']['universityId'],
+            'program_id' => $validated['data']['programId'],
+        ])->firstOrFail();
+
+        $programUniversity->fields()->attach($field);
     }
-
 
 
     public function update(Request $request, Field $field)
     {
+
         $validated = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
+            'data.programId' => 'required|exists:programs,id',
+            'data.universityId' => 'required|exists:universities,id',
+            'data.name' => 'required|string',
+            'data.description' => 'required|string',
         ]);
 
-        $field->update($validated);
 
-        return redirect()->back();
+        $field->update([
+            'program_id' => $validated['data']['programId'],
+            'name' => $validated['data']['name'],
+            'description' => $validated['data']['description'],
+        ]);
+
+        $programUniversity = ProgramUniversity::where([
+            'university_id' => $validated['data']['universityId'],
+            'program_id' => $validated['data']['programId'],
+        ])->firstOrFail();
+
+        $programUniversity->fields()->sync($field);
     }
 
 
     public function destroy(Field $field)
     {
+        $field->programUniversities()->detach();
         $field->delete();
-
-        return redirect()->back();
     }
 }

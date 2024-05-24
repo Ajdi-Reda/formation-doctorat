@@ -15,7 +15,7 @@ const Professors = ({ professors, auth, universities }) => {
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [professor, setProfessor] = useState({});
-
+    console.log(professors);
     const onClose = () => {
         setOpen(false);
         setOpenEdit(false);

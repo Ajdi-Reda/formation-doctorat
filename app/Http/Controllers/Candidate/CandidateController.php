@@ -10,11 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-class CandidateController extends Controller {
-    public function __construct() {
+class CandidateController extends Controller
+{
+    public function __construct()
+    {
         $this->middleware('auth');
     }
-    public function dashboard() {
+    public function dashboard()
+    {
         $applications = collect();
         $completed = false;
         $candidate = Auth::user()->candidate;
@@ -28,9 +31,10 @@ class CandidateController extends Controller {
                     'thesisTitle' => $application->thesisProposal->title,
                     'status' => $application->status,
                     'accepted' => $application->accepted,
-                    'thesisOutline' => $application->accepted?  $application->thesisProposal
+                    'thesisOutline' => $application->accepted ? ($application->thesisProposal
+                        ->getFirstMedia() ? $application->thesisProposal
                         ->getFirstMedia()
-                        ->getUrl() : '',
+                        ->getUrl() : '') : '',
                 ];
                 $applications->add($applicationData);
             }
@@ -44,29 +48,29 @@ class CandidateController extends Controller {
         ]);
     }
 
-    public function form() {
+    public function form()
+    {
         return Inertia::render('Candidate/MultiStepForm', [
             'programs' =>  Program::all(),
         ]);
     }
 
 
-    public function updateStatus(Request $request, Candidate $candidate) {
+    public function updateStatus(Request $request, Candidate $candidate)
+    {
         $application =  $candidate->applications->where('thesis_proposal_id', $request->thesisId)->first();
         $message = 'Candidate status changed to pending';
 
-       if($request->accepted === CandidateStatus::Accepted->value) {
-           $application->status = CandidateStatus::Accepted;
-           $message = 'Candidate succefully accepted!';
-       }
-       else if($request->accepted === CandidateStatus::Rejected->value){
-           $application->status = CandidateStatus::Rejected;
-           $message = 'Candidate succefully rejected!';
-       }
-       else if($request->accepted === CandidateStatus::Pending->value) {
-        $application->status = CandidateStatus::Pending;
-       }
-           $application->save();
-           return redirect('professor/dashboard')->with('message', $message);
+        if ($request->accepted === CandidateStatus::Accepted->value) {
+            $application->status = CandidateStatus::Accepted;
+            $message = 'Candidate succefully accepted!';
+        } else if ($request->accepted === CandidateStatus::Rejected->value) {
+            $application->status = CandidateStatus::Rejected;
+            $message = 'Candidate succefully rejected!';
+        } else if ($request->accepted === CandidateStatus::Pending->value) {
+            $application->status = CandidateStatus::Pending;
+        }
+        $application->save();
+        return redirect('professor/dashboard')->with('message', $message);
     }
 }

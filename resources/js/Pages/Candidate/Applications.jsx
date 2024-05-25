@@ -106,6 +106,9 @@ const Applications = ({ applications }) => {
                                                             ) : (
                                                                 <button
                                                                     type="button"
+                                                                    disabled={
+                                                                        application.accepted
+                                                                    }
                                                                     onClick={() => {
                                                                         setOpen(
                                                                             !open
@@ -132,17 +135,17 @@ const Applications = ({ applications }) => {
                         </div>
                     </div>
                 </div>
-                <Modal show={open} onClose={() => setOpen(!open)}>
-                    <ModalMessage
-                        header={"Accept thesis"}
-                        message={
-                            "Are you sure you want to accept this thesis?" +
-                            "you won't be able to accept another thesis"
-                        }
-                        onClose={() => setOpen(!open)}
-                        onConfirm={onConfirm}
-                    />
-                </Modal>
+                <ModalMessage
+                    open={open}
+                    header={"Accept thesis"}
+                    message={
+                        "Are you sure you want to accept this thesis? " +
+                        "you won't be able to accept another thesis."
+                    }
+                    onClose={() => setOpen(!open)}
+                    onConfirm={onConfirm}
+                    btn="Confirm"
+                />
             </div>
         </>
     );

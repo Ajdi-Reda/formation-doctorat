@@ -1,0 +1,12 @@
+{
+    "dashboardItems": {
+        "Dashboard": "Tableau de bord",
+        "Approved applicants": "Candidats approuvés",
+        "Theses": "Thèses",
+        "Accepted applicants": "Candidats acceptés",
+        "Programs": "Programmes",
+        "Fields": "Domaines",
+        "Professors": "Professeurs",
+        "Universities": "Universités"
+    }
+}

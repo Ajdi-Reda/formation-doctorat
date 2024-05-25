@@ -20,7 +20,6 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="mBranch"
                                 type="text"
-                                pattern="[a-zA-Z]*"
                                 value={data.mBranch}
                                 onChange={(e) =>
                                     setData("mBranch", e.target.value)
@@ -55,7 +54,6 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="mEstablishment"
                                 type="text"
-                                pattern="[a-zA-Z]*"
                                 value={data.mEstablishment}
                                 onChange={(e) =>
                                     setData("mEstablishment", e.target.value)

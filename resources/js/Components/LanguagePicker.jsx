@@ -7,13 +7,35 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-export default function LanguagePicker({ languages }) {
-    const [selectedLanguage, setSelectedLanguage] = useState(languages[0]); // Default to the first language
+const languages = [
+    {
+        id: 1,
+        name: "English",
+        notation: "en",
+    },
+    {
+        id: 2,
+        name: "French",
+        notation: "fr",
+    },
+    {
+        id: 3,
+        name: "Arabic",
+        notation: "ar",
+    },
+];
+
+export default function LanguagePicker() {
     const { i18n } = useTranslation(); // Destructure i18n from useTranslation
+    const [selectedLanguage, setSelectedLanguage] = useState(() => {
+        const storedLanguage = localStorage.getItem("selectedLanguage");
+        return storedLanguage ? JSON.parse(storedLanguage) : languages[0];
+    });
 
     const handleLanguageSelect = (language) => {
         setSelectedLanguage(language);
         i18n.changeLanguage(language.notation); // Use i18n to change language
+        localStorage.setItem("selectedLanguage", JSON.stringify(language));
     };
 
     useEffect(() => {

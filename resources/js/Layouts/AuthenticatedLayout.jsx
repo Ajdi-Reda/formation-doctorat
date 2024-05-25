@@ -5,21 +5,13 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 import { Toaster } from "react-hot-toast";
-import {
-    professorNavLinks,
-    candidateNavLinks,
-} from "@/Components/RoleBasedNavigation/RoleBasedNavigation.jsx";
+import { useNavLinks } from "@/Components/RoleBasedNavigation/RoleBasedNavigation";
 
 export default function Authenticated({ user, header, children, role }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
-    let navLinks = [];
-    if (role === "professor") {
-        navLinks = professorNavLinks;
-    } else if (role === "candidate") {
-        navLinks = candidateNavLinks;
-    }
 
+    const navLinks = useNavLinks(role);
     return (
         <div className="min-h-screen container mx-auto">
             <Toaster

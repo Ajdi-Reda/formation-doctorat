@@ -1,0 +1,12 @@
+{
+    "dashboardItems": {
+        "Dashboard": "لوحة القيادة",
+        "Approved applicants": "المتقدمون المعتمدون",
+        "Theses": "الأطروحات",
+        "Accepted applicants": "المتقدمون المقبولون",
+        "Programs": "البرامج",
+        "Fields": "المجالات",
+        "Professors": "الأساتذة",
+        "Universities": "الجامعات"
+    }
+}

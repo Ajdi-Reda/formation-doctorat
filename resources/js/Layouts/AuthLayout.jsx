@@ -1,10 +1,5 @@
-import React from "react";
-import { Fragment, useState } from "react";
-import {
-    professorNavLinks,
-    candidateNavLinks,
-    adminNavLinks,
-} from "@/Components/RoleBasedNavigation/RoleBasedNavigation.jsx";
+import React, { Fragment, useState } from "react";
+import { useNavLinks } from "@/Components/RoleBasedNavigation/RoleBasedNavigation";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
     Bars3Icon,
@@ -20,22 +15,18 @@ import { Link } from "@inertiajs/react";
 
 import NavLink from "@/Components/NavLink";
 import { Toaster } from "react-hot-toast";
+import LanguagePicker from "@/Components/LanguagePicker";
+import { useTranslation } from "react-i18next";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
 const AuthLayout = ({ user, role, children }) => {
+    const { t } = useTranslation();
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const navLinks = useNavLinks(role);
 
-    let navLinks = [];
-    if (role === "professor") {
-        navLinks = professorNavLinks;
-    } else if (role === "candidate") {
-        navLinks = candidateNavLinks;
-    } else if (role === "super-admin") {
-        navLinks = adminNavLinks;
-    }
     return (
         <div>
             <Toaster />
@@ -95,7 +86,7 @@ const AuthLayout = ({ user, role, children }) => {
                                         </button>
                                     </div>
                                 </Transition.Child>
-                                {/* Sidebar component, swap this element with another sidebar if you like */}
+                                {/* Sidebar component */}
                                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                                     <div className="flex h-16 shrink-0 items-center">
                                         <img
@@ -116,9 +107,8 @@ const AuthLayout = ({ user, role, children }) => {
                                                 >
                                                     {navLinks.map(
                                                         (item, idx) => (
-                                                            <li key={item.name}>
+                                                            <li key={idx}>
                                                                 <NavLink
-                                                                    key={idx}
                                                                     href={route(
                                                                         item.route
                                                                     )}
@@ -128,7 +118,9 @@ const AuthLayout = ({ user, role, children }) => {
                                                                 >
                                                                     <item.icon
                                                                         className={classNames(
-                                                                            item.current
+                                                                            route().current(
+                                                                                item.route
+                                                                            )
                                                                                 ? "text-indigo-600"
                                                                                 : "text-gray-400 group-hover:text-indigo-600",
                                                                             "h-6 w-6 shrink-0"
@@ -142,19 +134,6 @@ const AuthLayout = ({ user, role, children }) => {
                                                     )}
                                                 </ul>
                                             </li>
-
-                                            <li className="mt-auto">
-                                                <a
-                                                    href="#"
-                                                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
-                                                >
-                                                    <Cog6ToothIcon
-                                                        className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                                                        aria-hidden="true"
-                                                    />
-                                                    Settings
-                                                </a>
-                                            </li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -166,7 +145,7 @@ const AuthLayout = ({ user, role, children }) => {
 
             {/* Static sidebar for desktop */}
             <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-                {/* Sidebar component, swap this element with another sidebar if you like */}
+                {/* Sidebar component */}
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                         <img
@@ -182,8 +161,8 @@ const AuthLayout = ({ user, role, children }) => {
                         >
                             <li>
                                 <ul role="list" className="-mx-2 space-y-1">
-                                    {navLinks.map((item) => (
-                                        <li key={item.name}>
+                                    {navLinks.map((item, idx) => (
+                                        <li key={idx}>
                                             <NavLink
                                                 href={route(item.route)}
                                                 active={route().current(
@@ -206,18 +185,6 @@ const AuthLayout = ({ user, role, children }) => {
                                         </li>
                                     ))}
                                 </ul>
-                            </li>
-                            <li className="mt-auto">
-                                <a
-                                    href="#"
-                                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
-                                >
-                                    <Cog6ToothIcon
-                                        className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                                        aria-hidden="true"
-                                    />
-                                    Settings
-                                </a>
                             </li>
                         </ul>
                     </nav>
@@ -263,25 +230,12 @@ const AuthLayout = ({ user, role, children }) => {
                             />
                         </form>
                         <div className="flex items-center gap-x-4 lg:gap-x-6">
-                            <button
-                                type="button"
-                                className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
-                            >
-                                <span className="sr-only">
-                                    View notifications
-                                </span>
-                                <BellIcon
-                                    className="h-6 w-6"
-                                    aria-hidden="true"
-                                />
-                            </button>
-
+                            <LanguagePicker />
                             {/* Separator */}
                             <div
                                 className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
                                 aria-hidden="true"
                             />
-
                             {/* Profile dropdown */}
                             <Menu as="div" className="relative">
                                 <Menu.Button className="-m-1.5 flex items-center p-1.5">

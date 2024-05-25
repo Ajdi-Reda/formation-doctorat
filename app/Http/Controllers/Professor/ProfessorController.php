@@ -138,9 +138,10 @@ class ProfessorController extends Controller
             ]);
 
             $role = Auth::user()->getRoleNames()->first();
+
             return Inertia::render('Professor/CandidateData', [
                 'candidateData' => $data,
-                'showActionButton' => $role === 'professor' ? true : false,
+                'showActionButtons' => $role === 'professor' ? true : false,
             ]);
         }
     }

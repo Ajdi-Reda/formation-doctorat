@@ -7,6 +7,7 @@ import DocumentsLayout from "@/Pages/Professor/DocumentsLayout.jsx";
 import { router, useForm } from "@inertiajs/react";
 
 const CandidateData = ({ candidateData, auth, showActionButtons }) => {
+    console.log(showActionButtons);
     const personalData = candidateData.personalData;
     const bac = candidateData.bacDetails;
     const licence = candidateData.licenceDetails;

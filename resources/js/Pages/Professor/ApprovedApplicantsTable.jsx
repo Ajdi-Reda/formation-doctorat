@@ -68,21 +68,21 @@ const ApprovedApplicantsTable = ({
                                         candidates.map((candidate) => (
                                             <tr
                                                 key={candidate.id}
-                                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                                                className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 cursor-pointer"
                                             >
-                                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {candidate.firstName}
                                                 </td>
-                                                <td className="px-6 py-4">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {candidate.lastName}
                                                 </td>
-                                                <td className="px-6 py-4">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {candidate.email}
                                                 </td>
-                                                <td className="px-6 py-4">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {candidate.phone_number}
                                                 </td>
-                                                <td className="px-6 py-4">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     <button>
                                                         {candidate.pivot
                                                             .accepted
@@ -90,7 +90,7 @@ const ApprovedApplicantsTable = ({
                                                             : "pending"}
                                                     </button>
                                                 </td>
-                                                <td className="px-6 py-4">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     <button
                                                         type="button"
                                                         onClick={() =>

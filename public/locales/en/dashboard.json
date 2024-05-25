@@ -1,0 +1,12 @@
+{
+    "dashboardItems": {
+        "Dashboard": "Dashboard",
+        "Approved applicants": "Approved applicants",
+        "Theses": "Theses",
+        "Accepted applicants": "Accepted applicants",
+        "Programs": "Programs",
+        "Fields": "Fields",
+        "Professors": "Professors",
+        "Universities": "Universities"
+    }
+}

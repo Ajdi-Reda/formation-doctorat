@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const ApprovedApplicantsTable = ({
     thesisTitle,
@@ -6,6 +7,8 @@ const ApprovedApplicantsTable = ({
     onRemoveCandidate,
     thesisId,
 }) => {
+    const { t } = useTranslation("dashboard");
+
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <h2 className="text-lg font-semibold mb-4">{thesisTitle}</h2>
@@ -20,37 +23,47 @@ const ApprovedApplicantsTable = ({
                                             scope="col"
                                             className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                                         >
-                                            First Name
+                                            {t(
+                                                "approvedApplicantsTable.firstName"
+                                            )}
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Last Name
+                                            {t(
+                                                "approvedApplicantsTable.lastName"
+                                            )}
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Email
+                                            {t("approvedApplicantsTable.email")}
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Phone Number
+                                            {t(
+                                                "approvedApplicantsTable.phoneNumber"
+                                            )}
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Status
+                                            {t(
+                                                "approvedApplicantsTable.status"
+                                            )}
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Actions
+                                            {t(
+                                                "approvedApplicantsTable.actions"
+                                            )}
                                         </th>
                                     </tr>
                                 </thead>
@@ -58,18 +71,17 @@ const ApprovedApplicantsTable = ({
                                     {candidates.length === 0 ? (
                                         <tr>
                                             <td
-                                                colSpan="5"
+                                                colSpan="6"
                                                 className="px-6 py-4 text-lg text-center"
                                             >
-                                                No Approved applicants
+                                                {t(
+                                                    "approvedApplicantsTable.noApprovedApplicants"
+                                                )}
                                             </td>
                                         </tr>
                                     ) : (
                                         candidates.map((candidate) => (
-                                            <tr
-                                                key={candidate.id}
-                                                className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 cursor-pointer"
-                                            >
+                                            <tr key={candidate.id}>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {candidate.firstName}
                                                 </td>
@@ -86,8 +98,12 @@ const ApprovedApplicantsTable = ({
                                                     <button>
                                                         {candidate.pivot
                                                             .accepted
-                                                            ? "offer accepted"
-                                                            : "pending"}
+                                                            ? t(
+                                                                  "approvedApplicantsTable.offerAccepted"
+                                                              )
+                                                            : t(
+                                                                  "approvedApplicantsTable.pending"
+                                                              )}
                                                     </button>
                                                 </td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -101,7 +117,9 @@ const ApprovedApplicantsTable = ({
                                                         }
                                                         className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                                                     >
-                                                        Remove
+                                                        {t(
+                                                            "approvedApplicantsTable.remove"
+                                                        )}
                                                     </button>
                                                 </td>
                                             </tr>

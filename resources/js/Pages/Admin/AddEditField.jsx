@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { router, useForm } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
 import PrimaryButton from "@/Components/PrimaryButton";
+import { useTranslation } from "react-i18next";
 
 const AddEditField = ({ onClose, universities = [], field = null }) => {
+    const { t } = useTranslation("admin");
+
     const findProgramAndUniversity = () => {
         if (!field) return { selectedUniversity: null, selectedProgram: null };
 
@@ -80,9 +83,9 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Data:", data);
 
         const url = field ? `admin/fields/${field.id}` : "/admin/fields";
+
         field
             ? router.patch(url, {
                   data: {
@@ -94,11 +97,7 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                   onSuccess: () => {
                       reset();
                       onClose();
-                      toast.success(
-                          field
-                              ? "Field edited successfully"
-                              : "Field added successfully"
-                      );
+                      toast.success(t("addField.editSuccess"));
                   },
               })
             : router.post(url, {
@@ -111,11 +110,7 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                   onSuccess: () => {
                       reset();
                       onClose();
-                      toast.success(
-                          field
-                              ? "Field edited successfully"
-                              : "Field added successfully"
-                      );
+                      toast.success(t("addField.addSuccess"));
                   },
               });
     };
@@ -128,7 +123,7 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                         htmlFor="university"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        University
+                        {t("addField.universityLabel")}
                     </label>
                     <select
                         id="university"
@@ -137,7 +132,9 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                         onChange={handleUniversityChange}
                         required
                     >
-                        <option value="">Select University</option>
+                        <option value="">
+                            {t("addField.selectUniversity")}
+                        </option>
                         {universities.map((university) => (
                             <option key={university.id} value={university.id}>
                                 {university.name}
@@ -151,7 +148,7 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                             htmlFor="program"
                             className="block text-sm font-medium text-gray-700"
                         >
-                            Program
+                            {t("addField.programLabel")}
                         </label>
                         <select
                             id="program"
@@ -160,7 +157,9 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                             onChange={handleProgramChange}
                             required
                         >
-                            <option value="">Select Program</option>
+                            <option value="">
+                                {t("addField.selectProgram")}
+                            </option>
                             {filteredPrograms.map((program) => (
                                 <option key={program.id} value={program.id}>
                                     {program.title}
@@ -174,7 +173,7 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                         htmlFor="name"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Name
+                        {t("addField.nameLabel")}
                     </label>
                     <input
                         type="text"
@@ -193,7 +192,7 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                         htmlFor="description"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Description
+                        {t("addField.descriptionLabel")}
                     </label>
                     <textarea
                         id="description"
@@ -214,10 +213,10 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
                     className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
                     {processing
-                        ? "Processing ..."
+                        ? t("addField.processing")
                         : field
-                        ? "Edit Field"
-                        : "Add Field"}
+                        ? t("addField.editField")
+                        : t("addField.addField")}
                 </PrimaryButton>
             </form>
         </div>

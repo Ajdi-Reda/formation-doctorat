@@ -6,8 +6,10 @@ import { useForm } from "@inertiajs/react";
 import React from "react";
 import MD5 from "crypto-js/md5";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const AddProfessor = ({ onClose, universities }) => {
+    const { t } = useTranslation("admin");
     const { data, setData, post, errors, processing, reset } = useForm({
         university_id: "",
         email: "",
@@ -17,6 +19,7 @@ const AddProfessor = ({ onClose, universities }) => {
     const handleUniversityChange = (e) => {
         setData("university_id", e.target.value);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
@@ -24,7 +27,7 @@ const AddProfessor = ({ onClose, universities }) => {
             onSuccess: () => {
                 reset();
                 onClose();
-                toast.success("Invitation sent successfully");
+                toast.success(t("addProfessor.successMessage"));
             },
         });
     };
@@ -42,14 +45,16 @@ const AddProfessor = ({ onClose, universities }) => {
 
     return (
         <div>
-            <h2 className="text-lg font-bold mb-3">Add Professor</h2>
+            <h2 className="text-lg font-bold mb-3">
+                {t("addProfessor.title")}
+            </h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <InputLabel
                         htmlFor="universities"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Universities
+                        {t("addProfessor.universitiesLabel")}
                     </InputLabel>
                     <select
                         id="universities"
@@ -59,7 +64,7 @@ const AddProfessor = ({ onClose, universities }) => {
                         required
                     >
                         <option value="" disabled={true}>
-                            Select universities
+                            {t("addProfessor.universitiesPlaceholder")}
                         </option>
                         {universities.map((uni) => (
                             <option key={uni.id} value={uni.id}>
@@ -69,7 +74,9 @@ const AddProfessor = ({ onClose, universities }) => {
                     </select>
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <InputLabel htmlFor="email">
+                        {t("addProfessor.emailLabel")}
+                    </InputLabel>
                     <Input
                         type="text"
                         id="email"
@@ -83,7 +90,7 @@ const AddProfessor = ({ onClose, universities }) => {
                 <div className="flex gap-3 items-center">
                     <div className="mb-4 flex-1">
                         <InputLabel htmlFor="invitation_token">
-                            Invitation token
+                            {t("addProfessor.invitationTokenLabel")}
                         </InputLabel>
                         <Input
                             type="text"
@@ -101,14 +108,16 @@ const AddProfessor = ({ onClose, universities }) => {
                         type="button"
                         onClick={() => generateToken(data.email)}
                     >
-                        Generate Invitation token
+                        {t("addProfessor.generateTokenButton")}
                     </PrimaryButton>
                 </div>
                 <PrimaryButton
                     type="submit"
                     className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
-                    {processing ? "Processing..." : "Send"}
+                    {processing
+                        ? t("addProfessor.processingButton")
+                        : t("addProfessor.sendButton")}
                 </PrimaryButton>
             </form>
         </div>

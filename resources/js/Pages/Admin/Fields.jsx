@@ -7,8 +7,11 @@ import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
 import { router } from "@inertiajs/react";
 import AddEditField from "./AddEditField";
+import { useTranslation } from "react-i18next";
 
 const Fields = ({ fields, universities, auth }) => {
+    console.log(universities);
+    const { t } = useTranslation("admin");
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -32,7 +35,7 @@ const Fields = ({ fields, universities, auth }) => {
         const id = field.id;
         router.delete(`/admin/fields/${id}`, {
             onSuccess: () => {
-                toast.success("Field Successfully Deleted");
+                toast.success(t("fields.deleteSuccess"));
                 setOpenDeleteModal(false);
             },
         });
@@ -44,10 +47,10 @@ const Fields = ({ fields, universities, auth }) => {
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">
-                            Fields
+                            {t("fields.title")}
                         </h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            A list of all the fields available.
+                            {t("fields.subtitle")}
                         </p>
                     </div>
                     <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -56,7 +59,7 @@ const Fields = ({ fields, universities, auth }) => {
                             onClick={() => setOpen(true)}
                             className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
-                            Add new Field
+                            {t("fields.addFieldButton")}
                         </button>
                     </div>
                 </div>
@@ -66,7 +69,7 @@ const Fields = ({ fields, universities, auth }) => {
                             <div className=" shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                                 {fields.length === 0 ? (
                                     <p className="p-4 text-sm text-gray-700">
-                                        No fields have been added yet.
+                                        {t("fields.noFieldsMessage")}
                                     </p>
                                 ) : (
                                     <table className="min-w-full divide-y divide-gray-300">
@@ -76,25 +79,25 @@ const Fields = ({ fields, universities, auth }) => {
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Name
+                                                    {t("fields.name")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Date of Creation
+                                                    {t("fields.dateOfCreation")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Number of Theses
+                                                    {t("fields.numberOfTheses")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Actions
+                                                    {t("fields.actions")}
                                                 </th>
                                             </tr>
                                         </thead>
@@ -155,8 +158,8 @@ const Fields = ({ fields, universities, auth }) => {
                 {openDeleteModal && (
                     <ModalMessage
                         open={openDeleteModal}
-                        header={"Delete Field"}
-                        message={"Are you sure you want to delete this field?"}
+                        header={t("fields.deleteFieldHeader")}
+                        message={t("fields.deleteFieldMessage")}
                         onClose={() => setOpenDeleteModal(!openDeleteModal)}
                         onConfirm={handleDeleteField}
                     />

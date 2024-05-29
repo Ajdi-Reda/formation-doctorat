@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { router } from "@inertiajs/react";
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 const ApplicantsTable = ({ thesisApplicants, isOpen, onToggle }) => {
+    const { t } = useTranslation("dashboard");
     const { pendingCandidates } = thesisApplicants;
     const thesisTitle = thesisApplicants.title;
 
@@ -10,14 +12,14 @@ const ApplicantsTable = ({ thesisApplicants, isOpen, onToggle }) => {
 
     const toggleAccordion = () => {
         setAccordionOpen((prevState) => !prevState);
-        onToggle(); // Call the parent onToggle function to manage open state
+        onToggle();
     };
 
     const getCandidateData = (id, candidate) => {
         const url = `/professor/dashboard/candidate/${id}`;
         router.get(url, {
             thesisId: thesisApplicants.id,
-        }); // Navigate to the appropriate route
+        });
     };
 
     return (
@@ -53,25 +55,33 @@ const ApplicantsTable = ({ thesisApplicants, isOpen, onToggle }) => {
                                                         scope="col"
                                                         className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                     >
-                                                        First name
+                                                        {t(
+                                                            "applicantsTable.firstName"
+                                                        )}
                                                     </th>
                                                     <th
                                                         scope="col"
                                                         className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                     >
-                                                        Last name
+                                                        {t(
+                                                            "applicantsTable.lastName"
+                                                        )}
                                                     </th>
                                                     <th
                                                         scope="col"
                                                         className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                     >
-                                                        Email
+                                                        {t(
+                                                            "applicantsTable.email"
+                                                        )}
                                                     </th>
                                                     <th
                                                         scope="col"
                                                         className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                     >
-                                                        Phone number
+                                                        {t(
+                                                            "applicantsTable.phoneNumber"
+                                                        )}
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -119,7 +129,7 @@ const ApplicantsTable = ({ thesisApplicants, isOpen, onToggle }) => {
                             </div>
                         ) : (
                             <p className="px-6 py-4 text-lg text-center">
-                                No applicants have applied to this thesis
+                                {t("applicantsTable.noApplicants")}
                             </p>
                         )}
                     </div>

@@ -7,8 +7,10 @@ import ActionsDropdown from "@/Pages/Professor/ActionsDropdown.jsx";
 import ModalMessage from "@/Components/ModalMessage.jsx";
 import { formatDateTime } from "@/Components/utils/HelperFunctions.js";
 import AddEditThesis from "./AddEditThesis";
+import { useTranslation } from "react-i18next";
 
 const Theses = ({ auth, theses, programFields }) => {
+    const { t } = useTranslation("dashboard");
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -33,7 +35,7 @@ const Theses = ({ auth, theses, programFields }) => {
             { id },
             {
                 onSuccess: () => {
-                    toast.success("Thesis Successfully Deleted");
+                    toast.success(t("theses.successDelete"));
                     setOpenDeleteModal(false);
                 },
             }
@@ -46,10 +48,10 @@ const Theses = ({ auth, theses, programFields }) => {
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">
-                            Theses
+                            {t("theses.title")}
                         </h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            A list of all the theses created by you.
+                            {t("theses.description")}
                         </p>
                     </div>
                     <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -58,7 +60,7 @@ const Theses = ({ auth, theses, programFields }) => {
                             onClick={() => setOpen(true)}
                             className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
-                            Add new thesis
+                            {t("theses.addNewThesis")}
                         </button>
                     </div>
                 </div>
@@ -72,19 +74,19 @@ const Theses = ({ auth, theses, programFields }) => {
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Thesis Name
+                                            {t("theses.thesisName")}
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Date of Creation
+                                            {t("theses.creationDate")}
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
-                                            Number of Applicants
+                                            {t("theses.numberOfApplicants")}
                                         </th>
                                         <th
                                             scope="col"
@@ -148,10 +150,8 @@ const Theses = ({ auth, theses, programFields }) => {
                     {openDeleteModal && (
                         <ModalMessage
                             open={openDeleteModal}
-                            header={"Delete thesis"}
-                            message={
-                                "Are you sure you want to Delete this thesis?"
-                            }
+                            header={t("theses.deleteThesisHeader")}
+                            message={t("theses.deleteThesisMessage")}
                             onClose={() => setOpenDeleteModal(false)}
                             onConfirm={handleDeleteThesis}
                         />

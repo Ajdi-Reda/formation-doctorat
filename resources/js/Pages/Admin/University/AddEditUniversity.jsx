@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "@inertiajs/react";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import InputLabel from "@/Components/InputLabel.jsx";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 const AddEditUniversity = ({ onClose, university, programs }) => {
-    console.log(university);
+    const { t } = useTranslation("admin");
+
     const initialFormData = university
         ? {
               name: university.name,
@@ -50,7 +52,7 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("University edited successfully");
+                    toast.success(t("addUniversity.submitEditSuccess"));
                 },
             });
         } else {
@@ -59,7 +61,7 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("University added successfully");
+                    toast.success(t("addUniversity.submitAddSuccess"));
                 },
             });
         }
@@ -68,11 +70,15 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
     return (
         <div>
             <h2 className="text-lg font-bold my-4">
-                {university ? "Edit University" : "Add University"}
+                {university
+                    ? t("addUniversity.titleEdit")
+                    : t("addUniversity.titleAdd")}
             </h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <InputLabel htmlFor="name">Name</InputLabel>
+                    <InputLabel htmlFor="name">
+                        {t("addUniversity.name")}
+                    </InputLabel>
                     <input
                         type="text"
                         id="name"
@@ -86,7 +92,9 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="address">Address</InputLabel>
+                    <InputLabel htmlFor="address">
+                        {t("addUniversity.address")}
+                    </InputLabel>
                     <input
                         type="text"
                         id="address"
@@ -100,12 +108,9 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <label
-                        htmlFor="program"
-                        className="block text-sm font-medium text-gray-700"
-                    >
-                        Programs
-                    </label>
+                    <InputLabel htmlFor="program">
+                        {t("addUniversity.programs")}
+                    </InputLabel>
                     <select
                         id="program"
                         className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -115,7 +120,7 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                         multiple
                     >
                         <option value="" disabled>
-                            Select Programs
+                            {t("addUniversity.selectPrograms")}
                         </option>
                         {programs.map((program) => (
                             <option key={program.id} value={program.id}>
@@ -125,7 +130,9 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                     </select>
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="Chancellor">Chancellor</InputLabel>
+                    <InputLabel htmlFor="chancellor">
+                        {t("addUniversity.chancellor")}
+                    </InputLabel>
                     <input
                         type="text"
                         id="chancellor"
@@ -134,15 +141,15 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                         onChange={(e) => setData("chancellor", e.target.value)}
                         required
                     />
-                    {errors.chancellorellor && (
+                    {errors.chancellor && (
                         <p className="text-red-500 text-sm">
                             {errors.chancellor}
                         </p>
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="ChancellorEmail">
-                        Chancellor Email
+                    <InputLabel htmlFor="chancellorEmail">
+                        {t("addUniversity.chancellorEmail")}
                     </InputLabel>
                     <input
                         type="email"
@@ -161,8 +168,8 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="ChancellorPhoneNumber">
-                        Chancellor Phone Number
+                    <InputLabel htmlFor="chancellorPhoneNumber">
+                        {t("addUniversity.chancellorPhoneNumber")}
                     </InputLabel>
                     <input
                         type="text"
@@ -186,11 +193,11 @@ const AddEditUniversity = ({ onClose, university, programs }) => {
                 >
                     {processing
                         ? university
-                            ? "Editing ..."
-                            : "Creating ..."
+                            ? t("addUniversity.processingEdit")
+                            : t("addUniversity.processingAdd")
                         : university
-                        ? "Edit University"
-                        : "Add University"}
+                        ? t("addUniversity.submitEdit")
+                        : t("addUniversity.submitAdd")}
                 </PrimaryButton>
             </form>
         </div>

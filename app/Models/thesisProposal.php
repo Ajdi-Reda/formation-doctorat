@@ -17,10 +17,12 @@ class ThesisProposal extends Model implements HasMedia
     protected $fillable = ['professor_id', 'field_id', 'title', 'description'];
 
 
-    public function field() : BelongsTo {
+    public function field(): BelongsTo
+    {
         return $this->BelongsTo(Field::class);
     }
-    public function professor() : BelongsTo {
+    public function professor(): BelongsTo
+    {
         return $this->BelongsTo(Professor::class);
     }
 
@@ -42,12 +44,12 @@ class ThesisProposal extends Model implements HasMedia
     }
 
     public function approvedCandidates()
-{
-    return $this->candidates()->wherePivot('status', 'accepted');
-}
-    public function acceptedCandidates()
-{
-    return $this->candidates()->wherePivot('accepted', true);
-}
+    {
+        return $this->candidates()->wherePivot('status', 'accepted')->wherePivot('accepted', false);
+    }
 
+    public function acceptedCandidates()
+    {
+        return $this->candidates()->wherePivot('accepted', true);
+    }
 }

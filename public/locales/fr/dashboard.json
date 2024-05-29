@@ -1,6 +1,6 @@
 {
     "dashboardItems": {
-        "Dashboard": "Tableau de bord",
+        "Dashboard": "Candidats",
         "Approved applicants": "Candidats approuvés",
         "Theses": "Thèses",
         "Accepted applicants": "Candidats acceptés",
@@ -8,5 +8,60 @@
         "Fields": "Domaines",
         "Professors": "Professeurs",
         "Universities": "Universités"
+    },
+    "applicantsTable": {
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "email": "Email",
+        "phoneNumber": "Numéro de téléphone",
+        "noApplicants": "Aucun candidat n'a postulé pour cette thèse"
+    },
+    "approvedApplicantsTable": {
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "email": "Email",
+        "phoneNumber": "Numéro de téléphone",
+        "status": "Statut",
+        "actions": "Actions",
+        "noApprovedApplicants": "Aucun candidat approuvé",
+        "offerAccepted": "Offre acceptée",
+        "pending": "En attente",
+        "remove": "Supprimer"
+    },
+    "theses": {
+        "title": "Thèses",
+        "description": "Une liste de toutes les thèses créées par vous.",
+        "addNewThesis": "Ajouter une nouvelle thèse",
+        "thesisName": "Nom de la thèse",
+        "creationDate": "Date de création",
+        "numberOfApplicants": "Nombre de candidats",
+        "deleteThesisHeader": "Supprimer la thèse",
+        "deleteThesisMessage": "Êtes-vous sûr de vouloir supprimer cette thèse?",
+        "successDelete": "Thèse supprimée avec succès",
+        "noApplicants": "Pas de candidats"
+    },
+    "addThesis": {
+        "editThesis": "Modifier la thèse",
+        "addThesis": "Ajouter une thèse",
+        "program": "Programme",
+        "selectProgram": "Sélectionner un programme",
+        "field": "Domaine",
+        "selectField": "Sélectionner un domaine",
+        "title": "Titre",
+        "description": "Description",
+        "attachFile": "Joindre un fichier",
+        "editing": "Modification en cours ...",
+        "creating": "Création en cours ...",
+        "editButton": "Modifier la thèse",
+        "addButton": "Ajouter la thèse",
+        "successUpdate": "Thèse mise à jour avec succès",
+        "successCreate": "Thèse ajoutée avec succès"
+    },
+    "acceptedApplicants": {
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "email": "Email",
+        "phoneNumber": "Numéro de téléphone",
+        "noApproved": "Aucun candidat approuvé"
     }
 }

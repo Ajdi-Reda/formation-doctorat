@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { formatDateTime } from "@/Components/utils/HelperFunctions";
 import ActionsDropdown from "../Professor/ActionsDropdown";
 import { router } from "@inertiajs/react";
@@ -11,6 +12,7 @@ import EditProfessor from "./EditProfessor";
 import AddProfessor from "./AddProfessor";
 
 const Professors = ({ professors, auth, universities }) => {
+    const { t } = useTranslation("admin"); // Hook for accessing translations
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -35,7 +37,7 @@ const Professors = ({ professors, auth, universities }) => {
         const id = professor.id;
         router.delete(`/admin/professors/${id}`, {
             onSuccess: () => {
-                toast.success("Professor Successfully Deleted");
+                toast.success(t("professors.deleteSuccess")); // Use translation key
                 setOpenDeleteModal(false);
             },
         });
@@ -52,10 +54,11 @@ const Professors = ({ professors, auth, universities }) => {
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">
-                            Professors
+                            {t("professors.title")} {/* Use translation key */}
                         </h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            A list of all the Professors
+                            {t("professors.subtitle")}{" "}
+                            {/* Use translation key */}
                         </p>
                     </div>
                     <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -64,7 +67,8 @@ const Professors = ({ professors, auth, universities }) => {
                             onClick={() => setOpen(!open)}
                             className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
-                            Add new Professor
+                            {t("professors.addProfessorButton")}{" "}
+                            {/* Use translation key */}
                         </button>
                     </div>
                 </div>
@@ -74,7 +78,8 @@ const Professors = ({ professors, auth, universities }) => {
                             <div className="shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                                 {professors.length === 0 ? (
                                     <p className="p-4 text-sm text-gray-700">
-                                        No fields have been added yet.
+                                        {t("professors.noProfessorsMessage")}{" "}
+                                        {/* Use translation key */}
                                     </p>
                                 ) : (
                                     <table className="min-w-full divide-y divide-gray-300">
@@ -84,43 +89,64 @@ const Professors = ({ professors, auth, universities }) => {
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    First Name
+                                                    {t(
+                                                        "professors.professorsTable.firstName"
+                                                    )}{" "}
+                                                    {/* Use translation key */}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Last Name
+                                                    {t(
+                                                        "professors.professorsTable.lastName"
+                                                    )}{" "}
+                                                    {/* Use translation key */}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Email
+                                                    {t(
+                                                        "professors.professorsTable.email"
+                                                    )}{" "}
+                                                    {/* Use translation key */}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Phone Number
+                                                    {t(
+                                                        "professors.professorsTable.phoneNumber"
+                                                    )}{" "}
+                                                    {/* Use translation key */}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    University
+                                                    {t(
+                                                        "professors.professorsTable.university"
+                                                    )}{" "}
+                                                    {/* Use translation key */}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Date of Creation
+                                                    {t(
+                                                        "professors.professorsTable.dateOfCreation"
+                                                    )}{" "}
+                                                    {/* Use translation key */}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Number of theses
+                                                    {t(
+                                                        "professors.professorsTable.numberOfTheses"
+                                                    )}{" "}
+                                                    {/* Use translation key */}
                                                 </th>
                                                 <th
                                                     scope="col"
@@ -189,37 +215,33 @@ const Professors = ({ professors, auth, universities }) => {
                             </div>
                         </div>
                     </div>
-
-                    {open && (
-                        <Modal show={open} onClose={onClose}>
-                            <AddProfessor
-                                onClose={onClose}
-                                universities={universities}
-                            />
-                        </Modal>
-                    )}
-                    {openEdit && (
-                        <Modal show={openEdit} onClose={onClose}>
-                            <EditProfessor
-                                onClose={onClose}
-                                professor={professor}
-                            />
-                        </Modal>
-                    )}
-                    {openDeleteModal && (
-                        <ModalMessage
-                            header={"Delete Professor"}
-                            message={
-                                "Are you sure you want to Delete this Professor?"
-                            }
-                            onClose={() => setOpenDeleteModal(!openDeleteModal)}
-                            onConfirm={handleDeleteProfessor}
-                        />
-                    )}
                 </div>
+                {open && (
+                    <Modal show={open} onClose={onClose}>
+                        <AddProfessor
+                            onClose={onClose}
+                            universities={universities}
+                        />
+                    </Modal>
+                )}
+                {openEdit && (
+                    <Modal show={openEdit} onClose={onClose}>
+                        <EditProfessor
+                            onClose={onClose}
+                            professor={professor}
+                        />
+                    </Modal>
+                )}
+                {openDeleteModal && (
+                    <ModalMessage
+                        header={t("professors.deleteProfessorHeader")}
+                        message={t("professors.deleteProfessorMessage")}
+                        onClose={() => setOpenDeleteModal(!openDeleteModal)}
+                        onConfirm={handleDeleteProfessor}
+                    />
+                )}
             </div>
         </AuthLayout>
     );
 };
-
 export default Professors;

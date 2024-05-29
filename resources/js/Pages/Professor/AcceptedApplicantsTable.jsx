@@ -1,6 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const AcceptedApplicantsTable = ({ thesisTitle, candidates }) => {
+    const { t } = useTranslation("dashboard");
+
+    const acceptedApplicants = t("acceptedApplicants");
+
     return (
         <div className="relative overflow-x-auto">
             <h2 className="text-lg font-semibold mb-4">{thesisTitle}</h2>
@@ -12,27 +17,27 @@ const AcceptedApplicantsTable = ({ thesisTitle, candidates }) => {
                                 <tr>
                                     <th
                                         scope="col"
-                                        className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+                                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                     >
-                                        First Name
+                                        {acceptedApplicants.firstName}
                                     </th>
                                     <th
                                         scope="col"
-                                        className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+                                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                     >
-                                        Last Name
+                                        {acceptedApplicants.lastName}
                                     </th>
                                     <th
                                         scope="col"
-                                        className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+                                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                     >
-                                        Email
+                                        {acceptedApplicants.email}
                                     </th>
                                     <th
                                         scope="col"
-                                        className="px-6 py-3 text-left text-sm font-semibold text-gray-900"
+                                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                     >
-                                        Phone Number
+                                        {acceptedApplicants.phoneNumber}
                                     </th>
                                 </tr>
                             </thead>
@@ -43,25 +48,22 @@ const AcceptedApplicantsTable = ({ thesisTitle, candidates }) => {
                                             colSpan="4"
                                             className="px-6 py-4 text-lg text-center"
                                         >
-                                            No Approved applicants
+                                            {acceptedApplicants.noApproved}
                                         </td>
                                     </tr>
                                 ) : (
                                     candidates.map((candidate) => (
-                                        <tr
-                                            key={candidate.id}
-                                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                                        >
-                                            <td className="divide-y divide-gray-200 bg-white">
+                                        <tr key={candidate.id}>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {candidate.firstName}
                                             </td>
-                                            <td className="divide-y divide-gray-200 bg-white">
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {candidate.lastName}
                                             </td>
-                                            <td className="divide-y divide-gray-200 bg-white">
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {candidate.email}
                                             </td>
-                                            <td className="divide-y divide-gray-200 bg-white">
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {candidate.phone_number}
                                             </td>
                                         </tr>

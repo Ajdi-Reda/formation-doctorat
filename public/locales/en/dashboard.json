@@ -1,6 +1,6 @@
 {
     "dashboardItems": {
-        "Dashboard": "Dashboard",
+        "Dashboard": "Applicants",
         "Approved applicants": "Approved applicants",
         "Theses": "Theses",
         "Accepted applicants": "Accepted applicants",
@@ -8,5 +8,61 @@
         "Fields": "Fields",
         "Professors": "Professors",
         "Universities": "Universities"
+    },
+    "applicantsTable": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phoneNumber": "Phone number",
+        "noApplicants": "No applicants have applied to this thesis"
+    },
+    "approvedApplicantsTable": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "status": "Status",
+        "actions": "Actions",
+        "noApprovedApplicants": "No Approved applicants",
+        "offerAccepted": "Offer accepted",
+        "pending": "Pending",
+        "remove": "Remove"
+    },
+    "theses": {
+        "title": "Theses",
+        "description": "A list of all the theses created by you.",
+        "addNewThesis": "Add new thesis",
+        "thesisName": "Thesis Name",
+        "creationDate": "Date of Creation",
+        "numberOfApplicants": "Number of Applicants",
+        "deleteThesisHeader": "Delete thesis",
+        "deleteThesisMessage": "Are you sure you want to delete this thesis?",
+        "successDelete": "Thesis Successfully Deleted",
+        "noApplicants": "No applicants"
+    },
+
+    "addThesis": {
+        "editThesis": "Edit Thesis",
+        "addThesis": "Add Thesis",
+        "program": "Program",
+        "selectProgram": "Select Program",
+        "field": "Field",
+        "selectField": "Select Field",
+        "title": "Title",
+        "description": "Description",
+        "attachFile": "Attach file",
+        "editing": "Editing ...",
+        "creating": "Creating ...",
+        "editButton": "Edit Thesis",
+        "addButton": "Add Thesis",
+        "successUpdate": "Thesis updated successfully",
+        "successCreate": "Thesis added successfully"
+    },
+    "acceptedApplicants": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "noApproved": "No Approved applicants"
     }
 }

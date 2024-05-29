@@ -7,8 +7,10 @@ import { router } from "@inertiajs/react";
 import ModalMessage from "@/Components/ModalMessage";
 import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
+import { useTranslation } from "react-i18next";
 
 const AdminPrograms = ({ programs, universities, auth }) => {
+    const { t } = useTranslation("admin");
     console.log(programs);
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
@@ -32,7 +34,7 @@ const AdminPrograms = ({ programs, universities, auth }) => {
         const id = program.id;
         router.delete(`/admin/programs/destroy/${id}`, {
             onSuccess: () => {
-                toast.success("Program Successfully Deleted");
+                toast.success(t("programs.successDelete"));
                 setOpenDeleteModal(false);
             },
         });
@@ -44,10 +46,10 @@ const AdminPrograms = ({ programs, universities, auth }) => {
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">
-                            Programs
+                            {t("programs.programs")}
                         </h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            A list of all the programs available.
+                            {t("programs.programDescription")}
                         </p>
                     </div>
                     <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -56,7 +58,7 @@ const AdminPrograms = ({ programs, universities, auth }) => {
                             onClick={() => setOpen(true)}
                             className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
-                            Add new program
+                            {t("programs.addProgram")}
                         </button>
                     </div>
                 </div>
@@ -66,7 +68,7 @@ const AdminPrograms = ({ programs, universities, auth }) => {
                             <div className=" shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                                 {programs.length === 0 ? (
                                     <p className="p-4 text-sm text-gray-700">
-                                        No programs have been added yet.
+                                        {t("programs.noPrograms")}
                                     </p>
                                 ) : (
                                     <table className="min-w-full divide-y divide-gray-300">
@@ -76,31 +78,31 @@ const AdminPrograms = ({ programs, universities, auth }) => {
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Program
+                                                    {t("programs.programName")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Date of Creation
+                                                    {t("programs.creationDate")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Start date
+                                                    {t("programs.startDate")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    End date
+                                                    {t("programs.endDate")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Responsible
+                                                    {t("programs.responsible")}
                                                 </th>
                                                 <th
                                                     scope="col"
@@ -168,11 +170,9 @@ const AdminPrograms = ({ programs, universities, auth }) => {
                             )}
                             {openDeleteModal && (
                                 <ModalMessage
-                                    header={"Delete Program"}
+                                    header={t("programs.deleteProgram")}
                                     open={openDeleteModal}
-                                    message={
-                                        "Are you sure you want to Delete this program?"
-                                    }
+                                    message={t("programs.confirmDelete")}
                                     onClose={() => {
                                         setOpenDeleteModal(false);
                                     }}

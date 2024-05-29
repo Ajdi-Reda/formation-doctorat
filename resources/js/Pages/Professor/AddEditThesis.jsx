@@ -4,11 +4,12 @@ import { toast } from "react-hot-toast";
 import InputLabel from "@/Components/InputLabel.jsx";
 import FileInput from "@/Components/FileInput.jsx";
 import PrimaryButton from "@/Components/PrimaryButton";
+import { useTranslation } from "react-i18next";
 
 const AddEditThesis = ({ onClose, programFields, thesis }) => {
-    console.log(thesis);
+    const { t } = useTranslation("dashboard");
     const [selectedProgram, setSelectedProgram] = useState(
-        thesis ? thesis.program.title : ""
+        thesis ? thesis.program?.title : ""
     );
     const [selectedField, setSelectedField] = useState(
         thesis ? thesis.field.name : ""
@@ -64,7 +65,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("Thesis updated successfully");
+                    toast.success(t("addThesis.successUpdate"));
                 },
             });
         } else {
@@ -72,7 +73,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("Thesis added successfully");
+                    toast.success(t("addThesis.successCreate"));
                 },
             });
         }
@@ -81,7 +82,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
     return (
         <div>
             <h2 className="text-lg font-bold mb-4">
-                {thesis ? "Edit Thesis" : "Add Thesis"}
+                {thesis ? t("addThesis.editThesis") : t("addThesis.addThesis")}
             </h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
@@ -89,7 +90,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                         htmlFor="program"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Program
+                        {t("addThesis.program")}
                     </label>
                     <select
                         id="program"
@@ -98,7 +99,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                         onChange={handleProgramChange}
                         required
                     >
-                        <option value="">Select Program</option>
+                        <option value="">{t("addThesis.selectProgram")}</option>
                         {programFields.map((program, index) => (
                             <option key={index} value={program.title}>
                                 {program.title}
@@ -111,7 +112,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                         htmlFor="field"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Field
+                        {t("addThesis.field")}
                     </label>
                     <select
                         id="field"
@@ -120,7 +121,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                         onChange={handleFieldChange}
                         required
                     >
-                        <option value="">Select Field</option>
+                        <option value="">{t("addThesis.selectField")}</option>
                         {fields.map((field, index) => (
                             <option key={index} value={field.name}>
                                 {field.name}
@@ -133,7 +134,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                         htmlFor="title"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Title
+                        {t("addThesis.title")}
                     </label>
                     <input
                         type="text"
@@ -152,7 +153,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                         htmlFor="description"
                         className="block text-sm font-medium text-gray-700"
                     >
-                        Description
+                        {t("addThesis.description")}
                     </label>
                     <textarea
                         id="description"
@@ -169,12 +170,15 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                     )}
                 </div>
                 <div className="flex flex-col mt-2">
-                    <InputLabel htmlFor="thesisOutline">Attach file</InputLabel>
+                    <InputLabel htmlFor="thesisOutline">
+                        {t("addThesis.attachFile")}
+                    </InputLabel>
                     <FileInput
                         type="file"
                         id="thesisOutline"
                         name="thesisOutline"
                         accept="application/pdf"
+                        require
                         setData={setData}
                         errors={errors.thesisOutline}
                     />
@@ -185,11 +189,11 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
                 >
                     {processing
                         ? thesis
-                            ? "Editing ..."
-                            : "Creating ..."
+                            ? t("addThesis.editing")
+                            : t("addThesis.creating")
                         : thesis
-                        ? "Edit Thesis"
-                        : "Add Thesis"}
+                        ? t("addThesis.editButton")
+                        : t("addThesis.addButton")}
                 </PrimaryButton>
             </form>
         </div>

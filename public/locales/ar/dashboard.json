@@ -1,6 +1,6 @@
 {
     "dashboardItems": {
-        "Dashboard": "لوحة القيادة",
+        "Dashboard": "المتقدمين",
         "Approved applicants": "المتقدمون المعتمدون",
         "Theses": "الأطروحات",
         "Accepted applicants": "المتقدمون المقبولون",
@@ -8,5 +8,60 @@
         "Fields": "المجالات",
         "Professors": "الأساتذة",
         "Universities": "الجامعات"
+    },
+    "applicantsTable": {
+        "firstName": "الاسم الأول",
+        "lastName": "الاسم الأخير",
+        "email": "البريد الإلكتروني",
+        "phoneNumber": "رقم الهاتف",
+        "noApplicants": "لم يتقدم أي متقدم لهذه الأطروحة"
+    },
+    "approvedApplicantsTable": {
+        "firstName": "الاسم الأول",
+        "lastName": "الاسم الأخير",
+        "email": "البريد الإلكتروني",
+        "phoneNumber": "رقم الهاتف",
+        "status": "الحالة",
+        "actions": "إجراءات",
+        "noApprovedApplicants": "لا يوجد متقدمون معتمدون",
+        "offerAccepted": "تم قبول العرض",
+        "pending": "قيد الانتظار",
+        "remove": "إزالة"
+    },
+    "theses": {
+        "title": "الرسائل",
+        "description": "قائمة بجميع الرسائل التي أنشأتها.",
+        "addNewThesis": "إضافة رسالة جديدة",
+        "thesisName": "اسم الرسالة",
+        "creationDate": "تاريخ الإنشاء",
+        "numberOfApplicants": "عدد المتقدمين",
+        "deleteThesisHeader": "حذف الرسالة",
+        "deleteThesisMessage": "هل أنت متأكد أنك تريد حذف هذه الرسالة؟",
+        "successDelete": "تم حذف الرسالة بنجاح",
+        "noApplicants": "لا يوجد متقدمون"
+    },
+    "addThesis": {
+        "editThesis": "تعديل الرسالة",
+        "addThesis": "إضافة رسالة",
+        "program": "برنامج",
+        "selectProgram": "اختر برنامج",
+        "field": "مجال",
+        "selectField": "اختر مجال",
+        "title": "عنوان",
+        "description": "وصف",
+        "attachFile": "إرفاق ملف",
+        "editing": "جارٍ التعديل ...",
+        "creating": "جارٍ الإنشاء ...",
+        "editButton": "تعديل الرسالة",
+        "addButton": "إضافة رسالة",
+        "successUpdate": "تم تحديث الرسالة بنجاح",
+        "successCreate": "تمت إضافة الرسالة بنجاح"
+    },
+    "acceptedApplicants": {
+        "firstName": "الاسم الأول",
+        "lastName": "الاسم الأخير",
+        "email": "البريد الإلكتروني",
+        "phoneNumber": "رقم الهاتف",
+        "noApproved": "لا يوجد مرشحون معتمدون"
     }
 }

@@ -5,6 +5,8 @@ import LicenseDetailsLayout from "@/features/applicationForm/LicenceDetailsLayou
 import MasterDetailsLayout from "@/features/applicationForm/MasterDetailsLayout.jsx";
 import DocumentsLayout from "@/Pages/Professor/DocumentsLayout.jsx";
 import { router, useForm } from "@inertiajs/react";
+import SecondaryButton from "@/Components/SecondaryButton";
+import PrimaryButton from "@/Components/PrimaryButton";
 
 const CandidateData = ({ candidateData, auth, showActionButtons }) => {
     console.log(showActionButtons);
@@ -57,21 +59,19 @@ const CandidateData = ({ candidateData, auth, showActionButtons }) => {
                     <DocumentsLayout documents={documents} />
                 </div>
                 {showActionButtons ? (
-                    <div className="mt-4">
-                        <button
+                    <div className="my-4  space-x-4">
+                        <SecondaryButton
                             type="submit"
                             onClick={() => setData("accepted", "rejected")}
-                            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                         >
                             Reject
-                        </button>
-                        <button
+                        </SecondaryButton>
+                        <PrimaryButton
                             type="submit"
                             onClick={() => setData("accepted", "accepted")}
-                            className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         >
                             Accept
-                        </button>
+                        </PrimaryButton>
                     </div>
                 ) : null}
             </form>

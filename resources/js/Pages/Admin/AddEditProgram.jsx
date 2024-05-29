@@ -4,8 +4,11 @@ import { toast } from "react-hot-toast";
 import InputLabel from "@/Components/InputLabel.jsx";
 import PrimaryButton from "@/Components/PrimaryButton";
 import FileInput from "@/Components/FileInput";
+import { useTranslation } from "react-i18next";
 
 const AddEditProgram = ({ onClose, program, universities }) => {
+    const { t } = useTranslation("admin");
+
     const initialFormData = program
         ? {
               selectedUniversities: program.universities.map((u) => u.id),
@@ -47,7 +50,7 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("Program edited successfully");
+                    toast.success(t("addProgram.successUpdate"));
                 },
             });
         } else {
@@ -55,7 +58,7 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success("Program added successfully");
+                    toast.success(t("addProgram.successCreate"));
                 },
             });
         }
@@ -63,14 +66,16 @@ const AddEditProgram = ({ onClose, program, universities }) => {
 
     return (
         <div>
-            <h2 className="text-lg font-bold my-4">Add Program</h2>
+            <h2 className="text-lg font-bold my-4">
+                {t("addProgram.addProgram")}
+            </h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label
                         htmlFor="universities"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                        Universities
+                        {t("addProgram.universities")}
                     </label>
                     <select
                         id="universities"
@@ -81,7 +86,7 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                         multiple
                     >
                         <option value="" disabled={true}>
-                            Select universities
+                            {t("addProgram.selectUniversities")}
                         </option>
                         {universities.map((uni) => (
                             <option key={uni.id} value={uni.id}>
@@ -91,7 +96,9 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                     </select>
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="title">Title</InputLabel>
+                    <InputLabel htmlFor="title">
+                        {t("addProgram.title")}
+                    </InputLabel>
                     <input
                         type="text"
                         id="title"
@@ -105,7 +112,9 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="description">Description</InputLabel>
+                    <InputLabel htmlFor="description">
+                        {t("addProgram.description")}
+                    </InputLabel>
                     <textarea
                         id="description"
                         className="mt-1 p-2 border border-gray-300 rounded-md w-full"
@@ -121,7 +130,9 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="startDate">Start Date</InputLabel>
+                    <InputLabel htmlFor="startDate">
+                        {t("addProgram.startDate")}
+                    </InputLabel>
                     <input
                         type="date"
                         id="startDate"
@@ -137,7 +148,9 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="endDate">End Date</InputLabel>
+                    <InputLabel htmlFor="endDate">
+                        {t("addProgram.endDate")}
+                    </InputLabel>
                     <input
                         type="date"
                         id="endDate"
@@ -151,7 +164,9 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="responsable">Responsible</InputLabel>
+                    <InputLabel htmlFor="responsable">
+                        {t("addProgram.responsible")}
+                    </InputLabel>
                     <input
                         type="text"
                         id="responsable"
@@ -167,7 +182,9 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                     )}
                 </div>
                 <div className="mb-4">
-                    <InputLabel htmlFor="status">Status</InputLabel>
+                    <InputLabel htmlFor="status">
+                        {t("addProgram.status")}
+                    </InputLabel>
                     <select
                         id="status"
                         className="mt-1 p-2 border border-gray-300 rounded-md w-full"
@@ -175,16 +192,20 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                         onChange={(e) => setData("status", e.target.value)}
                         required
                     >
-                        <option value="">Select Status</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
+                        <option value="">{t("addProgram.selectStatus")}</option>
+                        <option value="active">{t("addProgram.active")}</option>
+                        <option value="inactive">
+                            {t("addProgram.inactive")}
+                        </option>
                     </select>
                     {errors.status && (
                         <p className="text-red-500 text-sm">{errors.status}</p>
                     )}
                 </div>
                 <div className="flex flex-col mb-4">
-                    <InputLabel htmlFor="icon">Icon</InputLabel>
+                    <InputLabel htmlFor="icon">
+                        {t("addProgram.icon")}
+                    </InputLabel>
                     <FileInput
                         type="file"
                         id="icon"
@@ -202,11 +223,11 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                 >
                     {processing
                         ? program
-                            ? "Editing ..."
-                            : "Creating ..."
+                            ? t("addProgram.editing")
+                            : t("addProgram.creating")
                         : program
-                        ? "Edit Program"
-                        : "Add Program"}
+                        ? t("addProgram.editProgram")
+                        : t("addProgram.addProgram")}
                 </PrimaryButton>
             </form>
         </div>

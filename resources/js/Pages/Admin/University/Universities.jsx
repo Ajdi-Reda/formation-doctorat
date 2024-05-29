@@ -6,12 +6,16 @@ import toast from "react-hot-toast";
 import AuthLayout from "@/Layouts/AuthLayout";
 import AddEditUniversity from "./AddEditUniversity";
 import { router } from "@inertiajs/react";
+import { useTranslation } from "react-i18next";
 
 const Universities = ({ universities, auth, programs }) => {
+    const { t } = useTranslation("admin");
+
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [university, setUniversity] = useState(null);
+
     const onClose = () => {
         setOpen(false);
         setOpenEdit(false);
@@ -31,12 +35,11 @@ const Universities = ({ universities, auth, programs }) => {
         const id = university.id;
         router.delete(`/admin/universities/${id}`, {
             onSuccess: () => {
-                toast.success("University Successfully Deleted");
+                toast.success(t("universities.deleteSuccess"));
                 setOpenDeleteModal(false);
             },
         });
     };
-    console.log(universities);
 
     return (
         <AuthLayout user={auth.user} role={auth.role}>
@@ -44,10 +47,10 @@ const Universities = ({ universities, auth, programs }) => {
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">
-                            Universities
+                            {t("universities.title")}
                         </h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            A list of all the universities available.
+                            {t("universities.description")}
                         </p>
                     </div>
                     <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -56,7 +59,7 @@ const Universities = ({ universities, auth, programs }) => {
                             onClick={() => setOpen(true)}
                             className="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
-                            Add new university
+                            {t("universities.addNewUniversity")}
                         </button>
                     </div>
                 </div>
@@ -66,8 +69,7 @@ const Universities = ({ universities, auth, programs }) => {
                             <div className=" shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                                 {universities.length === 0 ? (
                                     <p className="p-4 text-sm text-gray-700">
-                                        No universities have been added to the
-                                        database.
+                                        {t("universities.noUniversities")}
                                     </p>
                                 ) : (
                                     <table className="min-w-full divide-y divide-gray-300">
@@ -77,31 +79,37 @@ const Universities = ({ universities, auth, programs }) => {
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Name
+                                                    {t("universities.name")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Address
+                                                    {t("universities.address")}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Chancellor
+                                                    {t(
+                                                        "universities.chancellor"
+                                                    )}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Chancellor Email
+                                                    {t(
+                                                        "universities.chancellorEmail"
+                                                    )}
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                                 >
-                                                    Chancellor Phone Number
+                                                    {t(
+                                                        "universities.chancellorPhoneNumber"
+                                                    )}
                                                 </th>
                                                 <th
                                                     scope="col"
@@ -175,11 +183,11 @@ const Universities = ({ universities, auth, programs }) => {
                             {/* Delete Confirmation Modal */}
                             {openDeleteModal && (
                                 <ModalMessage
-                                    header={"Delete University"}
+                                    header={t("universities.deleteUniversity")}
                                     open={openDeleteModal}
-                                    message={
-                                        "Are you sure you want to Delete this university?"
-                                    }
+                                    message={t(
+                                        "universities.deleteConfirmation"
+                                    )}
                                     onClose={() => {
                                         setOpenDeleteModal(false);
                                     }}

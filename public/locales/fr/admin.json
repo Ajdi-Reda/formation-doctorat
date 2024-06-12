@@ -64,17 +64,17 @@
         "successMessage": "Invitation envoyée avec succès"
     },
     "fields": {
-        "title": "Champs",
+        "title": "Spécialités",
         "subtitle": "Une liste de tous les champs disponibles.",
-        "addFieldButton": "Ajouter un nouveau champ",
+        "addFieldButton": "Ajouter une nouvelle spécialité",
         "noFieldsMessage": "Aucun champ n'a encore été ajouté.",
         "name": "Nom",
         "dateOfCreation": "Date de création",
         "numberOfTheses": "Nombre de thèses",
         "actions": "Actions",
-        "deleteFieldHeader": "Supprimer le champ",
-        "deleteFieldMessage": "Êtes-vous sûr de vouloir supprimer ce champ?",
-        "deleteSuccess": "Champ supprimé avec succès"
+        "deleteFieldHeader": "Supprimer la spécialité",
+        "deleteFieldMessage": "Êtes-vous sûr de vouloir supprimer cette spécialité?",
+        "deleteSuccess": "Spécialité supprimé avec succès"
     },
     "addField": {
         "universityLabel": "Université",

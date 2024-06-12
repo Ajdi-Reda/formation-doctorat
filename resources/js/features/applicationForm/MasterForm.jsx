@@ -20,6 +20,7 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="mBranch"
                                 type="text"
+                                min="0"
                                 value={data.mBranch}
                                 onChange={(e) =>
                                     setData("mBranch", e.target.value)
@@ -54,6 +55,8 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="mEstablishment"
                                 type="text"
+                                min="0"
+                                max="20"
                                 value={data.mEstablishment}
                                 onChange={(e) =>
                                     setData("mEstablishment", e.target.value)
@@ -73,7 +76,9 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             </InputLabel>
                             <Input
                                 id="semester7"
-                                type="text"
+                                type="number"
+                                min="0"
+                                max="20"
                                 value={data.semester7}
                                 onChange={(e) =>
                                     setData("semester7", e.target.value)
@@ -93,7 +98,9 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             </InputLabel>
                             <Input
                                 id="semester8"
-                                type="text"
+                                min="0"
+                                max="20"
+                                type="number"
                                 value={data.semester8}
                                 onChange={(e) =>
                                     setData("semester8", e.target.value)
@@ -111,7 +118,9 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             </InputLabel>
                             <Input
                                 id="semester9"
-                                type="text"
+                                type="number"
+                                min="0"
+                                max="20"
                                 value={data.semester9}
                                 onChange={(e) =>
                                     setData("semester9", e.target.value)
@@ -129,7 +138,9 @@ const MasterForm = ({ data, errors, setData, completed }) => {
                             </InputLabel>
                             <Input
                                 id="semester10"
-                                type="text"
+                                type="number"
+                                min="0"
+                                max="20"
                                 value={data.semester10}
                                 onChange={(e) =>
                                     setData("semester10", e.target.value)

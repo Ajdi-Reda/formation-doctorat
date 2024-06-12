@@ -45,12 +45,12 @@ const Summary = ({ handleDecrementStep, formData }) => {
                     fileName="convocation.pdf"
                 >
                     {({ blob, url, loading, error }) => (
-                        <button
+                        <PrimaryButton
                             type="button"
                             className="px-4 py-2 rounded-md bg-indigo-500 text-white"
                         >{`${
                             loading ? "Loading document..." : "Download PDF!"
-                        }`}</button>
+                        }`}</PrimaryButton>
                     )}
                 </PDFDownloadLink>
             </div>

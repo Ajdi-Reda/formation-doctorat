@@ -36,11 +36,6 @@ export const useNavLinks = (role) => {
 
     const adminNavLinks = [
         {
-            name: t("dashboardItems.Dashboard"),
-            icon: MdDashboard,
-            route: "admin/dashboard",
-        },
-        {
             name: t("dashboardItems.Programs"),
             icon: FaBookOpen,
             route: "admin/programs",
@@ -64,7 +59,7 @@ export const useNavLinks = (role) => {
 
     const candidateNavLinks = [
         {
-            name: t("dashboardItems.Dashboard"),
+            name: "Dashboard",
             route: "candidate/dashboard",
             icon: GoHome,
         },

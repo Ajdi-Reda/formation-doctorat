@@ -147,13 +147,7 @@ const AuthLayout = ({ user, role, children }) => {
             <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
                 {/* Sidebar component */}
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
-                    <div className="flex h-16 shrink-0 items-center">
-                        <img
-                            className="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="Your Company"
-                        />
-                    </div>
+                    <div className="flex h-16 shrink-0 items-center"></div>
                     <nav className="flex flex-1 flex-col">
                         <ul
                             role="list"
@@ -213,22 +207,7 @@ const AuthLayout = ({ user, role, children }) => {
                             className="relative flex flex-1"
                             action="#"
                             method="GET"
-                        >
-                            <label htmlFor="search-field" className="sr-only">
-                                Search
-                            </label>
-                            <MagnifyingGlassIcon
-                                className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                                aria-hidden="true"
-                            />
-                            <input
-                                id="search-field"
-                                className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                                placeholder="Search..."
-                                type="search"
-                                name="search"
-                            />
-                        </form>
+                        ></form>
                         <div className="flex items-center gap-x-4 lg:gap-x-6">
                             <LanguagePicker />
                             {/* Separator */}

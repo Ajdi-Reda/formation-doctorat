@@ -103,6 +103,8 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="semester1"
                                 type="number"
+                                min="0"
+                                max="20"
                                 placeholder={t(
                                     "licenceForm.placeholders.semester1"
                                 )}
@@ -122,6 +124,8 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                             </InputLabel>
                             <Input
                                 id="semester2"
+                                min="0"
+                                max="20"
                                 type="number"
                                 placeholder={t(
                                     "licenceForm.placeholders.semester2"
@@ -141,6 +145,8 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                                 </InputLabel>
                                 <Input
                                     id="semester3"
+                                    min="0"
+                                    max="20"
                                     type="number"
                                     placeholder={t(
                                         "licenceForm.placeholders.semester3"
@@ -161,6 +167,8 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                                 </InputLabel>
                                 <Input
                                     id="semester4"
+                                    min="0"
+                                    max="20"
                                     type="number"
                                     placeholder={t(
                                         "licenceForm.placeholders.semester4"
@@ -181,6 +189,8 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                                 </InputLabel>
                                 <Input
                                     id="semester5"
+                                    min="0"
+                                    max="20"
                                     type="number"
                                     placeholder={t(
                                         "licenceForm.placeholders.semester5"
@@ -201,6 +211,8 @@ const LicenceForm = ({ data, errors, setData, completed }) => {
                                 </InputLabel>
                                 <Input
                                     id="semester6"
+                                    min="0"
+                                    max="20"
                                     type="number"
                                     placeholder={t(
                                         "licenceForm.placeholders.semester6"

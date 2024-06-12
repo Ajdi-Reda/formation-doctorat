@@ -61,7 +61,7 @@ const AddEditThesis = ({ onClose, programFields, thesis }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (thesis) {
-            put(`/professor/theses/${thesis.id}`, {
+            post(`/professor/theses/${thesis.id}`, {
                 onSuccess: () => {
                     reset();
                     onClose();

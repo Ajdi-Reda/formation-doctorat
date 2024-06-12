@@ -50,7 +50,7 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success(t("addProgram.successUpdate"));
+                    toast.success(t("addProgram.successEdit"));
                 },
             });
         } else {
@@ -58,7 +58,7 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                 onSuccess: () => {
                     reset();
                     onClose();
-                    toast.success(t("addProgram.successCreate"));
+                    toast.success(t("addProgram.successAdd"));
                 },
             });
         }
@@ -226,7 +226,7 @@ const AddEditProgram = ({ onClose, program, universities }) => {
                             ? t("addProgram.editing")
                             : t("addProgram.creating")
                         : program
-                        ? t("addProgram.editProgram")
+                        ? t("addProgram.editButton")
                         : t("addProgram.addProgram")}
                 </PrimaryButton>
             </form>

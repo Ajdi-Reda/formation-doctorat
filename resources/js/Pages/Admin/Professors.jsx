@@ -16,6 +16,7 @@ const Professors = ({ professors, auth, universities }) => {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    console.log(openDeleteModal);
     const [professor, setProfessor] = useState({});
     console.log(professors);
     const onClose = () => {
@@ -232,14 +233,14 @@ const Professors = ({ professors, auth, universities }) => {
                         />
                     </Modal>
                 )}
-                {openDeleteModal && (
-                    <ModalMessage
-                        header={t("professors.deleteProfessorHeader")}
-                        message={t("professors.deleteProfessorMessage")}
-                        onClose={() => setOpenDeleteModal(!openDeleteModal)}
-                        onConfirm={handleDeleteProfessor}
-                    />
-                )}
+
+                <ModalMessage
+                    open={openDeleteModal}
+                    header={t("professors.deleteProfessorHeader")}
+                    message={t("professors.deleteProfessorMessage")}
+                    onClose={() => setOpenDeleteModal(!openDeleteModal)}
+                    onConfirm={handleDeleteProfessor}
+                />
             </div>
         </AuthLayout>
     );

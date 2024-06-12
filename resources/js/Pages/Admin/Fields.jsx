@@ -10,7 +10,7 @@ import AddEditField from "./AddEditField";
 import { useTranslation } from "react-i18next";
 
 const Fields = ({ fields, universities, auth }) => {
-    console.log(universities);
+    console.log(fields);
     const { t } = useTranslation("admin");
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
@@ -113,7 +113,9 @@ const Fields = ({ fields, universities, auth }) => {
                                                         )}
                                                     </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {field.numberTheses}
+                                                        {
+                                                            field.thesis_proposals_count
+                                                        }
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                         <ActionsDropdown

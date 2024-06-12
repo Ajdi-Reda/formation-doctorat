@@ -7,6 +7,7 @@ import DocumentForm from "./DocumentForm";
 import FieldSelection from "./FieldSelection";
 import Summary from "@/features/applicationForm/Summary.jsx";
 import { useTranslation } from "react-i18next";
+import { Toaster } from "react-hot-toast";
 
 const Application = ({ fields, user, formData }) => {
     const [currStep, setCurrStep] = useState(1);
@@ -30,6 +31,7 @@ const Application = ({ fields, user, formData }) => {
 
     return (
         <>
+            <Toaster />
             <div className={i18n.language === "ar" ? "arabic-font" : ""}>
                 <ApplicationProgress currentStep={currStep} />
                 <CurrentForm

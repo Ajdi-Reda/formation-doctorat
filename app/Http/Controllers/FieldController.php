@@ -69,7 +69,6 @@ class FieldController extends Controller
 
     public function update(Request $request, Field $field)
     {
-
         $validated = $request->validate([
             'data.programId' => 'required|exists:programs,id',
             'data.universityId' => 'required|exists:universities,id',

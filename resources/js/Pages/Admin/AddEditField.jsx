@@ -71,28 +71,26 @@ const AddEditField = ({ onClose, universities = [], field = null }) => {
         }
         setSelectedProgram("");
         setData("programId", "");
-        console.log(data, selectedUniversity, initialUniversity);
     };
 
     const handleProgramChange = (e) => {
         const selectedProgramId = parseInt(e.target.value, 10);
         setSelectedProgram(selectedProgramId);
         setData("programId", selectedProgramId);
-        console.log(data, selectedUniversity);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const url = field ? `admin/fields/${field.id}` : "/admin/fields";
+        const url = field ? `/admin/fields/${field.id}` : "/admin/fields";
 
         field
             ? router.patch(url, {
                   data: {
                       ...data,
                       universityId: field
-                          ? data.universityId
-                          : selectedUniversity,
+                          ? selectedUniversity
+                          : data.universityId,
                   },
                   onSuccess: () => {
                       reset();

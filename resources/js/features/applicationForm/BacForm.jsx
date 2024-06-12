@@ -101,6 +101,8 @@ const BacForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="nationalBacAverage"
                                 type="number"
+                                min="0"
+                                max="20"
                                 placeholder={t(
                                     "bacForm.placeholders.nationalBacAverage"
                                 )}
@@ -158,6 +160,8 @@ const BacForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="bacAverage"
                                 type="number"
+                                min="0"
+                                max="20"
                                 placeholder={t(
                                     "bacForm.placeholders.bacAverage"
                                 )}
@@ -178,6 +182,8 @@ const BacForm = ({ data, errors, setData, completed }) => {
                             <Input
                                 id="regionalExamAverage"
                                 type="number"
+                                min="0"
+                                max="20"
                                 placeholder={t(
                                     "bacForm.placeholders.regionalExamAverage"
                                 )}
